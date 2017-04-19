@@ -1,0 +1,13 @@
+build/
+config/
+test/
+init/
+server/
+page-init-state.js
+all-routes.js
+page-routes.js
+builder
+src/routes.js
+src/local-script/
+bin
+config.js
