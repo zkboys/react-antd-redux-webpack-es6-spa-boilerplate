@@ -13,16 +13,23 @@
     "antd": "^2.9.0",
     "axios": "^0.16.1",
     "axios-mock-adapter": "^1.8.1",
+    "classnames": "^2.2.5",
     "cross-env": "^4.0.0",
     "lodash": "^4.14.2",
     "mockjs": "^1.0.1-beta3",
     "prop-types": "^15.5.8",
+    "query-string": "^4.2.2",
     "react": "15.4.2",
-    "react-dom": "^15.4.2",
+    "react-dom": "15.4.2",
     "react-redux": "^5.0.3",
     "react-router": "^3.0.2",
     "redux": "^3.6.0",
     "redux-actions": "^2.0.1",
-    "zk-react": "^1.0.109"
+    "redux-logger": "^3.0.0",
+    "redux-thunk": "^2.2.0",
+    "redux-undo": "^0.6.1",
+    "uuid": "^3.0.1",
+    "whatwg-fetch": "^1.0.0",
+    "zk-react": "^1.1.5"
   }
 }

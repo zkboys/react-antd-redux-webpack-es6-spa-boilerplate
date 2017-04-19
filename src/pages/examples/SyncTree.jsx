@@ -1,14 +1,23 @@
 import React, {Component} from 'react';
-import * as syncTreeUtils from 'zk-react/utils/tree-sync-utils';
+import {Tree} from 'antd';
+import {
+    renderNode,
+    convertToTree,
+    // getTopNodeByNode,
+    // getNodeByKey,
+    // getNodeByKeyValue,
+    // getGenerationalNodesByKey,
+    getCheckedKeys,
+} from 'zk-react/utils/tree-utils';
+
 import './style.less';
 
+const TreeNode = Tree.TreeNode;
+
 export const PAGE_ROUTE = '/example/sync-tree';
-
 export default class extends Component {
-    state = {};
-
-    render() {
-        const data = [
+    state = {
+        data: [
             {
                 key: '1',
                 text: '顶级节点1',
@@ -27,7 +36,7 @@ export default class extends Component {
             {
                 key: '12',
                 parentKey: '1',
-                text: '子节点22',
+                text: '子节点12',
                 icon: 'fa-user',
                 path: '/user/add',
                 url: '',
@@ -36,6 +45,14 @@ export default class extends Component {
                 key: '123',
                 parentKey: '12',
                 text: '子节点123',
+                icon: 'fa-user',
+                path: '/user/add/adsf',
+                url: '',
+            },
+            {
+                key: '124',
+                parentKey: '12',
+                text: '子节点124',
                 icon: 'fa-user',
                 path: '/user/add/adsf',
                 url: '',
@@ -55,15 +72,60 @@ export default class extends Component {
                 path: '/role/list',
                 url: '',
             },
-        ];
-        const treeData = syncTreeUtils.convertToTree(data);
-        console.log(treeData);
-        const topNode = syncTreeUtils.getTopNodeByNode(treeData, {parentKey: '12'});
-        console.log(topNode);
-        console.log(syncTreeUtils.getNodeByKey(treeData, '12'));
-        console.log(syncTreeUtils.getNodeByKeyValue(treeData, 'path', '/role/list'));
+            {
+                key: '22',
+                parentKey: '2',
+                text: '子节点22',
+                icon: 'fa-user',
+                path: '/role/list',
+                url: '',
+            },
+        ],
+        treeData: [],
+        checkedKeys: [],
+    };
+
+    handleCheck = (checkedKeys, e) => {
+        const checked = e.checked;
+        const checkNodeKey = e.node.props.eventKey;
+        const {treeData} = this.state;
+        // Tree 要使用 checkStrictly 属性
+        const allKeys = getCheckedKeys(treeData, checkedKeys, checked, checkNodeKey);
+        this.setState({checkedKeys: allKeys});
+    }
+
+    componentWillMount() {
+        const treeData = convertToTree(this.state.data);
+        this.setState({treeData});
+    }
+
+    render() {
+        const {treeData, checkedKeys} = this.state;
+        // console.log(treeData);
+        // const topNode = getTopNodeByNode(treeData, {parentKey: '12'});
+        // console.log(topNode);
+        // console.log(getNodeByKey(treeData, '12'));
+        // console.log(getNodeByKeyValue(treeData, 'path', '/role/list'));
+
+        const treeNode = renderNode(treeData, (item, children) => {
+            if (children) {
+                return (
+                    <TreeNode key={item.key} title={item.text}>
+                        {children}
+                    </TreeNode>
+                );
+            }
+            return <TreeNode key={item.key} title={item.text}/>;
+        });
         return (
-            <div> tree</div>
+            <Tree
+                checkable
+                checkStrictly
+                checkedKeys={{checked: checkedKeys}}
+                onCheck={this.handleCheck}
+            >
+                {treeNode}
+            </Tree>
         );
     }
 }
