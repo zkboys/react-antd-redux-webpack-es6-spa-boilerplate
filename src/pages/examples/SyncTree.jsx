@@ -58,6 +58,22 @@ export default class extends Component {
                 url: '',
             },
             {
+                key: '1241',
+                parentKey: '124',
+                text: '子节点1241',
+                icon: 'fa-user',
+                path: '/user/add/adsf',
+                url: '',
+            },
+            {
+                key: '1242',
+                parentKey: '124',
+                text: '子节点1242',
+                icon: 'fa-user',
+                path: '/user/add/adsf',
+                url: '',
+            },
+            {
                 key: '2',
                 text: '顶级节点2',
                 icon: 'fa-user',
