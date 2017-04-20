@@ -7,15 +7,15 @@ import './global.less';
 import actions from './actions';
 import reducers from './reducers';
 import * as Error404 from './pages/error/Error404';
-import * as Frame from './Frame';
+import * as Frame from './frame/Frame';
 import Home from './pages/home/Home';
 
 initRouter({
     Error404,
     Frame,
     Home,
-    historyListen: (...args) => {
-        console.log(args);
+    historyListen: (history) => {
+        console.log(history);
     },
     onLeave: () => {
     },
