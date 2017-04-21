@@ -3,11 +3,15 @@ import {handleAsyncReducer} from 'zk-react';
 import * as types from '../constants/actionTypes';
 
 let initialState = {
-    message: 'demo init menssage',
+    topMenuTreeData: [],
+    sideBarMenuTreeData: [],
+    currentTopMenuNode: null,
+    currentSideBarMenuNode: null,
 };
 
+
 export default handleActions({
-    [types.DEMO]: handleAsyncReducer({
+    [types.GET_SYSTEM_MENUS]: handleAsyncReducer({
         always(state, action) {
             console.log('always', state, action);
             return state;
@@ -29,4 +33,11 @@ export default handleActions({
             return state;
         },
     }),
+    [types.GET_SYSTEM_MENUS](state, action) {
+        const {payload} = action;
+        return {
+            ...state,
+            message: payload,
+        };
+    },
 }, initialState);

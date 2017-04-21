@@ -1,4 +1,5 @@
 module.exports = {
+    useESLint: true,
     proxyTables: { // dev-server 反向代理配置
         // '/api/organization/users': 'http://localhost:3001', // 开发过程中，可以代理具体的url到后端开发机器上。
     },
