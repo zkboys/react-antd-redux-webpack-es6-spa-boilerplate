@@ -2,3 +2,6 @@ export const DEMO = 'DEMO';
 
 // system menu
 export const GET_SYSTEM_MENUS = 'GET_SYSTEM_MENUS';
+export const SET_SYSTEM_MENUS_STATUS_BY_URL = 'SET_SYSTEM_MENUS_STATUS_BY_URL';
+export const SET_SYSTEM_MENU_OPEN_KEYS = 'SET_SYSTEM_MENU_OPEN_KEYS';
+export const TOGGLE_SIDE_BAR = 'TOGGLE_SIDE_BAR';

@@ -1,11 +1,111 @@
-.frame-header {
+@import '../variables.less';
 
+.frame-header {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  left: @sideBarMaxWidth;
+  height: @headerHeight;
+  background-color: @primaryColor;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  transition: .3s;
+  .menu {
+    margin-left: 50px;
+  }
+  .ant-menu-horizontal {
+    padding-top: 6px;
+    border-bottom: 0;
+    background: none;
+  }
+  .font-icon {
+    margin-right: 8px;
+  }
+  .ant-menu-horizontal > .ant-menu-item > a,
+  .ant-menu-horizontal > .ant-menu-submenu > a {
+    color: #eee;
+    text-decoration: none;
+  }
+  .ant-menu-horizontal > .ant-menu-item:hover,
+  .ant-menu-horizontal > .ant-menu-item-selected {
+    border-bottom: 2px solid #fff;
+    color: #fff;
+    a {
+      color: #fff;
+    }
+  }
 }
 
 .frame-side-bar {
-
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  transition: .3s;
+  .logo {
+    height: @headerHeight;
+    line-height: @headerHeight;
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+    background: @primaryColor;
+    .side-bar-toggle {
+      position: absolute;
+      top: 0;
+      right: -50px;
+      width: 50px;
+      transition: background .3s;
+      &:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+  .menu-outer {
+    width: 100%;
+    position: absolute;
+    top: @headerHeight;
+    bottom: 0;
+    //box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-right: 1px solid @borderColor;
+    overflow: hidden;
+    .ant-menu {
+      border-right: 0;
+    }
+    .font-icon {
+      margin-right: 8px;
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+  .menu-inner {
+    position: relative;
+    height: 100%;
+    overflow-x: visible;
+    transition: .3s;
+  }
+  .side-bar-top-menu-text {
+    display: none;
+    transition: .3s;
+  }
+  .ant-menu-item-active {
+    overflow: visible !important;
+    background-color: #ecf6fd;
+    .side-bar-top-menu-text {
+      z-index: 999;
+      display: inline-block;
+      height: 100%;
+      padding-right: 16px;
+      border-right: 3px solid @primaryColor;
+      background-color: #ecf6fd;
+    }
+  }
 }
 
 .frame-content {
-
+  padding-top: @headerHeight;
+  padding-left: @sideBarMaxWidth;
+  transition: .3s;
 }

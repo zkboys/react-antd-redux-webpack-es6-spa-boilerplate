@@ -9,11 +9,30 @@ import './style.less';
  * 2. 菜单中有url，为打开iframe菜单，前端本身就没有配置route
  */
 export class LayoutComponent extends Component {
+    state = {
+        url: null,
+    }
 
-    componentWillMount() {
+    componentWillReceiveProps(nextProps) {
+        const {currentSideBarMenuNode} = nextProps;
+        const url = currentSideBarMenuNode && currentSideBarMenuNode.url;
+        if (url) {
+            this.setState({url});
+        } else {
+            this.setState({url: null});
+        }
+    }
+
+    componentDidMount() {
     }
 
     render() {
+        const {url} = this.state;
+        if (url) {
+            return (
+                <iframe src={url} frameBorder={0} style={{width: '100%'}}/>
+            );
+        }
         return (
             <div className="error-page">
                 <img src={error404} alt="404图片"/>
@@ -36,6 +55,8 @@ export class LayoutComponent extends Component {
     }
 }
 
-export function mapStateToProps() {
-    return {};
+export function mapStateToProps(state) {
+    return {
+        ...state.systemMenu,
+    };
 }

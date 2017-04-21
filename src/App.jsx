@@ -2,20 +2,36 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {message} from 'antd';
-import {configureStore, Router, initRouter, initActions, initReducers, initPromiseAjax} from 'zk-react';
+import {
+    debug,
+    configureStore,
+    Router,
+    initRouter,
+    initActions,
+    initReducers,
+    promiseAjax,
+    PubSubMsg,
+} from 'zk-react';
 import './global.less';
+import handleErrorMessage from './commons/handle-error-message';
 import actions from './actions';
 import reducers from './reducers';
 import * as Error404 from './pages/error/Error404';
 import * as Frame from './frame/Frame';
 import Home from './pages/home/Home';
 
+if (debug) {
+    require('./mock/index');
+
+    console.log('current mode is debug, mock is started');
+}
+
 initRouter({
     Error404,
     Frame,
     Home,
     historyListen: (history) => {
-        console.log(history);
+        PubSubMsg.publish('history-change', history);
     },
     onLeave: () => {
     },
@@ -27,28 +43,12 @@ initRouter({
 
 initActions(actions);
 initReducers(reducers);
-initPromiseAjax({
+promiseAjax.init({
     setOptions: (/* instance, isMock */) => {
     },
     onShowErrorTip: (err, errorTip) => {
         if (errorTip !== false) {
-            if (err.response) {
-                const resData = err.response.data;
-                const {status} = err.response;
-                if (resData && resData.message) {
-                    errorTip = resData.message;
-                }
-                if (status === 404) {
-                    errorTip = '您访问的资源不存在！';
-                }
-                if (status === 403) {
-                    errorTip = '您无权访问此资源！';
-                }
-                if (resData && resData.message && resData.message.startsWith('timeout of')) {
-                    errorTip = '请求超时！';
-                }
-            }
-            message.error(errorTip, 3);
+            handleErrorMessage(err);
         }
     },
     onShowSuccessTip: (response, successTip) => {

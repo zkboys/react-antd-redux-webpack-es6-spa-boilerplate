@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Button} from 'antd';
+import {PageContent} from 'zk-react/antd';
 import './style.less';
 
 export const PAGE_ROUTE = '/example/actions-set-state';
@@ -23,7 +24,7 @@ export class LayoutComponent extends Component {
 
     render() {
         return (
-            <div className="actions-set-state">
+            <PageContent className="actions-set-state">
                 <p>
                     <Button onClick={() => {
                         this.props.actions.setState({
@@ -68,7 +69,7 @@ export class LayoutComponent extends Component {
                     <br/>
                     <span>{this.props.demo.message}</span>
                 </p>
-            </div>
+            </PageContent>
         );
     }
 }
