@@ -1,6 +1,6 @@
 import {handleActions} from 'redux-actions';
 import {handleAsyncReducer} from 'zk-react';
-import * as types from '../constants/actionTypes';
+import * as types from '../actionTypes';
 
 let initialState = {
     message: 'demo init menssage',

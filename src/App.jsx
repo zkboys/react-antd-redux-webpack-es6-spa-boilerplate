@@ -14,8 +14,8 @@ import {
 } from 'zk-react';
 import './global.less';
 import handleErrorMessage from './commons/handle-error-message';
-import actions from './actions';
-import reducers from './reducers';
+import actions from './redux/actions';
+import reducers from './redux/reducers';
 import * as Error404 from './pages/error/Error404';
 import * as Frame from './frame/Frame';
 import * as Home from './pages/home/Home';

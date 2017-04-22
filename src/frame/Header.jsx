@@ -1,13 +1,28 @@
 import React, {Component} from 'react';
-import {Menu} from 'antd';
+import {Menu, Popconfirm} from 'antd';
 import {Link} from 'react-router';
-import {FontIcon} from 'zk-react/antd';
+import {FontIcon, UserAvatar} from 'zk-react/antd';
 import connectComponent from 'zk-react/redux/store/connectComponent';
 import {getFirstValue} from 'zk-react/utils/tree-utils';
 
 class LayoutComponent extends Component {
     componentDidMount() {
 
+    }
+
+    handleLogoutPopVisibleChange = (visible) => {
+        if (visible) {
+            // 使弹框固定，不随滚动条滚动
+            window.setTimeout(() => {
+                const popover = document.querySelector('.ant-popover.ant-popover-placement-bottomRight');
+                popover.style.top = '56px';
+                popover.style.position = 'fixed';
+            }, 0);
+        }
+    }
+
+    handleLogout = () => {
+        console.log('logout');
     }
 
     renderMenus() {
@@ -31,15 +46,38 @@ class LayoutComponent extends Component {
         const {currentTopMenuNode = {}, sideBarCollapsed, showSideBar} = this.props;
         let className = sideBarCollapsed ? 'side-bar-collapsed' : '';
         className = showSideBar ? className : `${showSideBar} side-bar-hidden`;
+
+        const user = { // 获取真实用户
+            name: '匿名',
+            loginName: 'no name',
+            avatar: '',
+        };
         return (
             <div className={`frame-header ${className}`}>
-                <div className="menu">
+                <div className="left-menu">
                     <Menu
                         selectedKeys={[currentTopMenuNode.key]}
                         mode="horizontal"
                     >
                         {this.renderMenus()}
                     </Menu>
+                </div>
+                <div className="right-menu">
+                    <div className="right-menu-item text">
+                        <UserAvatar user={user}/>
+                        <span>{user.name}</span>
+                    </div>
+                    <Popconfirm
+                        onVisibleChange={this.handleLogoutPopVisibleChange}
+                        placement="bottomRight"
+                        title="您确定要退出系统吗？"
+                        onConfirm={this.handleLogout}
+                    >
+                        <div className="right-menu-item">
+                            <span>退出登录</span>
+                            <FontIcon type="logout" size="lg"/>
+                        </div>
+                    </Popconfirm>
                 </div>
             </div>
         );

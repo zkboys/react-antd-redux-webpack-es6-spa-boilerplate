@@ -16,8 +16,43 @@
   &.side-bar-hidden {
     left: 0;
   }
-  .menu {
+  .left-menu {
     margin-left: 50px;
+  }
+  .right-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    .right-menu-item {
+      display: inline-block;
+      line-height: @headerHeight;
+      padding: 0 16px;
+      cursor: pointer;
+      color: #fff;
+      .font-icon {
+        margin-left: 8px;
+        margin-right: 0;
+      }
+      &:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
+      &.text {
+        cursor: default;
+        &:hover {
+          background: none;
+        }
+      }
+    }
+    .user-avatar {
+      display: inline-block;
+      margin-right: 8px;
+      width: 25px;
+      height: 25px;
+      line-height: 25px;
+      border-radius: 50%;
+      text-align: center;
+    }
   }
   .ant-menu-horizontal {
     padding-top: 6px;
@@ -139,10 +174,12 @@
     margin-right: 8px;
   }
 }
-#nprogress .bar{
+
+#nprogress .bar {
   background: #fff;
 }
-#nprogress .spinner-icon{
+
+#nprogress .spinner-icon {
   border-top-color: #fff;
   border-left-color: #fff;
 }

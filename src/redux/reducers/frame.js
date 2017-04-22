@@ -3,7 +3,7 @@ import {handleAsyncReducer} from 'zk-react';
 import {convertToTree, getNodeByPropertyAndValue, getTopNodeByNode} from 'zk-react/utils/tree-utils';
 import {uniqueArray} from 'zk-react/utils';
 import {session} from 'zk-react/utils/storage';
-import * as types from '../constants/actionTypes';
+import * as types from '../actionTypes';
 
 let initialState = {
     menuTreeData: [],
@@ -51,7 +51,7 @@ export default handleActions({
         const menuTreeData = session.getItem('menuTreeData');
         let currentSideBarMenuNode = {};
         let currentTopMenuNode = {};
-        let menuOpenKeys = [];
+        let menuOpenKeys = [...state.menuOpenKeys];
         let breadcrumbs = [];
         let pageTitle = '';
 

@@ -1,6 +1,6 @@
 import {createAction} from 'redux-actions';
 import {promiseAjax} from 'zk-react';
-import * as types from '../constants/actionTypes';
+import * as types from '../actionTypes';
 
 export const getSystemMenus = createAction(types.GET_SYSTEM_MENUS,
     () => promiseAjax.get('/mock/system/menus', null, {errorTip: false}), // TODO 修改这个链接
