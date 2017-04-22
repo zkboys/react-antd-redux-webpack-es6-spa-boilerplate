@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Button} from 'antd';
 import {Link} from 'react-router';
+import {addClass, removeClass} from 'zk-react/utils';
 import error404 from './404.png';
 import './style.less';
 /**
@@ -15,22 +16,33 @@ export class LayoutComponent extends Component {
 
     componentWillReceiveProps(nextProps) {
         const {currentSideBarMenuNode} = nextProps;
+        this.handleIframe(currentSideBarMenuNode);
+    }
+
+    componentWillMount() {
+        const {currentSideBarMenuNode} = this.props;
+        this.handleIframe(currentSideBarMenuNode);
+    }
+
+    handleIframe(currentSideBarMenuNode) {
         const url = currentSideBarMenuNode && currentSideBarMenuNode.url;
         if (url) {
             this.setState({url});
+            addClass('#frame-content', 'frame-content-iframe');
         } else {
+            removeClass('#frame-content', 'frame-content-iframe');
             this.setState({url: null});
         }
     }
 
-    componentDidMount() {
+    componentWillUnmount() {
     }
 
     render() {
         const {url} = this.state;
         if (url) {
             return (
-                <iframe src={url} frameBorder={0} style={{width: '100%'}}/>
+                <iframe src={url} frameBorder={0} style={{width: '100%', height: '100%'}}/>
             );
         }
         return (

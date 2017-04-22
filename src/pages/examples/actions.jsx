@@ -3,7 +3,7 @@ import {Button} from 'antd';
 import {PageContent} from 'zk-react/antd';
 import './style.less';
 
-export const PAGE_ROUTE = '/example/actions-set-state';
+export const PAGE_ROUTE = '/example/actions';
 export const INIT_STATE = {
     scope: 'actionsSetState',
     sync: true,

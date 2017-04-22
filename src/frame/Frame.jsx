@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import {message} from 'antd';
 import {PubSubMsg} from 'zk-react';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 import './style.less';
 import handleErrorMessage from '../commons/handle-error-message';
 import Header from './Header';
 import SideBar from './SideBar';
 import PageHeader from './PageHeader';
+
+NProgress.configure({showSpinner: false});
 
 export class LayoutComponent extends Component {
     state = {}
@@ -33,6 +37,14 @@ export class LayoutComponent extends Component {
         PubSubMsg.subscribe('history-change', (/* history */) => {
             actions.setSystemMenusStatusByUrl();
         });
+
+        PubSubMsg.subscribe('start-fetching-component', () => {
+            NProgress.start();
+        });
+
+        PubSubMsg.subscribe('end-fetching-component', () => {
+            NProgress.done();
+        });
     }
 
     render() {
@@ -43,7 +55,7 @@ export class LayoutComponent extends Component {
             <div className="app-frame">
                 <Header/>
                 <SideBar/>
-                <div className="frame-content" style={{paddingLeft}}>
+                <div id="frame-content" className="frame-content" style={{paddingLeft}}>
                     <PageHeader/>
                     {this.props.children}
                 </div>

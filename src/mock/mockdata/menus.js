@@ -88,11 +88,11 @@ export default [
         path: '/example/promise-ajax',
     },
     {
-        key: 'example-actions-set-state',
+        key: 'example-actions',
         parentKey: 'example',
-        text: 'actions-set-state',
+        text: 'actions',
         icon: 'fa-th-list',
-        path: '/example/actions-set-state',
+        path: '/example/actions',
     },
     {
         key: 'example-font-icon',

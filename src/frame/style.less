@@ -2,7 +2,7 @@
 
 .frame-header {
   position: fixed;
-  z-index: 1;
+  z-index: 999;
   top: 0;
   right: 0;
   left: @sideBarMaxWidth;
@@ -44,7 +44,7 @@
 
 .frame-side-bar {
   position: fixed;
-  z-index: 1;
+  z-index: 999;
   top: 0;
   bottom: 0;
   left: 0;
@@ -114,6 +114,13 @@
   padding-top: @headerHeight;
   padding-left: @sideBarMaxWidth;
   transition: .3s;
+  &.frame-content-iframe {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
 }
 
 .page-header {
@@ -131,4 +138,11 @@
   .font-icon {
     margin-right: 8px;
   }
+}
+#nprogress .bar{
+  background: #fff;
+}
+#nprogress .spinner-icon{
+  border-top-color: #fff;
+  border-left-color: #fff;
 }

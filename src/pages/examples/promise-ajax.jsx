@@ -5,7 +5,6 @@ import {PageContent} from 'zk-react/antd';
 import './style.less';
 
 export const PAGE_ROUTE = '/example/promise-ajax';
-
 export const INIT_STATE = {
     scope: 'promiseAjax',
     sync: true,

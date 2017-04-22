@@ -64,12 +64,17 @@ export default handleActions({
 
             if (currentSideBarMenuNode) {
                 pageTitle = currentSideBarMenuNode.text;
+                const parentNodes = currentSideBarMenuNode.parentNodes;
                 currentTopMenuNode = getTopNodeByNode(menuTreeData, currentSideBarMenuNode);
+
                 // 保持其他打开的菜单
                 menuOpenKeys = menuOpenKeys.concat(currentSideBarMenuNode.parentKeys);
+                // 关闭其他菜单
+                // menuOpenKeys = [...currentSideBarMenuNode.parentKeys];
+
                 menuOpenKeys = uniqueArray(menuOpenKeys);
-                if (currentSideBarMenuNode.parentNodes && currentSideBarMenuNode.parentNodes.length) {
-                    breadcrumbs = currentSideBarMenuNode.parentNodes.concat(currentSideBarMenuNode);
+                if (parentNodes && parentNodes.length) {
+                    breadcrumbs = parentNodes.concat(currentSideBarMenuNode);
                     breadcrumbs.unshift({
                         key: 'home-key',
                         text: '首页',

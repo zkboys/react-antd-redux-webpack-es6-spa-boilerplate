@@ -17,6 +17,7 @@
     "cross-env": "^4.0.0",
     "lodash": "^4.14.2",
     "mockjs": "^1.0.1-beta3",
+    "nprogress": "^0.2.0",
     "prop-types": "^15.5.8",
     "query-string": "^4.2.2",
     "react": "15.4.2",
