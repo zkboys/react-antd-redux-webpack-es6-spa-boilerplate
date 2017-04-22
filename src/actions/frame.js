@@ -11,3 +11,8 @@ export const setSystemMenusStatusByUrl = createAction(types.SET_SYSTEM_MENUS_STA
 
 export const setSystemMenuOpenKeys = createAction(types.SET_SYSTEM_MENU_OPEN_KEYS);
 export const toggleSideBar = createAction(types.TOGGLE_SIDE_BAR);
+export const setPageTitle = createAction(types.SET_PAGE_TITLE);
+export const hidePageHeader = createAction(types.HIDE_PAGE_HEADER);
+export const showPageHeader = createAction(types.SHOW_PAGE_HEADER);
+export const hideSideBar = createAction(types.HIDE_SIDE_BAR);
+export const showSideBar = createAction(types.SHOW_SIDE_BAR);

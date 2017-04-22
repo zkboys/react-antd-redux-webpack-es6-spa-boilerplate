@@ -28,10 +28,11 @@ class LayoutComponent extends Component {
     }
 
     render() {
-        const {currentTopMenuNode = {}, menuCollapsed} = this.props;
-        const left = menuCollapsed ? 60 : 200;
+        const {currentTopMenuNode = {}, sideBarCollapsed, showSideBar} = this.props;
+        let className = sideBarCollapsed ? 'side-bar-collapsed' : '';
+        className = showSideBar ? className : `${showSideBar} side-bar-hidden`;
         return (
-            <div className="frame-header" style={{left}}>
+            <div className={`frame-header ${className}`}>
                 <div className="menu">
                     <Menu
                         selectedKeys={[currentTopMenuNode.key]}
@@ -47,7 +48,7 @@ class LayoutComponent extends Component {
 
 function mapStateToProps(state) {
     return {
-        ...state.systemMenu,
+        ...state.frame,
     };
 }
 

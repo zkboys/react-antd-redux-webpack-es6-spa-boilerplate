@@ -2,7 +2,7 @@ import {handleActions} from 'redux-actions';
 import {handleAsyncReducer} from 'zk-react';
 import {convertToTree, getNodeByPropertyAndValue, getTopNodeByNode} from 'zk-react/utils/tree-utils';
 import {uniqueArray} from 'zk-react/utils';
-import {global} from 'zk-react/utils/storage';
+import {session} from 'zk-react/utils/storage';
 import * as types from '../constants/actionTypes';
 
 let initialState = {
@@ -11,7 +11,11 @@ let initialState = {
     currentTopMenuNode: {},
     currentSideBarMenuNode: {},
     menuOpenKeys: [],
-    menuCollapsed: false,
+    sideBarCollapsed: false,
+    breadcrumbs: [],
+    pageTitle: '',
+    showPageHeader: true,
+    showSideBar: true,
 };
 
 export default handleActions({
@@ -29,7 +33,7 @@ export default handleActions({
             if (payload && payload.length) {
                 menuTreeData = convertToTree(payload);
             }
-            global.setItem('menuTreeData', menuTreeData);
+            session.setItem('menuTreeData', menuTreeData);
 
             return {
                 ...state,
@@ -44,12 +48,12 @@ export default handleActions({
         },
     }),
     [types.SET_SYSTEM_MENUS_STATUS_BY_URL](state) {
-        const menuTreeData = global.getItem('menuTreeData');
-        let {
-            currentSideBarMenuNode,
-            currentTopMenuNode,
-            menuOpenKeys,
-        } = state;
+        const menuTreeData = session.getItem('menuTreeData');
+        let currentSideBarMenuNode = {};
+        let currentTopMenuNode = {};
+        let menuOpenKeys = [];
+        let breadcrumbs = [];
+        let pageTitle = '';
 
         if (menuTreeData) {
             let path = location.pathname;
@@ -57,18 +61,32 @@ export default handleActions({
                 path = path.substring(0, path.indexOf('/+'));
             }
             currentSideBarMenuNode = getNodeByPropertyAndValue(menuTreeData, 'path', path);
-            currentTopMenuNode = getTopNodeByNode(menuTreeData, currentSideBarMenuNode);
+
             if (currentSideBarMenuNode) {
+                pageTitle = currentSideBarMenuNode.text;
+                currentTopMenuNode = getTopNodeByNode(menuTreeData, currentSideBarMenuNode);
                 // 保持其他打开的菜单
                 menuOpenKeys = menuOpenKeys.concat(currentSideBarMenuNode.parentKeys);
                 menuOpenKeys = uniqueArray(menuOpenKeys);
+                if (currentSideBarMenuNode.parentNodes && currentSideBarMenuNode.parentNodes.length) {
+                    breadcrumbs = currentSideBarMenuNode.parentNodes.concat(currentSideBarMenuNode);
+                    breadcrumbs.unshift({
+                        key: 'home-key',
+                        text: '首页',
+                        path: '/',
+                        icon: 'fa-home',
+                    });
+                }
             }
         }
         return {
             ...state,
+            menuTreeData,
             currentTopMenuNode,
             currentSideBarMenuNode,
             menuOpenKeys,
+            breadcrumbs,
+            pageTitle,
         };
     },
     [types.SET_SYSTEM_MENU_OPEN_KEYS](state, action) {
@@ -79,10 +97,41 @@ export default handleActions({
         };
     },
     [types.TOGGLE_SIDE_BAR](state) {
-        let {menuCollapsed} = state;
+        let {sideBarCollapsed} = state;
         return {
             ...state,
-            menuCollapsed: !menuCollapsed,
+            sideBarCollapsed: !sideBarCollapsed,
+        };
+    },
+    [types.SET_PAGE_TITLE](state, action) {
+        const {payload} = action;
+        return {
+            ...state,
+            pageTitle: payload,
+        };
+    },
+    [types.HIDE_PAGE_HEADER](state) {
+        return {
+            ...state,
+            showPageHeader: false,
+        };
+    },
+    [types.SHOW_PAGE_HEADER](state) {
+        return {
+            ...state,
+            showPageHeader: true,
+        };
+    },
+    [types.SHOW_SIDE_BAR](state) {
+        return {
+            ...state,
+            showSideBar: true,
+        };
+    },
+    [types.HIDE_SIDE_BAR](state) {
+        return {
+            ...state,
+            showSideBar: false,
         };
     },
 }, initialState);

@@ -1,7 +1,7 @@
 import demo from './demo';
-import systemMenu from './system-menu';
+import frame from './frame';
 
 export default {
     demo,
-    systemMenu,
+    frame,
 };

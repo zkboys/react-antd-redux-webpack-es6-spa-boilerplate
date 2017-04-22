@@ -57,6 +57,6 @@ export class LayoutComponent extends Component {
 
 export function mapStateToProps(state) {
     return {
-        ...state.systemMenu,
+        ...state.frame,
     };
 }

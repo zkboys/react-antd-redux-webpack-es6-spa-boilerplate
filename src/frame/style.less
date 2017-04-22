@@ -10,6 +10,12 @@
   background-color: @primaryColor;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   transition: .3s;
+  &.side-bar-collapsed {
+    left: @sideBarMinWidth;
+  }
+  &.side-bar-hidden {
+    left: 0;
+  }
   .menu {
     margin-left: 50px;
   }
@@ -108,4 +114,21 @@
   padding-top: @headerHeight;
   padding-left: @sideBarMaxWidth;
   transition: .3s;
+}
+
+.page-header {
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid @borderColor;
+  padding: 0 16px;
+  h1 {
+    display: inline-block;
+  }
+  .ant-breadcrumb {
+    display: inline-block;
+    float: right;
+  }
+  .font-icon {
+    margin-right: 8px;
+  }
 }

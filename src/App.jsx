@@ -18,7 +18,7 @@ import actions from './actions';
 import reducers from './reducers';
 import * as Error404 from './pages/error/Error404';
 import * as Frame from './frame/Frame';
-import Home from './pages/home/Home';
+import * as Home from './pages/home/Home';
 
 if (debug) {
     require('./mock/index');

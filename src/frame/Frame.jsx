@@ -5,13 +5,14 @@ import './style.less';
 import handleErrorMessage from '../commons/handle-error-message';
 import Header from './Header';
 import SideBar from './SideBar';
+import PageHeader from './PageHeader';
 
 export class LayoutComponent extends Component {
     state = {}
 
     componentWillMount() {
         const {actions} = this.props;
-
+        actions.setSystemMenusStatusByUrl();
         actions.getSystemMenus(() => {
             setTimeout(() => {
                 actions.setSystemMenusStatusByUrl();
@@ -35,13 +36,15 @@ export class LayoutComponent extends Component {
     }
 
     render() {
-        const {menuCollapsed} = this.props;
-        const paddingLeft = menuCollapsed ? 60 : 200;
+        const {sideBarCollapsed, showSideBar} = this.props;
+        let paddingLeft = sideBarCollapsed ? 60 : 200;
+        paddingLeft = showSideBar ? paddingLeft : 0;
         return (
             <div className="app-frame">
                 <Header/>
                 <SideBar/>
                 <div className="frame-content" style={{paddingLeft}}>
+                    <PageHeader/>
                     {this.props.children}
                 </div>
             </div>
@@ -51,6 +54,6 @@ export class LayoutComponent extends Component {
 
 export function mapStateToProps(state) {
     return {
-        ...state.systemMenu,
+        ...state.frame,
     };
 }

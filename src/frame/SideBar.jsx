@@ -22,10 +22,11 @@ class LayoutComponent extends Component {
         actions.setSystemMenuOpenKeys(openKeys);
     }
 
-    renderMenus(menuCollapsed) {
-        const {currentTopMenuNode} = this.props;
+    renderMenus() {
+        const {currentTopMenuNode, sideBarCollapsed} = this.props;
+
         if (currentTopMenuNode && currentTopMenuNode.children) {
-            if (menuCollapsed) {
+            if (sideBarCollapsed) {
                 currentTopMenuNode.children.forEach(item => item.isTop = true);
             }
             return renderNode(currentTopMenuNode.children, (item, children) => {
@@ -36,7 +37,7 @@ class LayoutComponent extends Component {
                 const icon = item.icon;
                 let title = <span><FontIcon type={icon}/>{text}</span>;
 
-                if (menuCollapsed && isTop) {
+                if (sideBarCollapsed && isTop) {
                     title = <span><FontIcon type={icon}/><span className="side-bar-top-menu-text">{text}</span></span>;
                 }
 
@@ -59,15 +60,18 @@ class LayoutComponent extends Component {
     }
 
     render() {
-        const {currentSideBarMenuNode, menuOpenKeys, menuCollapsed} = this.props;
-        const sideBarWidth = menuCollapsed ? 60 : 200;
-        const mode = menuCollapsed ? 'vertical' : 'inline';
-        const outerOverFlow = menuCollapsed ? 'visible' : 'hidden';
-        const innerOverFlow = menuCollapsed ? '' : 'scroll';
+        let {currentSideBarMenuNode} = this.props;
+        const {menuOpenKeys, sideBarCollapsed, showSideBar} = this.props;
+        const sideBarWidth = sideBarCollapsed ? 60 : 200;
+        const mode = sideBarCollapsed ? 'vertical' : 'inline';
+        const outerOverFlow = sideBarCollapsed ? 'visible' : 'hidden';
+        const innerOverFlow = sideBarCollapsed ? '' : 'scroll';
         const scrollBarWidth = getScrollBarWidth();
         const innerWidth = (sideBarWidth + scrollBarWidth) - 1; // 1 为outer 的 border
+
+        if (!currentSideBarMenuNode) currentSideBarMenuNode = {};
         return (
-            <div className="frame-side-bar" style={{width: sideBarWidth}}>
+            <div className="frame-side-bar" style={{width: sideBarWidth, display: showSideBar ? 'block' : 'none'}}>
                 <div className="logo">
                     架构
                     <div className="side-bar-toggle" onClick={this.handleToggleSideBar}>
@@ -75,9 +79,9 @@ class LayoutComponent extends Component {
                     </div>
                 </div>
                 <div className="menu-outer" style={{overflow: outerOverFlow}}>
-                    <div className="menu-inner" style={{width: innerWidth, 'overflow-y': innerOverFlow}}>
+                    <div className="menu-inner" style={{width: innerWidth, overflowY: innerOverFlow}}>
                         <Menu
-                            style={{display: menuCollapsed ? 'none' : 'block'}}
+                            style={{display: sideBarCollapsed ? 'none' : 'block'}}
                             mode={mode}
                             selectedKeys={[currentSideBarMenuNode.key]}
                             openKeys={menuOpenKeys}
@@ -86,11 +90,11 @@ class LayoutComponent extends Component {
                             {this.renderMenus()}
                         </Menu>
                         <Menu
-                            style={{display: !menuCollapsed ? 'none' : 'block'}}
+                            style={{display: !sideBarCollapsed ? 'none' : 'block'}}
                             mode={mode}
                             selectedKeys={[currentSideBarMenuNode.key]}
                         >
-                            {this.renderMenus(menuCollapsed)}
+                            {this.renderMenus()}
                         </Menu>
                     </div>
                 </div>
@@ -102,14 +106,8 @@ class LayoutComponent extends Component {
 
 function mapStateToProps(state) {
     return {
-        ...state.systemMenu,
+        ...state.frame,
     };
 }
 
-/*
- menuTreeData: [],
- sideBarMenuTreeData: [],
- currentTopMenuNode: null,
- currentSideBarMenuNode: null,
- * */
 export default connectComponent({LayoutComponent, mapStateToProps});

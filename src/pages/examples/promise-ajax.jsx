@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {Button, Spin} from 'antd';
 import * as promiseAjax from 'zk-react/utils/promise-ajax';
+import {PageContent} from 'zk-react/antd';
 import './style.less';
 
 export const PAGE_ROUTE = '/example/promise-ajax';
 
-export const PAGE_SCOPE = 'promiseAjax';
 export const INIT_STATE = {
     scope: 'promiseAjax',
     sync: true,
@@ -148,7 +148,7 @@ export default class extends Component {
 
     render() {
         return (
-            <div className="example-promise-ajax">
+            <PageContent className="example-promise-ajax">
 
                 <Button
                     type="ghost"
@@ -201,7 +201,7 @@ export default class extends Component {
                     <Spin size="small" spinning={this.state.single2}/>
                     多次发送相同url的get请求，只保留最后一次
                 </Button>
-            </div>
+            </PageContent>
         );
     }
 }
