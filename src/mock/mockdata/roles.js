@@ -148,7 +148,7 @@ export default [{
     update_at: '2016-06-05T11:35:23.788Z',
     create_at: '2016-06-05T11:35:23.788Z',
     is_deleted: false,
-    permissions: ['system', 'system-004001', 'system-004002', 'system-002', 'organization', 'organization-001', 'user-add', 'user-delete', 'user-update', 'user-search', 'organization-002', 'organization-add', 'organization-delete', 'organization-update', 'organization-003', 'role-add', 'role-update', 'role-delete'],
+    permissions: ['system', 'system-004001', 'system-004002', 'system-002', 'organization', 'organization-001', 'users-add', 'users-delete', 'users-update', 'users-search', 'organization-002', 'organization-add', 'organization-delete', 'organization-update', 'organization-003', 'role-add', 'role-update', 'role-delete'],
     description: '11111',
 }, {
     id: '57540c78258a0d1805af3ee9',
@@ -164,7 +164,7 @@ export default [{
     update_at: '2016-06-05T09:44:16.250Z',
     create_at: '2016-06-05T09:44:16.250Z',
     is_deleted: false,
-    permissions: ['user-add', 'user-delete', 'user-update', 'user-search', 'user-reset-pass', 'user-toggle-lock', 'organization-add', 'organization-delete', 'organization-update', 'organization-search', 'role-add', 'role-update', 'role-delete', 'role-search', 'system', 'system-004002', 'system-004001', 'system-002'],
+    permissions: ['users-add', 'users-delete', 'users-update', 'users-search', 'users-reset-pass', 'users-toggle-lock', 'organization-add', 'organization-delete', 'organization-update', 'organization-search', 'role-add', 'role-update', 'role-delete', 'role-search', 'system', 'system-004002', 'system-004001', 'system-002'],
 }, {
     id: '5753e37fdd221c35067e9ed2',
     name: '测试权限添加',
