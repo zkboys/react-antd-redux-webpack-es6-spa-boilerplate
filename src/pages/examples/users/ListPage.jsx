@@ -39,10 +39,6 @@ export default class extends Component {
     };
 
     componentWillMount() {
-        const {columns} = this.props;
-        const {pageNum, pageSize} = this.state;
-
-        columns.unshift({title: '#', render: (text, record, index) => (index + 1) + ((pageNum - 1) * pageSize)});
 
         // TODO: 根据 queryItems 设置 query 的默认值
     }
@@ -103,7 +99,8 @@ export default class extends Component {
             pageSize,
             total,
         } = this.state;
-
+        const tableColumns = [...columns];
+        tableColumns.unshift({title: '#', render: (text, record, index) => (index + 1) + ((pageNum - 1) * pageSize)});
         return (
             <PageContent className="example-users">
                 <QueryBar>
@@ -130,7 +127,7 @@ export default class extends Component {
                         loading={loading}
                         size="large"
                         rowKey={(record) => record.id}
-                        columns={columns}
+                        columns={tableColumns}
                         dataSource={dataSource}
                         pagination={false}
                     />
