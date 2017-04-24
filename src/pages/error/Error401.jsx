@@ -52,7 +52,7 @@ export class LayoutComponent extends Component {
                 <Button
                     type="primary"
                     className="error-btn error-btn-right"
-                    onClick={this.toLogin}
+                    onClick={toLogin}
                 >
                     马上登录
                 </Button>

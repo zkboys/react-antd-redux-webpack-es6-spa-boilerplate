@@ -19,6 +19,7 @@ import reducers from './redux/reducers';
 import * as Error404 from './pages/error/Error404';
 import * as Frame from './frame/Frame';
 import * as Home from './pages/home/Home';
+import {getCurrentLoginUser} from './commons';
 
 if (debug) {
     require('./mock/index');
@@ -35,8 +36,22 @@ initRouter({
     },
     onLeave: () => {
     },
-    onEnter: () => {
-        // TODO 判断当前用户是否登录，如果未登录，跳转到登录页面等操作
+    onEnter: (nextState, replace, callback) => {
+        const ignorePath = [
+            '/login',
+            '/error/401',
+            '/error/403',
+            '/error/404',
+        ];
+        const {location} = nextState;
+        const currentLoginUser = getCurrentLoginUser();
+        if (!currentLoginUser) {
+            if (ignorePath.indexOf(location.pathname) < 0) {
+                replace('/error/401');
+            }
+        } else {
+            callback();
+        }
     },
     onRouterDidMount: () => {
     },

@@ -48,7 +48,7 @@ export default handleActions({
         },
     }),
     [types.SET_SYSTEM_MENUS_STATUS_BY_URL](state) {
-        const menuTreeData = session.getItem('menuTreeData');
+        const menuTreeData = session.getItem('menuTreeData') || [];
         let currentSideBarMenuNode = {};
         let currentTopMenuNode = {};
         let menuOpenKeys = [...state.menuOpenKeys];

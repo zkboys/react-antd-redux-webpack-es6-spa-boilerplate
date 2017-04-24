@@ -5,6 +5,7 @@ import {FontIcon, UserAvatar} from 'zk-react/antd';
 import connectComponent from 'zk-react/redux/store/connectComponent';
 import {getFirstValue} from 'zk-react/utils/tree-utils';
 import {session} from 'zk-react/utils/storage';
+import {toLogin} from '../commons';
 
 class LayoutComponent extends Component {
     componentDidMount() {
@@ -24,11 +25,11 @@ class LayoutComponent extends Component {
 
     handleLogout = () => {
         session.clear();
-        console.log('logout');
+        toLogin();
     }
 
     renderMenus() {
-        const {menuTreeData} = this.props;
+        const {menuTreeData = []} = this.props;
         return menuTreeData.map(node => {
             const key = node.key;
             const path = getFirstValue(menuTreeData, node, 'path');
