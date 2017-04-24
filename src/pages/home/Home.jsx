@@ -10,17 +10,31 @@ export class LayoutComponent extends Component {
     componentWillReceiveProps(/* nextProps */) {
     }
 
-    componentDidMount() {
+    componentWillMount() {
         const {actions} = this.props;
-        actions.hidePageHeader();
+        // actions.hidePageHeader();
         actions.hideSideBar();
-    }
-
-    componentWillUnmount() {
-        const {actions} = this.props;
-        // 头部和侧边栏用的是一个，别忘了恢复，否则其他页面也不显示了。
-        actions.showPageHeader();
-        actions.showSideBar();
+        actions.setPageTitle('自定义页面标题');
+        actions.setPageBreadcrumbs([
+            {
+                key: 'zidingyi',
+                path: '',
+                text: '自定义',
+                icon: 'cloud',
+            },
+            {
+                key: 'mianbaoxie',
+                path: '',
+                text: '面包屑',
+                icon: 'notification',
+            },
+            {
+                key: 'daohang',
+                path: '',
+                text: '导航',
+                icon: 'smile-o',
+            },
+        ]);
     }
 
     render() {

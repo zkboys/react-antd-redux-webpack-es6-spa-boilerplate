@@ -4,6 +4,7 @@ import {Link} from 'react-router';
 import {FontIcon, UserAvatar} from 'zk-react/antd';
 import connectComponent from 'zk-react/redux/store/connectComponent';
 import {getFirstValue} from 'zk-react/utils/tree-utils';
+import {session} from 'zk-react/utils/storage';
 
 class LayoutComponent extends Component {
     componentDidMount() {
@@ -22,6 +23,7 @@ class LayoutComponent extends Component {
     }
 
     handleLogout = () => {
+        session.clear();
         console.log('logout');
     }
 

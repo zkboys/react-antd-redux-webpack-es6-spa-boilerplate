@@ -36,6 +36,7 @@ initRouter({
     onLeave: () => {
     },
     onEnter: () => {
+        // TODO 判断当前用户是否登录，如果未登录，跳转到登录页面等操作
     },
     onRouterDidMount: () => {
     },

@@ -41,7 +41,7 @@ export default class extends Component {
             text: '添加',
             icon: 'plus-circle-o',
             onClick: () => {
-                console.log('添加');
+                this.props.router.push('/example/users/+add');
             },
         },
         {

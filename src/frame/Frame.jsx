@@ -17,11 +17,12 @@ export class LayoutComponent extends Component {
     componentWillMount() {
         const {actions} = this.props;
         actions.setSystemMenusStatusByUrl();
-        actions.getSystemMenus(() => {
-            setTimeout(() => {
-                actions.setSystemMenusStatusByUrl();
-            });
-        });
+        // 系统登录之后，获取菜单，保存到session中，这里就不用异步获取菜单了。
+        // actions.getSystemMenus(() => {
+        //     setTimeout(() => {
+        //         actions.setSystemMenusStatusByUrl();
+        //     });
+        // });
         actions.getStateFromStorage();
 
         PubSubMsg.subscribe('message', ({type, message: msg, error = {}}) => {

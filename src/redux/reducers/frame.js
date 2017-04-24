@@ -92,6 +92,8 @@ export default handleActions({
             menuOpenKeys,
             breadcrumbs,
             pageTitle,
+            showPageHeader: true,
+            showSideBar: true,
         };
     },
     [types.SET_SYSTEM_MENU_OPEN_KEYS](state, action) {
@@ -113,6 +115,13 @@ export default handleActions({
         return {
             ...state,
             pageTitle: payload,
+        };
+    },
+    [types.SET_PAGE_BREADCRUMBS](state, action) {
+        const {payload = []} = action;
+        return {
+            ...state,
+            breadcrumbs: payload,
         };
     },
     [types.HIDE_PAGE_HEADER](state) {
