@@ -63,7 +63,7 @@ class LayoutComponent extends Component {
                     </Menu>
                 </div>
                 <div className="right-menu">
-                    <div className="right-menu-item text">
+                    <div className="right-menu-item">
                         <UserAvatar user={user}/>
                         <span>{user.name}</span>
                     </div>

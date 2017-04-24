@@ -15,7 +15,7 @@ import FormComponent from './FormComponent.jsx';
 export default class extends Component {
     static defaultProps = {
         columns: [],
-        toolBars: [],
+        toolItems: [],
         queryItems: [],
         url: '',
         dataFilter: (data) => data,
@@ -23,7 +23,7 @@ export default class extends Component {
 
     static propTypes = {
         columns: PropTypes.array.isRequired,
-        toolBars: PropTypes.array,
+        toolItems: PropTypes.array,
         queryItems: PropTypes.array,
         url: PropTypes.string.isRequired,
         dataFilter: PropTypes.func,
@@ -91,7 +91,7 @@ export default class extends Component {
     };
 
     render() {
-        const {columns, toolBars} = this.props;
+        const {columns, toolItems} = this.props;
         const {
             loading,
             dataSource,
@@ -108,7 +108,7 @@ export default class extends Component {
                 </QueryBar>
                 <ToolBar>
                     {
-                        toolBars.map((item, index) => {
+                        toolItems.map((item, index) => {
                             const {
                                 type = 'primary',
                                 icon,

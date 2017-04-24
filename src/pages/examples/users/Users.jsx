@@ -35,7 +35,7 @@ export default class extends Component {
         },
     ];
 
-    toolBars = [
+    toolItems = [
         {
             type: 'primary',
             text: '添加',
@@ -62,7 +62,7 @@ export default class extends Component {
                 url="/mock/users"
                 queryItems={this.queryItems}
                 columns={this.columns}
-                toolBars={this.toolBars}
+                toolItems={this.toolItems}
             />
         );
     }

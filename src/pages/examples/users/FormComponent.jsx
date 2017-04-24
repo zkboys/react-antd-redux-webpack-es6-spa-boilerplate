@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Form, Button, Input} from 'antd';
-import {InputCloseSuffix} from 'zk-react/antd';
+import {InputCloseSuffix, FontIcon} from 'zk-react/antd';
 
 const FormItem = Form.Item;
 
@@ -52,7 +52,7 @@ class FormComponent extends Component {
                         />
                     )}
                 </FormItem>
-                <Button type="primary" size="large" htmlType="submit">查询</Button>
+                <Button type="primary" size="large" htmlType="submit">查询<FontIcon type="search"/></Button>
             </Form>
         );
     }
