@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Button} from 'antd';
 import error401 from './401.png';
 import './style.less';
-
+import {toLogin} from '../../commons';
 
 export const PAGE_ROUTE = '/error/401';
 
@@ -17,7 +17,7 @@ export class LayoutComponent extends Component {
             remainSecond--;
             if (remainSecond <= 0) {
                 this.clear();
-                this.toLogin();
+                toLogin();
             }
             this.setState({
                 remainSecond,
@@ -33,10 +33,6 @@ export class LayoutComponent extends Component {
         if (this.si) {
             clearInterval(this.si);
         }
-    }
-
-    toLogin() {
-        location.href = '/login';
     }
 
     render() {

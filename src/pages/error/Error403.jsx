@@ -17,7 +17,7 @@ export class LayoutComponent extends Component {
             remainSecond--;
             if (remainSecond <= 0) {
                 this.clear();
-                this.toLogin();
+                this.props.router.goBack();
             }
             this.setState({
                 remainSecond,
@@ -33,10 +33,6 @@ export class LayoutComponent extends Component {
         if (this.si) {
             clearInterval(this.si);
         }
-    }
-
-    toLogin() {
-        location.href = '/login';
     }
 
     render() {
