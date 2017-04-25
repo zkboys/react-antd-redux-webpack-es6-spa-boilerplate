@@ -91,7 +91,7 @@ export default class extends Component {
     };
 
     render() {
-        const {columns, toolItems} = this.props;
+        const {columns, toolItems, queryItems} = this.props;
         const {
             loading,
             dataSource,
@@ -104,7 +104,10 @@ export default class extends Component {
         return (
             <PageContent className="example-users">
                 <QueryBar>
-                    <FormComponent onSubmit={this.handleQuery}/>
+                    <FormComponent
+                        items={queryItems}
+                        onSubmit={this.handleQuery}
+                    />
                 </QueryBar>
                 <ToolBar>
                     {

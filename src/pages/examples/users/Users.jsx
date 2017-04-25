@@ -54,7 +54,26 @@ export default class extends Component {
         },
     ];
 
-    queryItems = [];
+    queryItems = [
+        [
+            {
+                type: 'input',
+                field: 'loginName',
+                placeholder: '请输入登录名',
+                label: '登录名',
+                decorator: {},
+            },
+            {
+                type: 'input',
+                field: 'name',
+                placeholder: '请输入用户名',
+                label: '用户名',
+                decorator: {},
+            },
+        ],
+        [],
+        [],
+    ];
 
     render() {
         return (

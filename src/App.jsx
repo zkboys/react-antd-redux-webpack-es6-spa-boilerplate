@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {message} from 'antd';
 import {
-    debug,
+    isDev,
     configureStore,
     Router,
     initRouter,
@@ -21,7 +21,7 @@ import * as Frame from './frame/Frame';
 import * as Home from './pages/home/Home';
 import {getCurrentLoginUser} from './commons';
 
-if (debug) {
+if (isDev) {
     require('./mock/index');
 
     console.log('current mode is debug, mock is started');
@@ -34,7 +34,7 @@ initRouter({
     historyListen: (history) => {
         PubSubMsg.publish('history-change', history);
     },
-    onLeave: () => {
+    onLeave: (/* prevState */) => {
     },
     onEnter: (nextState, replace, callback) => {
         const ignorePath = [
