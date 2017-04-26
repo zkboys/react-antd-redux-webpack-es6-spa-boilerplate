@@ -88,6 +88,13 @@ export default [
         path: '/example/users',
     },
     {
+        key: 'example-test',
+        parentKey: 'example',
+        text: '测试',
+        icon: 'fa-users',
+        path: '/example/test',
+    },
+    {
         key: 'example-promise-ajax',
         parentKey: 'example',
         text: 'promise-ajax',
