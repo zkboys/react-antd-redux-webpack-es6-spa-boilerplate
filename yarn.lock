@@ -5656,9 +5656,9 @@ yargs@~3.10.0:
     decamelize "^1.0.0"
     window-size "0.1.0"
 
-zk-react@^1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/zk-react/-/zk-react-1.1.5.tgz#52247f751b3df4bbc250efc9e2c135bfcc7e76fd"
+zk-react@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/zk-react/-/zk-react-1.2.3.tgz#0d90c92859a99dda12043794e09bd988db7283fd"
   dependencies:
     babel-core "^6.24.0"
     babel-eslint "^6.1.2"
