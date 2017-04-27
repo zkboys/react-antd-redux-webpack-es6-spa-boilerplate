@@ -1,5 +1,5 @@
-# zk-react-demo
-zk-react 示例项目
+# zk-react-template-management
+zk-react 管理系统模板，UI基于antd，完整的登录、退出登录、菜单等结构
 
 ## Build Setup
 > 使用[yarn](https://yarnpkg.com/zh-Hans/)

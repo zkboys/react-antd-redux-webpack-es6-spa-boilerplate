@@ -73,7 +73,10 @@ class LayoutComponent extends Component {
         return (
             <div className="frame-side-bar" style={{width: sideBarWidth, display: showSideBar ? 'block' : 'none'}}>
                 <div className="logo">
-                    架构
+                    <Link to="/">
+                        架构
+                    </Link>
+
                     <div className="side-bar-toggle" onClick={this.handleToggleSideBar}>
                         <FontIcon type="fa-bars"/>
                     </div>
