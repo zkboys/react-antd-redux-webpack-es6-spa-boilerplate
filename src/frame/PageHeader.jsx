@@ -34,9 +34,12 @@ class LayoutComponent extends Component {
     }
 
     render() {
-        const {pageTitle, showPageHeader} = this.props;
+        const {pageTitle, showPageHeader, sideBarCollapsed, showSideBar} = this.props;
+        let className = sideBarCollapsed ? 'side-bar-collapsed' : '';
+        className = showSideBar ? className : `${showSideBar} side-bar-hidden`;
+
         return (
-            <div className="page-header" style={{display: showPageHeader ? 'block' : 'none'}}>
+            <div className={`page-header ${className}`} style={{display: showPageHeader ? 'block' : 'none'}}>
                 <h1>{pageTitle}</h1>
                 <Breadcrumb>
                     {this.renderBreadcrumb()}

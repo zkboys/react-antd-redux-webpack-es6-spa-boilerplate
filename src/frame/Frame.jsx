@@ -56,8 +56,8 @@ export class LayoutComponent extends Component {
             <div className="app-frame">
                 <Header/>
                 <SideBar/>
+                <PageHeader/>
                 <div id="frame-content" className="frame-content" style={{paddingLeft}}>
-                    <PageHeader/>
                     {this.props.children}
                 </div>
             </div>

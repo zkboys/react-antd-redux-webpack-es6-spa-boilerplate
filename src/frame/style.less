@@ -104,6 +104,7 @@
       right: -50px;
       width: 50px;
       transition: background .3s;
+      cursor: pointer;
       &:hover {
         background: rgba(0, 0, 0, 0.1);
       }
@@ -152,7 +153,7 @@
 }
 
 .frame-content {
-  padding-top: @headerHeight;
+  padding-top: 106px;
   padding-left: @sideBarMaxWidth;
   transition: .3s;
   &.frame-content-iframe {
@@ -165,12 +166,26 @@
 }
 
 .page-header {
+  position: fixed;
+  top: @headerHeight;
+  left: @sideBarMaxWidth;
+  right: 0;
+  z-index: 999;
+  background: #fff;
   height: 50px;
   line-height: 50px;
   border-bottom: 1px solid @borderColor;
   padding: 0 16px;
+  transition: .3s;
+  &.side-bar-collapsed {
+    left: @sideBarMinWidth;
+  }
+  &.side-bar-hidden {
+    left: 0;
+  }
   h1 {
     display: inline-block;
+    font-size: 18px;
   }
   .ant-breadcrumb {
     display: inline-block;
