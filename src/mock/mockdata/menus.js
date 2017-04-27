@@ -88,11 +88,25 @@ export default [
         path: '/example/users',
     },
     {
+        key: 'example-sync-tree',
+        parentKey: 'example',
+        text: '树',
+        icon: 'fa-users',
+        path: '/example/sync-tree',
+    },
+    {
         key: 'example-test',
         parentKey: 'example',
         text: '测试',
         icon: 'fa-users',
         path: '/example/test',
+    },
+    {
+        key: 'example-test222',
+        parentKey: 'example',
+        text: '测试2',
+        icon: 'fa-users',
+        path: '/example/test2',
     },
     {
         key: 'example-promise-ajax',

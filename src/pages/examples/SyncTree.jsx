@@ -107,6 +107,7 @@ export default class extends Component {
         const {treeData} = this.state;
         // Tree 要使用 checkStrictly 属性
         const allKeys = getCheckedKeys(treeData, checkedKeys, checked, checkNodeKey);
+        console.log(allKeys);
         this.setState({checkedKeys: allKeys});
     }
 
