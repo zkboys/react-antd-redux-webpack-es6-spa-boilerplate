@@ -13,13 +13,20 @@ module.exports = {
             template: './index.html', // html 模板
             fileName: 'index.html', // 构建生成的文件名
             favicon: './favicon.png',
-            title: 'zk-react demo', // 当前文件的title标签值
+            title: 'zk-react management', // 当前文件的title标签值
+        },
+        login: {
+            template: './index.html',
+            fileName: 'login.html',
+            favicon: './favicon.png',
+            title: '登录',
         },
     },
     webpack: { // webpack 配置 分为 base（通用） dev（开发） prod（生产）
         base: {
             entry: {
                 app: './src/App.jsx',
+                login: './src/pages/login/Login.jsx',
             },
             alias: {
                 src: './src',

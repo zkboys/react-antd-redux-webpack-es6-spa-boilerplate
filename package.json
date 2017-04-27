@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development node ./node_modules/zk-react/builder/dev-server.js --config ./zk-build-config.js",
     "build": "cross-env NODE_ENV=production node ./node_modules/zk-react/builder/build.js",
-    "cp": "rm -rf ./node_modules/zk-react && cp -R /Users/wangshubin/workspace/personal/zk-react /Users/wangshubin/workspace/personal/zk-react-demo/node_modules"
+    "cp": "rm -rf ./node_modules/zk-react && cp -R /Users/wangshubin/workspace/personal/zk-react /Users/wangshubin/workspace/personal/zk-react-template-management/node_modules"
   },
   "dependencies": {
     "antd": "^2.9.0",

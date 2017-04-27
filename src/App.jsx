@@ -12,6 +12,7 @@ import {
     promiseAjax,
     PubSubMsg,
 } from 'zk-react';
+import {init as initStorage} from 'zk-react/utils/storage';
 import './global.less';
 import handleErrorMessage from './commons/handle-error-message';
 import actions from './redux/actions';
@@ -26,6 +27,11 @@ if (isDev) {
 
     console.log('current mode is debug, mock is started');
 }
+const currentLoginUser = getCurrentLoginUser();
+
+initStorage({ // 设置存储前缀，用于区分不同用户的数据
+    keyPrefix: currentLoginUser && currentLoginUser.id,
+});
 
 initRouter({
     Error404,
@@ -38,13 +44,11 @@ initRouter({
     },
     onEnter: (nextState, replace, callback) => {
         const ignorePath = [
-            '/login',
             '/error/401',
             '/error/403',
             '/error/404',
         ];
         const {location} = nextState;
-        const currentLoginUser = getCurrentLoginUser();
         if (!currentLoginUser) {
             if (ignorePath.indexOf(location.pathname) < 0) {
                 replace('/error/401');

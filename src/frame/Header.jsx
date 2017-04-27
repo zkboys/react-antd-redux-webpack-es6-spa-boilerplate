@@ -5,7 +5,7 @@ import {FontIcon, UserAvatar} from 'zk-react/antd';
 import connectComponent from 'zk-react/redux/store/connectComponent';
 import {getFirstValue} from 'zk-react/utils/tree-utils';
 import {session} from 'zk-react/utils/storage';
-import {toLogin} from '../commons';
+import {toLogin, getCurrentLoginUser} from '../commons';
 
 class LayoutComponent extends Component {
     componentDidMount() {
@@ -50,11 +50,12 @@ class LayoutComponent extends Component {
         let className = sideBarCollapsed ? 'side-bar-collapsed' : '';
         className = showSideBar ? className : `${showSideBar} side-bar-hidden`;
 
-        const user = { // 获取真实用户
-            name: '匿名',
-            loginName: 'no name',
-            avatar: '',
-        };
+        const user = getCurrentLoginUser() ||
+            {
+                name: '匿名',
+                loginName: 'no name',
+                avatar: '',
+            };
         return (
             <div className={`frame-header ${className}`}>
                 <div className="left-menu">

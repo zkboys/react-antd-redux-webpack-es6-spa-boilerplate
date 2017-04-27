@@ -11,6 +11,12 @@ export class LayoutComponent extends Component {
         remainSecond: 9,
     }
 
+    componentWillMount() {
+        const {actions} = this.props;
+        actions.hidePageHeader();
+        actions.hideSideBar();
+    }
+
     componentDidMount() {
         this.si = setInterval(() => {
             let {remainSecond} = this.state;
@@ -59,4 +65,10 @@ export class LayoutComponent extends Component {
             </div>
         );
     }
+}
+
+export function mapStateToProps(state) {
+    return {
+        ...state.frame,
+    };
 }
