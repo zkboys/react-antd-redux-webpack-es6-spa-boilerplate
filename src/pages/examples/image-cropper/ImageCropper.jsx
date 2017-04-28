@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import 'cropperjs/dist/cropper.css';
 import Cropper from 'cropperjs';
 import {Row, Col, Slider, Button, Radio} from 'antd';
 import {FontIcon} from 'zk-react/antd';
@@ -91,14 +90,13 @@ export default class extends Component {
                 previewImageStyle,
             });
             // console.log(compressPercent, originalImageWidth, width);
-            const resultCanvas = this.cropper.getCroppedCanvas({
+            this.cropper.getCroppedCanvas({
                 width: resultImageWidth,
-            });
-            // console.log(resultCanvas);
-            resultCanvas.toBlob((blob) => {
+            }).toBlob((blob) => {
                 const size = (blob.size / 1024).toFixed(2);
                 const urlCreator = window.URL || window.webkitURL;
-                const previewImageUrl = blob ? urlCreator.createObjectURL(blob) : '';
+                const previewImageUrl = urlCreator.createObjectURL(blob);
+
                 let resultImageSize = `${size}KB`;
                 if (size > 1000) {
                     resultImageSize = `${(size / 1024).toFixed(2)}MB`;
@@ -175,8 +173,15 @@ export default class extends Component {
         this.cropper.getCroppedCanvas({
             width: resultImageWidth,
         }).toBlob((blob) => {
+            // TODO
             console.log(blob);
         });
+    }
+
+    componentWillUnmount() {
+        if (this.cropper) {
+            this.cropper.destroy();
+        }
     }
 
     render() {
