@@ -2,12 +2,22 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {PageContent} from 'zk-react/antd';
 import pageRoutes from 'zk-react/route/page-routes';
+import {Button} from 'antd';
 import './style.less';
 
 export class LayoutComponent extends Component {
     state = {}
 
     componentWillReceiveProps(/* nextProps */) {
+    }
+
+    handleGetMenus = () => {
+        const {actions} = this.props;
+        actions.getSystemMenus(() => {
+            setTimeout(() => {
+                actions.setSystemMenusStatusByUrl();
+            });
+        });
     }
 
     componentWillMount() {
@@ -41,6 +51,7 @@ export class LayoutComponent extends Component {
         return (
             <PageContent className="home">
                 <h1>home123</h1>
+                <Button onClick={this.handleGetMenus}>重新获取菜单</Button>
                 {
                     pageRoutes.map(route => <div key={route.path}><Link to={route.path}>{route.path}</Link></div>)
                 }

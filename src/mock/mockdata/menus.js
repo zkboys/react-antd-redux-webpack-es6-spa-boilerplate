@@ -88,6 +88,13 @@ export default [
         path: '/example/users',
     },
     {
+        key: 'example-crop-image',
+        parentKey: 'example',
+        text: '图片处理',
+        icon: 'fa-users',
+        path: '/example/crop-image',
+    },
+    {
         key: 'example-sync-tree',
         parentKey: 'example',
         text: '树',

@@ -14,6 +14,7 @@
     "axios": "^0.16.1",
     "axios-mock-adapter": "^1.8.1",
     "classnames": "^2.2.5",
+    "cropperjs": "^1.0.0-rc",
     "cross-env": "^4.0.0",
     "lodash": "^4.14.2",
     "mockjs": "^1.0.1-beta3",
@@ -31,6 +32,6 @@
     "redux-undo": "^0.6.1",
     "uuid": "^3.0.1",
     "whatwg-fetch": "^1.0.0",
-    "zk-react": "^1.2.3"
+    "zk-react": "^1.2.5"
   }
 }
