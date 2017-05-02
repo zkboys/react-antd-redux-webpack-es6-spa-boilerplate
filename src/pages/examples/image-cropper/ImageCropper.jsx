@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Cropper from 'cropperjs';
 import {Row, Col, Slider, Button, Radio} from 'antd';
 import {FontIcon} from 'zk-react/antd';
 import {throttle} from 'lodash/function';
 import './style.less';
-import picture from './picture.jpeg';
 
 const RadioGroup = Radio.Group;
 export default class extends Component {
@@ -23,8 +23,18 @@ export default class extends Component {
     }
 
     static defaultProps = {
+        src: '',
         width: 800,
         height: 500,
+        onOK: () => {
+        },
+    }
+
+    static propTypes = {
+        src: PropTypes.string,
+        width: PropTypes.number,
+        height: PropTypes.number,
+        onOK: PropTypes.func,
     }
 
     componentDidMount() {
@@ -170,11 +180,11 @@ export default class extends Component {
 
     handleOK = () => {
         const {resultImageWidth} = this.state;
+        const {onOK} = this.props;
         this.cropper.getCroppedCanvas({
             width: resultImageWidth,
         }).toBlob((blob) => {
-            // TODO
-            console.log(blob);
+            onOK(blob);
         });
     }
 
@@ -188,6 +198,7 @@ export default class extends Component {
         const {
             height,
             width,
+            src,
         } = this.props;
         const {
             previewImageUrl,
@@ -204,7 +215,7 @@ export default class extends Component {
                 <Row>
                     <Col span={16}>
                         <div className="image-cropper-container" style={{width: width * (16 / 24), height}}>
-                            <img ref={node => this.image = node} src={picture} alt="图片" onLoad={this.handleImageLoad}/>
+                            <img ref={node => this.image = node} src={src} alt="图片" onLoad={this.handleImageLoad}/>
                         </div>
                     </Col>
                     <Col span={8}>
