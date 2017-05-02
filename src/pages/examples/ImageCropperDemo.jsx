@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import 'cropperjs/dist/cropper.css';
-import './style.less';
-import ImageCropper from './image-cropper/ImageCropper';
+import ImageCropper from 'zk-react/antd/image-cropper/ImageCropper';
 import picture from './picture.jpeg';
 
 export const PAGE_ROUTE = '/example/crop-image';
