@@ -28,10 +28,13 @@ module.exports = {
                 app: './src/App.jsx',
                 login: './src/pages/login/Login.jsx',
             },
-            alias: {
-                src: './src',
-                // assets: path.resolve(__dirname, './src/assets'),
-                components: './src/components',
+            resolve: {
+                extensions: ['', '.web.js', '.js', '.jsx'],
+                alias: {
+                    src: './src',
+                    // assets: path.resolve(__dirname, './src/assets'),
+                    components: './src/components',
+                },
             },
         },
     },
