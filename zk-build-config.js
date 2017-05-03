@@ -37,6 +37,9 @@ module.exports = {
                 },
             },
         },
+        prod: {
+            devtool: false,
+        },
     },
     babelImport: [{libraryName: 'antd', style: 'css'}],
 };

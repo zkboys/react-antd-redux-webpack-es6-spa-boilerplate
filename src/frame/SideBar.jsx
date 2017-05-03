@@ -68,13 +68,14 @@ class LayoutComponent extends Component {
         const innerOverFlow = sideBarCollapsed ? '' : 'scroll';
         const scrollBarWidth = getScrollBarWidth();
         const innerWidth = (sideBarWidth + scrollBarWidth) - 1; // 1 为outer 的 border
+        const logo = sideBarCollapsed ? 'MANAGEMENT' : '管理系统架构';
 
         if (!currentSideBarMenuNode) currentSideBarMenuNode = {};
         return (
             <div className="frame-side-bar" style={{width: sideBarWidth, display: showSideBar ? 'block' : 'none'}}>
                 <div className="logo">
                     <Link to="/">
-                        架构
+                        {logo}
                     </Link>
 
                     <div className="side-bar-toggle" onClick={this.handleToggleSideBar}>

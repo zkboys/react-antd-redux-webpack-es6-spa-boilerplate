@@ -43,15 +43,16 @@ export class LayoutComponent extends Component {
     }
 
     render() {
-        const {sideBarCollapsed, showSideBar} = this.props;
+        const {sideBarCollapsed, showSideBar, showPageHeader} = this.props;
         let paddingLeft = sideBarCollapsed ? 60 : 200;
         paddingLeft = showSideBar ? paddingLeft : 0;
+        const paddingTop = showPageHeader ? 106 : 56;
         return (
             <div className="app-frame">
                 <Header/>
                 <SideBar/>
                 <PageHeader/>
-                <div id="frame-content" className="frame-content" style={{paddingLeft}}>
+                <div id="frame-content" className="frame-content" style={{paddingLeft, paddingTop}}>
                     {this.props.children}
                 </div>
             </div>
