@@ -20,7 +20,7 @@ import reducers from './redux/reducers';
 import * as Error404 from './pages/error/Error404';
 import * as Frame from './frame/Frame';
 import * as Home from './pages/home/Home';
-import {getCurrentLoginUser} from './commons';
+import {getCurrentLoginUser, toLogin} from './commons';
 
 if (isDev) {
     require('./mock/index');
@@ -51,7 +51,7 @@ initRouter({
         const {location} = nextState;
         if (!currentLoginUser) {
             if (ignorePath.indexOf(location.pathname) < 0) {
-                replace('/error/401');
+                toLogin();
             }
         } else {
             callback();
