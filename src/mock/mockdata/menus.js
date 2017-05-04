@@ -102,6 +102,13 @@ export default [
         path: '/example/sync-tree',
     },
     {
+        key: 'example-zip-file',
+        parentKey: 'example',
+        text: '文件操作',
+        icon: 'fa-users',
+        path: '/example/zip-file',
+    },
+    {
         key: 'example-test',
         parentKey: 'example',
         text: '测试',

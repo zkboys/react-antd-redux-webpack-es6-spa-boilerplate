@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import ImageCropper from 'zk-react/antd/image-cropper/ImageCropper';
-import picture from './picture.jpeg';
+import {PageContent, ImageCropperModal} from 'zk-react/antd';
+import {getImageData} from 'zk-react/utils/image-utils';
+import {Button} from 'antd';
 
 export const PAGE_ROUTE = '/example/crop-image';
 export class LayoutComponent extends Component {
@@ -11,9 +12,40 @@ export class LayoutComponent extends Component {
 
     render() {
         return (
-            <div style={{background: 'green', padding: 20}}>
-                <ImageCropper src={picture} onOK={(bold) => console.log(111, bold)}/>
-            </div>
+            <PageContent>
+                <img id="preview" src="" alt="预览"/>
+
+                <Button onClick={() => this.imgInput.click()}>上传文件</Button>
+
+                <input
+                    ref={node => this.imgInput = node}
+                    type="file"
+                    multiple
+                    style={{display: 'none'}}
+                    // accept="image/*" // 慢
+                    onChange={(e) => {
+                        console.log(e.target.files);
+                        const files = e.target.files;
+                        const file = files[0];
+                        getImageData(file).then(data => {
+                            const preview = document.querySelector('#preview');
+                            preview.src = data;
+                            this.setState({imgUrl: data});
+                        });
+                    }}
+                />
+
+                <ImageCropperModal
+                    src={this.state.imgUrl}
+                    onOK={data => {
+                        console.log(data);
+                        const preview = document.querySelector('#preview');
+                        preview.src = data.src;
+                    }}
+                >
+                    <Button>编辑图片</Button>
+                </ImageCropperModal>
+            </PageContent>
         );
     }
 }
