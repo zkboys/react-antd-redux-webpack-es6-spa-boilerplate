@@ -32,6 +32,7 @@ export class LayoutComponent extends Component {
         const {images} = this.state;
         return (
             <div>
+                <p>图片等比压缩、固定大小压缩、获取zip中图片并处理等功能</p>
                 <input type="file" multiple onChange={this.handleChange}/>
                 {images.map((item, index) => <div key={index}>{item}</div>)}
             </div>

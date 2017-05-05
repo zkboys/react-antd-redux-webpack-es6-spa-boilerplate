@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {message} from 'antd';
@@ -81,6 +81,8 @@ promiseAjax.init({
     },
 });
 
+// 扩展Component方便调用
+Component.prototype.$ajax = promiseAjax;
 
 const store = configureStore();
 

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Button, Spin} from 'antd';
-import * as promiseAjax from 'zk-react/utils/promise-ajax';
 import {PageContent} from 'zk-react/antd';
 import './style.less';
 
@@ -28,10 +27,11 @@ export default class extends Component {
         single2: false,
     };
     handleSendGetTimeout = () => {
+        console.log('this.$ajax');
         this.setState({
             timeOutGetting: true,
         });
-        promiseAjax.get('/mock/ajax/get').then(res => {
+        this.$ajax.get('/mock/ajax/get').then(res => {
             console.log('get success', res);
         }).catch(err => {
             console.log('get error', err);
@@ -53,7 +53,7 @@ export default class extends Component {
         this.setState({
             getting: true,
         });
-        this.ajaxGet = promiseAjax.get('/mock/ajax/get', data, options).then(res => {
+        this.ajaxGet = this.$ajax.get('/mock/ajax/get', data, options).then(res => {
             console.log('get success', res);
         }).catch(err => {
             console.log('get error', err);
@@ -87,7 +87,7 @@ export default class extends Component {
         this.setState({
             posting: true,
         });
-        this.ajaxPost = promiseAjax.post('/mock/ajax/post', data, options).then(res => {
+        this.ajaxPost = this.$ajax.post('/mock/ajax/post', data, options).then(res => {
             console.log('post success', res);
         }).catch(err => {
             console.log('post error', err);
@@ -114,7 +114,7 @@ export default class extends Component {
         this.setState({
             single1: true,
         });
-        promiseAjax.singleGet('/mock/ajax/single/get').then(() => {
+        this.$ajax.singleGet('/mock/ajax/single/get').then(() => {
             console.log('single get success');
         }).catch(() => {
             console.log('single get error');
@@ -130,7 +130,7 @@ export default class extends Component {
         this.setState({
             single2: true,
         });
-        promiseAjax.singleGet('/mock/ajax/single/get2').then(() => {
+        this.$ajax.singleGet('/mock/ajax/single/get2').then(() => {
             console.log('single2 get success');
         }).catch(() => {
             console.log('single2 get error');

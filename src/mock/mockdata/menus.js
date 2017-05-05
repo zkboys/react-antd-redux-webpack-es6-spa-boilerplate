@@ -90,9 +90,16 @@ export default [
     {
         key: 'example-crop-image',
         parentKey: 'example',
-        text: '图片处理',
+        text: '图片裁剪',
         icon: 'fa-users',
         path: '/example/crop-image',
+    },
+    {
+        key: 'example-zip-file',
+        parentKey: 'example',
+        text: '图片压缩',
+        icon: 'fa-users',
+        path: '/example/zip-file',
     },
     {
         key: 'example-sync-tree',
@@ -100,13 +107,6 @@ export default [
         text: '树',
         icon: 'fa-users',
         path: '/example/sync-tree',
-    },
-    {
-        key: 'example-zip-file',
-        parentKey: 'example',
-        text: '文件操作',
-        icon: 'fa-users',
-        path: '/example/zip-file',
     },
     {
         key: 'example-test',
