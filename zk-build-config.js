@@ -1,3 +1,11 @@
+const path = require('path');
+
+const assetsSubDirectory = 'static';
+
+function assetsPath(_path) {
+    return path.posix.join(assetsSubDirectory, _path);
+}
+
 module.exports = {
     useESLint: true,
     proxyTables: { // dev-server 反向代理配置
@@ -7,6 +15,7 @@ module.exports = {
     srcPath: './src',
     staticPath: './static', // 非webpack构建的静态文件存放目录，会被一同拷贝到assetsRoot目录下
     assetsRoot: './public', // webpack 构建生成文件存放路径
+    assetsSubDirectory,
     assetsPublicPath: '/', // webpack 构建时，静态文件cdn
     htmlOptions: { // HtmlWebpackPlugin 所需的一些配置
         app: {
@@ -35,6 +44,18 @@ module.exports = {
                     // assets: path.resolve(__dirname, './src/assets'),
                     components: './src/components',
                 },
+            },
+            module: {
+                loaders: [
+                    {
+                        test: /\.(svg)(\?.*)?$/,
+                        loader: 'url',
+                        query: {
+                            limit: 10000,
+                            name: assetsPath('img/[name].[hash:7].[ext]'),
+                        },
+                    },
+                ],
             },
         },
         prod: {
