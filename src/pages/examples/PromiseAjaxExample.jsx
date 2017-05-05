@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Spin} from 'antd';
+import {ajax} from 'zk-react';
 import {PageContent} from 'zk-react/antd';
 import './style.less';
 
@@ -18,7 +19,9 @@ export const INIT_STATE = {
     d: 'd',
     e: 'e',
 };
-export default class extends Component {
+
+@ajax()
+export default class PromiseAjaxExample extends Component {
     state = {
         timeOutGetting: false,
         getting: false,
@@ -27,11 +30,11 @@ export default class extends Component {
         single2: false,
     };
     handleSendGetTimeout = () => {
-        console.log('this.$ajax');
+        console.log('this.props.$ajax');
         this.setState({
             timeOutGetting: true,
         });
-        this.$ajax.get('/mock/ajax/get').then(res => {
+        this.props.$ajax.get('/mock/ajax/get').then(res => {
             console.log('get success', res);
         }).catch(err => {
             console.log('get error', err);
@@ -48,13 +51,15 @@ export default class extends Component {
             b: 2,
         };
         const options = {
-            successTip: '请求数据成功！！！',
+            successTip: '11111请求数据成功！！！',
         };
         this.setState({
             getting: true,
         });
-        this.ajaxGet = this.$ajax.get('/mock/ajax/get', data, options).then(res => {
-            console.log('get success', res);
+        this.ajaxGet = this.props.$ajax.get('/mock/ajax/get', data, options);
+
+        this.ajaxGet.then(res => {
+            console.log('get success1111', res);
         }).catch(err => {
             console.log('get error', err);
         }).finally(() => {
@@ -87,7 +92,8 @@ export default class extends Component {
         this.setState({
             posting: true,
         });
-        this.ajaxPost = this.$ajax.post('/mock/ajax/post', data, options).then(res => {
+        this.ajaxPost = this.props.$ajax.post('/mock/ajax/post', data, options);
+        this.ajaxPost.then(res => {
             console.log('post success', res);
         }).catch(err => {
             console.log('post error', err);
@@ -114,7 +120,7 @@ export default class extends Component {
         this.setState({
             single1: true,
         });
-        this.$ajax.singleGet('/mock/ajax/single/get').then(() => {
+        this.props.$ajax.singleGet('/mock/ajax/single/get').then(() => {
             console.log('single get success');
         }).catch(() => {
             console.log('single get error');
@@ -130,7 +136,7 @@ export default class extends Component {
         this.setState({
             single2: true,
         });
-        this.$ajax.singleGet('/mock/ajax/single/get2').then(() => {
+        this.props.$ajax.singleGet('/mock/ajax/single/get2').then(() => {
             console.log('single2 get success');
         }).catch(() => {
             console.log('single2 get error');
@@ -142,7 +148,7 @@ export default class extends Component {
         });
     }
 
-    componentWillMount() {
+    componentWillUnmount() {
     }
 
     render() {
