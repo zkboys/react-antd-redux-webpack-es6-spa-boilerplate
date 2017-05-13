@@ -62,7 +62,8 @@ export default class extends Component {
         };
         console.log(params);
         this.setState({loading: true});
-        this.searchAjax = promiseAjax.get(url, params).then(data => {
+        this.searchAjax = promiseAjax.get(url, params);
+        this.searchAjax.then(data => {
             data = dataFilter(data);
             this.setState({
                 total: data.total,
