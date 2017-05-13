@@ -14,7 +14,7 @@ export class LayoutComponent extends Component {
     handleChange = (e) => {
         const images = [...this.state.images];
         if (!e.target.files) return;
-        Array.from(e.target.files).forEach(f => getImageFileInfo(f, (info, err) => {
+        Array.from(e.target.files).forEach(f => getImageFileInfo(f, (err, info) => {
             if (err) return;
             compressImageToSize({
                 data: info.data,
