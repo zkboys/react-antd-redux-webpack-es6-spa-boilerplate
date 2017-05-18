@@ -14,15 +14,19 @@ export class LayoutComponent extends Component {
     handleChange = (e) => {
         const images = [...this.state.images];
         if (!e.target.files) return;
-        Array.from(e.target.files).forEach(f => getImageFileInfo(f, (err, info) => {
+        Array.from(e.target.files).forEach(f => getImageFileInfo(f, (err, results) => {
             if (err) return;
-            compressImageToSize({
-                data: info.data,
-                type: info.type,
-            }).then(imageData => {
-                images.push(<span><img src={imageData} alt={info.name}/> data size: {imageData.length / 1024} K</span>);
-                this.setState({images});
-            });
+            if (results && results.length) {
+                results.forEach(info => {
+                    compressImageToSize({
+                        data: info.data,
+                        type: info.type,
+                    }).then(imageData => {
+                        images.push(<span><img src={imageData} alt={info.name}/> data size: {imageData.length / 1024} K</span>);
+                        this.setState({images});
+                    });
+                });
+            }
         }));
         // 清空value 允许上传相同文件
         e.target.value = '';

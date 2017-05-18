@@ -17,6 +17,10 @@ module.exports = {
     assetsRoot: './public', // webpack 构建生成文件存放路径
     assetsSubDirectory,
     assetsPublicPath: '/', // webpack 构建时，静态文件cdn
+    routesIgnore: [ // 忽略文件，不进行构建，提供部分模块打包功能
+        // '**/AddEdit.jsx',
+    ],
+    pagePath: './src/pages/**/*.jsx', // 使用了PAGE_ROUTE INIT_STATE 文件所在目录，与routesIgnore同样可以控制打包模块
     htmlOptions: { // HtmlWebpackPlugin 所需的一些配置
         app: {
             template: './index.html', // html 模板
