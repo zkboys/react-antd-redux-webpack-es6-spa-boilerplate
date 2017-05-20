@@ -33,6 +33,6 @@
     "redux-undo": "^0.6.1",
     "uuid": "^3.0.1",
     "whatwg-fetch": "^1.0.0",
-    "zk-react": "^1.5.16"
+    "zk-react": "^1.5.18"
   }
 }

@@ -81,6 +81,13 @@ export default [
         path: '',
     },
     {
+        key: 'example-form-layout',
+        parentKey: 'example',
+        text: '表单布局',
+        icon: 'fa-users',
+        path: '/form/layout',
+    },
+    {
         key: 'example-users',
         parentKey: 'example',
         text: '用户管理',
