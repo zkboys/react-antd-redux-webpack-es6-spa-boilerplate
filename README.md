@@ -153,6 +153,32 @@ const {a, d, e} = this.props;
 this.props.actions.setState({a: 'new value'});
 ```
 
+## 前后端分离 ngnix配置 参考
+```
+# 服务地址
+upstream api_service {
+  server localhost:8080;
+  keepalive 2000;
+}
+#
+server {
+        listen       80;
+        server_name  localhost;
+        location / {
+          root /home/app/nginx/html; // 前端打包之后的文件存放路径
+          index index.html;
+          try_files $uri $uri/ /index.html; #react-router 防止页面刷新出现404
+        }
+        location ^~/api { // 代理ajax请求，前端的ajax请求配置了统一的baseUrl = ‘/api’
+           proxy_pass http://api_service/;
+           proxy_set_header Host  $http_host;
+           proxy_set_header Connection close;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header X-Forwarded-Server $host;
+        }
+}
+```
+
 ## TODO
 - [ ] 登录之后，获取菜单数据，并存入session中，由于页面头部是由菜单生成的，如果菜单是异步获取的，将会存在各种问题，所以进入系统时候保证菜单可用
 - [ ] 构建优化：css postcss的使用，自动添加前缀等功能
