@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Breadcrumb} from 'antd';
 import {Link} from 'react-router';
 import {FontIcon} from 'zk-react/antd';
-import connectComponent from 'zk-react/redux/store/connectComponent';
+import connectComponent from '../redux/store/connectComponent';
 
 class LayoutComponent extends Component {
     componentDidMount() {

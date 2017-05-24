@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {Menu, Popconfirm} from 'antd';
 import {Link} from 'react-router';
 import {FontIcon, UserAvatar} from 'zk-react/antd';
-import connectComponent from 'zk-react/redux/store/connectComponent';
 import {getFirstValue} from 'zk-react/utils/tree-utils';
 import {session} from 'zk-react/utils/storage';
 import {toLogin, getCurrentLoginUser} from '../commons';
+import connectComponent from '../redux/store/connectComponent';
 
 class LayoutComponent extends Component {
     componentDidMount() {

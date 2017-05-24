@@ -60,6 +60,8 @@ export default handleActions({
             if (path.indexOf('/+') > -1) {
                 path = path.substring(0, path.indexOf('/+'));
             }
+            // TODO: 如果菜单节点的path 配置时就 携带参数， 只通过pathname无法匹配到菜单
+            // TODO: 如果path=/user/:id,这种 通过pathname无法匹配到菜单
             currentSideBarMenuNode = getNodeByPropertyAndValue(menuTreeData, 'path', path);
 
             if (currentSideBarMenuNode) {

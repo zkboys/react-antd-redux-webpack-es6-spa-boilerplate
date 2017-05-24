@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {Menu} from 'antd';
-import connectComponent from 'zk-react/redux/store/connectComponent';
 import {renderNode} from 'zk-react/utils/tree-utils';
 import {FontIcon} from 'zk-react/antd';
 import {getScrollBarWidth} from 'zk-react/utils';
+import connectComponent from '../redux/store/connectComponent';
+
 
 const SubMenu = Menu.SubMenu;
 

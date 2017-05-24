@@ -155,3 +155,5 @@ this.props.actions.setState({a: 'new value'});
 
 ## TODO
 - [ ] 登录之后，获取菜单数据，并存入session中，由于页面头部是由菜单生成的，如果菜单是异步获取的，将会存在各种问题，所以进入系统时候保证菜单可用
+- [ ] 构建优化：css postcss的使用，自动添加前缀等功能
+- [ ] 是否使用 css module功能

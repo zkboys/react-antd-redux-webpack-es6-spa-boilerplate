@@ -1,7 +1,11 @@
+import pageState from './page';
 import demo from './demo';
 import frame from './frame';
 
-export default {
+const reducers = {
+    pageState,
     demo,
     frame,
 };
+
+export default reducers;

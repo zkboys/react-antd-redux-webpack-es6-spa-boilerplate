@@ -2,25 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {message} from 'antd';
-import {
-    isDev,
-    configureStore,
-    Router,
-    initRouter,
-    initActions,
-    initReducers,
-    promiseAjax,
-    PubSubMsg,
-} from 'zk-react';
+import {isDev, promiseAjax} from 'zk-react';
 import {init as initStorage} from 'zk-react/utils/storage';
 import './global.less';
+import {configureStore} from './redux';
+import Router from './route/Router';
 import handleErrorMessage from './commons/handle-error-message';
-import actions from './redux/actions';
-import reducers from './redux/reducers';
-import * as Error404 from './pages/error/Error404';
-import * as Frame from './frame/Frame';
-import * as Home from './pages/home/Home';
-import {getCurrentLoginUser, toLogin, getAjaxBaseUrl} from './commons';
+import {getCurrentLoginUser, getAjaxBaseUrl} from './commons';
+import mockUrls from './mock/url-config';
 
 if (isDev) {
     require('./mock/index');
@@ -33,36 +22,6 @@ initStorage({ // 设置存储前缀，用于区分不同用户的数据
     keyPrefix: currentLoginUser && currentLoginUser.id,
 });
 
-initRouter({
-    Error404,
-    Frame,
-    Home,
-    historyListen: (history) => {
-        PubSubMsg.publish('history-change', history);
-    },
-    onLeave: (/* prevState */) => {
-    },
-    onEnter: (nextState, replace, callback) => {
-        const ignorePath = [
-            '/error/401',
-            '/error/403',
-            '/error/404',
-        ];
-        const {location} = nextState;
-        if (!currentLoginUser) {
-            if (ignorePath.indexOf(location.pathname) < 0) {
-                toLogin();
-            }
-        } else {
-            callback();
-        }
-    },
-    onRouterDidMount: () => {
-    },
-});
-
-initActions(actions);
-initReducers(reducers);
 promiseAjax.init({
     setOptions: (instance) => {
         instance.defaults.baseURL = getAjaxBaseUrl();
@@ -78,7 +37,7 @@ promiseAjax.init({
         }
     },
     isMock: (url /* url, data, method, options */) => {
-        return url.startsWith('/mock');
+        return mockUrls.indexOf(url) > -1 || url.startsWith('/mock');
     },
 });
 
