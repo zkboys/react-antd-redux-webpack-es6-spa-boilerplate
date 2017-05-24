@@ -23,7 +23,7 @@ var webpackConfig = merge(baseWebpackConfig, {
             {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract({
-                    use: ['css-loader'],
+                    use: ['css-loader', 'postcss-loader'],
                 })
             },
             {
@@ -37,6 +37,9 @@ var webpackConfig = merge(baseWebpackConfig, {
                             //     camelCase: true,
                             //     localIdentName: '[path][name]-[local]',
                             // },
+                        },
+                        {
+                            loader: 'postcss-loader',
                         },
                         {
                             loader: 'less-loader',

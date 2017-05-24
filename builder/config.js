@@ -1,16 +1,19 @@
 const path = require('path');
 const srcPath = './src';
+let routesIgnore = [];
+let pagePath = path.join(srcPath, '**/*.jsx');
+if (process.env.NODE_ENV === 'development') {
+    const configLocal = require('../build-config-local.js');
+    routesIgnore = configLocal.routesIgnore;
+    pagePath = configLocal.pagePath;
+}
 
 module.exports = {
     staticPath: './static', // 非webpack构建的静态文件存放目录，会被一同拷贝到assetsRoot目录下
-    assetsRoot: './public', // webpack 构建生成文件存放路径
     projectRoot: './',
     sourceFilePath: srcPath,
-    routesIgnore: [ // 忽略文件，不进行构建，提供部分模块打包功能
-        // '**/ActionsExample.jsx',
-    ],
-    // pagePath: path.join(srcPath, 'pages/**/*.jsx'), // 使用了PAGE_ROUTE INIT_STATE 文件所在目录，与routesIgnore同样可以控制打包模块
-    pagePath: path.join(srcPath, '**/*.jsx'),
+    routesIgnore: routesIgnore, // 忽略文件，不进行构建，提供部分模块打包功能，提高reBuild速度
+    pagePath: pagePath, // 使用了PAGE_ROUTE INIT_STATE 文件所在目录，与routesIgnore同样可以控制打包模块
     routesFileName: path.join(srcPath, '**/routes.js'),
     allRoutesFileName: path.join(srcPath, 'all-routes.js'),
     pageInitStateFileName: path.join(srcPath, 'page-init-state.js'),

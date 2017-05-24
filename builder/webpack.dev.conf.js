@@ -22,7 +22,7 @@ module.exports = merge(baseWebpackConfig, {
         rules: [
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                use: ['style-loader', 'css-loader', 'postcss-loader'],
             },
             {
                 test: /\.less/,
@@ -37,6 +37,9 @@ module.exports = merge(baseWebpackConfig, {
                         //     camelCase: true,
                         //     localIdentName: '[path][name]-[local]',
                         // },
+                    },
+                    {
+                        loader: 'postcss-loader',
                     },
                     {
                         loader: 'less-loader',

@@ -12,3 +12,5 @@ src/local-script/
 bin
 config.js
 src/other-pages/
+postcss.config.js
+build-config-local.js
