@@ -59,18 +59,20 @@ var webpackConfig = merge(baseWebpackConfig, {
             disable: false,
             allChunks: true
         }),
-        new UglifyJsParallelPlugin({
-            workers: os.cpus().length, // usually having as many workers as cpu cores gives good results
-            compress: {
-                warnings: false
-            },
-        }),
-
-        // new webpack.optimize.UglifyJsPlugin({
+        // 多线程压缩：83.04s 好像差别不大
+        // new UglifyJsParallelPlugin({
+        //     workers: os.cpus().length, // usually having as many workers as cpu cores gives good results
         //     compress: {
         //         warnings: false
-        //     }
+        //     },
         // }),
+
+        // webpack提供的压缩：88.29s
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),
         // split vendor js into its own file
         new webpack.optimize.CommonsChunkPlugin({
             name: 'common',

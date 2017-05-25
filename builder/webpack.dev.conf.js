@@ -54,6 +54,10 @@ module.exports = merge(baseWebpackConfig, {
         ],
     },
     plugins: [
+        // 只在开发模式下使用
+        // webpack2会忽略未使用的export，打包文件更小
+        // dll会全部打包，会有很多未使用代码
+        // 这个项目会相差1.7M
         new webpack.DllReferencePlugin({
             context: '.',
             manifest: require(path.join(__dirname, '../', 'public', 'vendor-manifest.json')),

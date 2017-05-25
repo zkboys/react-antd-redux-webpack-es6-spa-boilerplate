@@ -51,6 +51,10 @@ class LayoutComponent extends Component {
             <div>
                 <p>消息1消息1消息1消息1消息1消息1</p>
                 <p>消息2</p>
+                <p>消息3</p>
+                <p>消息4</p>
+                <p>消息5</p>
+                <p>消息6</p>
             </div>
         );
     }
@@ -100,7 +104,6 @@ class LayoutComponent extends Component {
                         onConfirm={this.handleLogout}
                     >
                         <div className="right-menu-item">
-                            <span>退出登录</span>
                             <FontIcon type="logout" size="lg"/>
                         </div>
                     </Popconfirm>

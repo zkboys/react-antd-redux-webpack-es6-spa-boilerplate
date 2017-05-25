@@ -26,28 +26,4 @@ export default {
     },
     d: 'd',
     e: 'e',
-},
-    billingPrivate: {
-    scope: 'billingPrivate',
-    toPrivateAccountName: '',
-    toPrivateSettleAccountNo: '',
-    toPrivateCnapsCode: '',
-},
-    billingPublic: {
-    scope: 'billingPublic',
-    toPublicAccountName: '',
-    toPublicSettleAccountNo: '',
-    toPublicCnapsCode: '',
-},
-    mearchSuccess: {
-    scope: 'mearchSuccess',
-    taskCode: '123',
-    registName: '123',
-    salesmanName: '123',
-    isAdd: '',
-    isModify: '',
-    isReturn: '',
-    isDraft: '',
-    userCode: '110665',
-    orgNo: '5138497260',
 }};
