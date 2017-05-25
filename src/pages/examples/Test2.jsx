@@ -21,7 +21,6 @@ export default class extends Component {
                     我的真的啊
                     这下快了吗？
                     部分打包功能，会使rebuild速度加快
-                    这个用的就爽多了吧。
                 </div>
             </PageContent>
         );

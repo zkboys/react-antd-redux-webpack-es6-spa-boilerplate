@@ -4,6 +4,7 @@ const HappyPack = require('happypack');
 const sourcePath = path.resolve(__dirname, '../', 'src');
 
 module.exports = {
+    cache: true,
     entry: {
         app: './src/App.jsx',
         login: './src/pages/login/Login.jsx',
@@ -21,19 +22,22 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules[\\/](?!(zk-react)[\\/]).*/, // zk-react需要webpack构建 exclude: /node_modules\/(?!(MY-MODULE|ANOTHER-ONE)\/).*/,
                 enforce: "pre",
-                loader: "eslint-loader"
+                loader: "eslint-loader",
+                options: {
+                    cache: true,
+                }
             },
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules[\\/](?!(zk-react)[\\/]).*/, // zk-react需要webpack构建 exclude: /node_modules\/(?!(MY-MODULE|ANOTHER-ONE)\/).*/,
-                use: ['happypack/loader'],
+                loader: ['happypack/loader'],
             },
             {
                 test: /\.(png|jpe?g|gif)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: 'static/[name]-[hash:8].[ext]',
+                    name: 'static/image/[name]-[hash:8].[ext]',
                 }
             },
             {
@@ -41,7 +45,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: 'static/[name]-[hash:8].[ext]',
+                    name: 'static/font/[name]-[hash:8].[ext]',
                 },
             },
         ],
@@ -51,7 +55,7 @@ module.exports = {
             'process.env': {NODE_ENV: JSON.stringify(process.env.NODE_ENV)}
         }),
         new HappyPack({
-            loaders: ['babel-loader'],
-        })
+            loaders: ['babel-loader?cacheDirectory=true'],
+        }),
     ],
 };

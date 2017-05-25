@@ -5,7 +5,8 @@
   "author": "wangshubin",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development node ./builder/dev-server.js",
+    "dll": "./node_modules/.bin/webpack --config ./builder/webpack.dll.conf.js",
+    "dev": "yarn run dll && cross-env NODE_ENV=development node ./builder/dev-server.js",
     "build": "cross-env NODE_ENV=production node ./builder/build.js",
     "cp": "rm -rf ./node_modules/zk-react && cp -R /Users/wangshubin/workspace/personal/zk-react /Users/wangshubin/workspace/personal/zk-react-template-management/node_modules"
   },
@@ -34,9 +35,10 @@
     "redux-undo": "^0.6.1",
     "uuid": "^3.0.1",
     "whatwg-fetch": "^1.0.0",
-    "zk-react": "^1.5.18"
+    "zk-react": "^1.5.19"
   },
   "devDependencies": {
+    "add-asset-html-webpack-plugin": "^2.0.1",
     "autoprefixer": "^7.1.1",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.1.1",

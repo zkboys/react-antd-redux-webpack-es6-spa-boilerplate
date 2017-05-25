@@ -18,6 +18,9 @@
   }
   .left-menu {
     margin-left: 50px;
+    &.side-bar-hidden {
+      margin-left: 0;
+    }
   }
   .right-menu {
     position: absolute;
@@ -32,7 +35,8 @@
       color: #fff;
       .font-icon {
         margin-left: 8px;
-        margin-right: 0;
+        margin-right: 8px;
+        font-size: 14px;
       }
       &:hover {
         background: rgba(0, 0, 0, 0.1);
@@ -43,13 +47,16 @@
           background: none;
         }
       }
+      .notice-label {
+        padding-right: 20px;
+      }
     }
     .user-avatar {
       display: inline-block;
       margin-right: 8px;
-      width: 25px;
-      height: 25px;
-      line-height: 25px;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
       border-radius: 50%;
       text-align: center;
     }

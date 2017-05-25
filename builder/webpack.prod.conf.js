@@ -73,7 +73,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         // }),
         // split vendor js into its own file
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
+            name: 'common',
             minChunks: function (module, count) {
                 // any required modules inside node_modules are extracted to vendor
                 return (
@@ -88,11 +88,11 @@ var webpackConfig = merge(baseWebpackConfig, {
         // extract webpack runtime and module manifest to its own file in order to
         // prevent vendor hash from being updated whenever app bundle is updated
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'manifest',
-            chunks: ['vendor']
+            name: 'common-manifest',
+            chunks: ['common']
         }),
         new HtmlWebpackPlugin({
-            chunks: ['vendor', 'manifest', 'app'],
+            chunks: ['common', 'common-manifest', 'app'],
             favicon: './favicon.png',
             filename: 'index.html',
             template: './index.html',
@@ -109,7 +109,7 @@ var webpackConfig = merge(baseWebpackConfig, {
             chunksSortMode: 'dependency',
         }),
         new HtmlWebpackPlugin({
-            chunks: ['vendor', 'manifest', 'login'],
+            chunks: ['common', 'common-manifest', 'login'],
             favicon: './favicon.png',
             filename: 'login.html',
             template: './index.html',

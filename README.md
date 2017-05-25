@@ -179,8 +179,14 @@ server {
 }
 ```
 
+## dll
+开发模式使用dll优化rebuild速度，大概能够提高1倍（40个页面以上）
+生产环境不使用dll，dll将所有的第三方打包，2.7M，太大，如果不适用dll，webpack2本身有优化，没有使用到的export 代码不会打包
+如果使用dll，将多出近2M的无用资源。
+生产环境简单使用：CommonsChunkPlugin
+
 ## TODO
 - [ ] 登录之后，获取菜单数据，并存入session中，由于页面头部是由菜单生成的，如果菜单是异步获取的，将会存在各种问题，所以进入系统时候保证菜单可用
-- [ ] 构建优化：css postcss的使用，自动添加前缀等功能
+- [x] 构建优化：css postcss的使用，自动添加前缀等功能
 - [ ] 是否使用 css module功能
 - [ ] 修改less时可以hot reload ，修改jsx为什么直接reload？

@@ -8,8 +8,8 @@ const srcPath = './src';
 
 module.exports = {
     routesIgnore: [ // 忽略文件，不进行构建，提供部分模块打包功能
-        '**/ActionsExample.jsx',
+        // '**/ActionsExample.jsx',
     ],
-    pagePath: path.join(srcPath, 'pages/**/*.jsx'), // 使用了PAGE_ROUTE INIT_STATE 文件所在目录，与routesIgnore同样可以控制打包模块
-    // pagePath: path.join(srcPath, '**/*.jsx'),
+    // pagePath: path.join(srcPath, 'pages/**/*.jsx'), // 使用了PAGE_ROUTE INIT_STATE 文件所在目录，与routesIgnore同样可以控制打包模块
+    pagePath: path.join(srcPath, '**/*.jsx'),
 }

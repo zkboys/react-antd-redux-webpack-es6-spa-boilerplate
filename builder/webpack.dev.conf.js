@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
 const baseWebpackConfig = require('./webpack.base.conf');
 
@@ -53,10 +54,19 @@ module.exports = merge(baseWebpackConfig, {
         ],
     },
     plugins: [
+        new webpack.DllReferencePlugin({
+            context: '.',
+            manifest: require(path.join(__dirname, '../', 'public', 'vendor-manifest.json')),
+        }),
+        new AddAssetHtmlPlugin({
+            filepath: path.join(__dirname, '../', 'public', 'vendor.dll.js'),
+            includeSourcemap: false,
+            hash: true,
+        }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new HtmlWebpackPlugin({
-            chunks: ['vendor', 'app'],
+            chunks: ['common', 'app'],
             favicon: './favicon.png',
             filename: 'index.html',
             template: './index.html',
@@ -64,7 +74,7 @@ module.exports = merge(baseWebpackConfig, {
             inject: true,
         }),
         new HtmlWebpackPlugin({
-            chunks: ['vendor', 'login'],
+            chunks: ['common', 'login'],
             favicon: './favicon.png',
             filename: 'login.html',
             template: './index.html',
@@ -72,8 +82,8 @@ module.exports = merge(baseWebpackConfig, {
             inject: true,
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            filename: 'vendor.js',
+            name: 'common',
+            filename: 'common.js',
         }),
     ]
 });

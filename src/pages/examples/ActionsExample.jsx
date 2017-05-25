@@ -21,7 +21,6 @@ export const INIT_STATE = {
 
 export class LayoutComponent extends Component {
     state = {};
-
     render() {
         return (
             <PageContent className="actions-set-state">

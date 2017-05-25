@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Menu, Popconfirm} from 'antd';
+import {Menu, Popconfirm, Popover, Badge} from 'antd';
 import {Link} from 'react-router';
+import classNames from 'classnames';
 import {FontIcon, UserAvatar} from 'zk-react/antd';
 import {getFirstValue} from 'zk-react/utils/tree-utils';
 import {session} from 'zk-react/utils/storage';
@@ -45,10 +46,21 @@ class LayoutComponent extends Component {
         });
     }
 
+    renderNoticeContent() {
+        return (
+            <div>
+                <p>消息1消息1消息1消息1消息1消息1</p>
+                <p>消息2</p>
+            </div>
+        );
+    }
+
     render() {
         const {currentTopMenuNode = {}, sideBarCollapsed, showSideBar} = this.props;
-        let className = sideBarCollapsed ? 'side-bar-collapsed' : '';
-        className = showSideBar ? className : `${showSideBar} side-bar-hidden`;
+        const frameHeaderClass = classNames({
+            'side-bar-collapsed': sideBarCollapsed,
+            'side-bar-hidden': !showSideBar,
+        });
 
         const user = getCurrentLoginUser() ||
             {
@@ -57,8 +69,8 @@ class LayoutComponent extends Component {
                 avatar: '',
             };
         return (
-            <div className={`frame-header ${className}`}>
-                <div className="left-menu">
+            <div className={`frame-header ${frameHeaderClass}`}>
+                <div className={`left-menu ${frameHeaderClass}`}>
                     <Menu
                         selectedKeys={[currentTopMenuNode.key]}
                         mode="horizontal"
@@ -67,6 +79,16 @@ class LayoutComponent extends Component {
                     </Menu>
                 </div>
                 <div className="right-menu">
+                    <Popover
+                        content={this.renderNoticeContent()}
+                    >
+                        <div className="right-menu-item">
+                            <Badge count={100}>
+                                <FontIcon type="message"/>
+                                <span className="notice-label">通知</span>
+                            </Badge>
+                        </div>
+                    </Popover>
                     <div className="right-menu-item">
                         <UserAvatar user={user}/>
                         <span>{user.name}</span>
