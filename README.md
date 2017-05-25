@@ -72,6 +72,7 @@ componentWillMount() {
 ### 自定义面包屑导航
 ```
 componentWillMount() {
+    const {actions} = this.props;
     actions.setPageBreadcrumbs([
         {
             key: 'zidingyi',
@@ -105,7 +106,7 @@ componentWillMount() {
 export const PAGE_ROUTE = '/example/users';
 
 // 如果二级页面保持父级页面菜单选中状态，二级页面路由约定：parent_page_route/+child_page_route，通过`/+`进行分割
-export const page_route = '/example/users/+add';
+export const PAGE_ROUTE = '/example/users/+add';
 ```
 
 ### redux
@@ -152,6 +153,7 @@ const {a, d, e} = this.props;
 // 赋值
 this.props.actions.setState({a: 'new value'});
 ```
+注：非挂载到router上的组件，需要自行调用connectComponent进行redux的连接，所需参数请查看源码。
 
 ## 前后端分离 ngnix配置 参考
 ```
@@ -186,7 +188,8 @@ server {
 生产环境简单使用：CommonsChunkPlugin
 
 ## TODO
-- [ ] 登录之后，获取菜单数据，并存入session中，由于页面头部是由菜单生成的，如果菜单是异步获取的，将会存在各种问题，所以进入系统时候保证菜单可用
+- [x] 登录之后，获取菜单数据，并存入session中，由于页面头部是由菜单生成的，如果菜单是异步获取的，将会存在各种问题，所以进入系统时候保证菜单可用
 - [x] 构建优化：css postcss的使用，自动添加前缀等功能
-- [ ] 是否使用 css module功能
+- [ ] 是否使用 css module功能，好像加不上，antd不是module方式，如果使用module，antd less 构建会失败。
 - [ ] 修改less时可以hot reload ，修改jsx为什么直接reload？
+- [ ] antd 图标本地部署问题：缓存问题，antd.less需要全部引入，会多550KB的css代码

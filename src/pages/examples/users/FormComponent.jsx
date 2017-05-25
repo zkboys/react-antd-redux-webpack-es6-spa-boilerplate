@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Form, Button, Input} from 'antd';
-import {InputCloseSuffix, FontIcon} from 'zk-react/antd';
-
-const FormItem = Form.Item;
+import {Form, Button, Row, Col} from 'antd';
+import {FontIcon, InputClear, FormItemLayout} from 'zk-react/antd';
 
 class FormComponent extends Component {
     static defaultProps = {
@@ -38,24 +36,17 @@ class FormComponent extends Component {
         }
     }
 
-    getFormItemLayout(/* item */) {
-        return {
-            labelCol: {
-                xs: {span: 24},
-                sm: {span: 8},
-            },
-            wrapperCol: {
-                xs: {span: 24},
-                sm: {span: 16},
-            },
-        };
-    }
-
-    getFormItem(item) {
+    getFormItem(item, count) {
         const {form, layout} = this.props;
         const {getFieldDecorator} = form;
-        const {label, field, decorator = {}} = item;
-        const formItemLayout = this.getFormItemLayout(item);
+        const {
+            label,
+            labelWidth,
+            labelSpaceCount,
+            labelFontSize,
+            field,
+            decorator = {},
+        } = item;
         let itemStyle = {};
 
         if (layout === 'inline') {
@@ -65,12 +56,16 @@ class FormComponent extends Component {
         }
 
         return (
-            <FormItem
-                style={itemStyle}
-                {...formItemLayout}
-                label={label}>
-                {getFieldDecorator(field, decorator)(this.getFormElement(item))}
-            </FormItem>
+            <Col span={24 / count}>
+                <FormItemLayout
+                    labelWidth={labelWidth}
+                    labelSpaceCount={labelSpaceCount}
+                    labelFontSize={labelFontSize}
+                    style={itemStyle}
+                    label={label}>
+                    {getFieldDecorator(field, decorator)(this.getFormElement(item))}
+                </FormItemLayout>
+            </Col>
         );
     }
 
@@ -79,28 +74,31 @@ class FormComponent extends Component {
         const {type = 'input', field} = item;
         if (type === 'input') {
             return (
-                <Input
+                <InputClear
+                    form={form}
                     ref={node => this.inputs[field] = node}
                     placeholder={this.getPlaceholder(item)}
-                    suffix={<InputCloseSuffix form={form} field={field} dom={this.inputs[field]}/>}
                 />
             );
         }
     }
 
     render() {
-        const {items, layout} = this.props;
+        const {items} = this.props;
         return (
-            <Form onSubmit={this.handleSubmit} layout={layout}>
-                {
-                    items.map(data => {
-                        return data.map(item => {
-                            return this.getFormItem(item);
-                        });
-                    })
-                }
-
-                <Button type="primary" size="large" htmlType="submit">查询<FontIcon type="search"/></Button>
+            <Form onSubmit={this.handleSubmit}>
+                <Row>
+                    {
+                        items.map(data => {
+                            return data.map(item => {
+                                return this.getFormItem(item, data.length);
+                            });
+                        })
+                    }
+                    <Col span={5}>
+                        <Button type="primary" size="large" htmlType="submit">查询<FontIcon type="search"/></Button>
+                    </Col>
+                </Row>
             </Form>
         );
     }

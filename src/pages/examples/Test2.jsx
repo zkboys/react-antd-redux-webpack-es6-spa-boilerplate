@@ -22,6 +22,7 @@ export default class extends Component {
                     这下快了吗？
                     部分打包功能，会使rebuild速度加快
                 </div>
+                <div className="fast">要的就是速度</div>
             </PageContent>
         );
     }
