@@ -7,8 +7,8 @@
 jsx文件头部定义`export const PAGE_ROUTE = '/base-information/business/users';`，可以不必编写`routes.js`文件。只是生成如下结构：
 ```
 {
-    path: PagesBaseInformationBusinessUserIndex.PAGE_ROUTE,
-    asyncComponent: './pages/base-information/business-user/Index',
+    path: '/base-information/business/users',
+    getComponent: ...(异步写法),
 },
 ```
 如果需要其他路由属性，请在routes.js文件中定义路由，同时页面一定不要写`export const PAGE_ROUTE = ...`，否则路由被定义两遍，会产生意料之外的bug。

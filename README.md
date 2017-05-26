@@ -14,6 +14,9 @@ yarn run dev
 # build for production with minification
 yarn run build
 
+# clear cache 如果发现源码与webpack编译文件明显不一致，有可能是缓存脏数据
+yarn run clear-dev-cache
+
 ```
 
 ## 项目结构
