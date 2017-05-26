@@ -22,7 +22,8 @@ export class LayoutComponent extends Component {
                     key={i}
                     label="这个短吗12"
                     labelWidth={100}
-                    style={{width: 200, float: 'left'}}
+                    width={200 + (i * 10)}
+                    float
                 >
                     {getFieldDecorator(`userName21${i}`, {
                         rules: [{required: true, message: 'Please input your username!'}],
@@ -155,7 +156,7 @@ export class LayoutComponent extends Component {
                             </FormItemLayout>
                         </Col>
                     </Row>
-                    <h2>固定宽度，自动换行布局</h2>
+                    <h2>固定宽度，float自动换行布局</h2>
                     {this.renderItems()}
                     <div style={{clear: 'both'}}>
                         需要清除浮动

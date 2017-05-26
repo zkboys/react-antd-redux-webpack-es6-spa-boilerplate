@@ -1,10 +1,10 @@
-var path = require('path');
-var glob = require('glob');
-var os = require('os');
-var config = require('./config');
+const path = require('path');
+const glob = require('glob');
+const os = require('os');
+const config = require('./config');
 
 function assetsPath(_path) {
-    var assetsSubDirectory = process.env.NODE_ENV === 'production'
+    const assetsSubDirectory = process.env.NODE_ENV === 'production'
         ? config.build.assetsSubDirectory
         : config.dev.assetsSubDirectory
     return path.posix.join(assetsSubDirectory, _path)
@@ -20,16 +20,16 @@ function getImportsAndModules(sourceFilePath, targetFileName, filter, star) {
     filter = filter || function () {
             return true
         };
-    var imports = [];
-    var modules = [];
-    var files = glob.sync(sourceFilePath, {ignore: config.routesIgnore});
+    const imports = [];
+    const modules = [];
+    const files = glob.sync(sourceFilePath, {ignore: config.routesIgnore});
     if (files && files.length) {
-        for (var i = 0; i < files.length; i++) {
-            var file = files[i];
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
             if (filter && filter(file)) {
-                // var filePath = path.relative(targetFileName, file);
-                var importStr = getImportStr(file, star);
-                var moduleName = getModuleName(file);
+                // const filePath = path.relative(targetFileName, file);
+                const importStr = getImportStr(file, star);
+                const moduleName = getModuleName(file);
                 imports.push(importStr);
                 modules.push(moduleName);
             }
@@ -46,10 +46,10 @@ function getImportsAndModules(sourceFilePath, targetFileName, filter, star) {
  * @returns {*}
  */
 function getIP() {
-    var interfaces = os.networkInterfaces();
-    for (var k in interfaces) {
-        for (var k2 in interfaces[k]) {
-            var address = interfaces[k][k2];
+    const interfaces = os.networkInterfaces();
+    for (const k in interfaces) {
+        for (const k2 in interfaces[k]) {
+            const address = interfaces[k][k2];
             if (address.family === 'IPv4' && !address.internal) {
                 return address.address;
             }
@@ -67,7 +67,7 @@ function getIP() {
  * @returns {string}
  */
 function getImportStr(pathName, star) {
-    var pName = getModuleName(pathName);
+    const pName = getModuleName(pathName);
     pathName = getPathName(pathName);
     if (star) {
         return "import * as " + pName + " from '" + pathName + "';";
@@ -80,7 +80,7 @@ function getImportStr(pathName, star) {
  * @param pathName
  */
 function getPathName(pathName) {
-    var extName = path.extname(pathName);
+    const extName = path.extname(pathName);
     pathName = pathName.replace(extName, '');
     if (process.platform.indexOf('win') >= 0) {
         pathName = pathName.replace(/\\/g, "\/");
@@ -95,13 +95,13 @@ function getPathName(pathName) {
  * @returns {string}
  */
 function getModuleName(pathName) {
-    var extName = path.extname(pathName);
+    const extName = path.extname(pathName);
     pathName = pathName.replace(extName, '');
     pathName = pathName.split(path.sep);
-    var pName = '';
+    let pName = '';
     pathName.forEach(function (p) {
         if (p) {
-            var ps = p.split('-');
+            const ps = p.split('-');
             ps.forEach(function (v) {
                 pName += v.replace(/(\w)/, function (v) {
                     return v.toUpperCase()
@@ -120,8 +120,8 @@ function getModuleName(pathName) {
  * @param item
  */
 function arrayRemove(arr, item) {
-    var itemIndex = -1;
-    for (var i = 0; i < arr.length; i++) {
+    let itemIndex = -1;
+    for (let i = 0; i < arr.length; i++) {
         if (arr[i] === item) {
             itemIndex = i;
             break;
@@ -153,8 +153,8 @@ function getComponentString(componentPath) {
  */
 function getRouteAddtionsImportString() {
 
-    var connectPath = path.join(__dirname, '../', 'src', 'redux/store/connectComponent.js');
-    var routeUtilsPath = path.join(__dirname, '../', 'src', 'commons', 'route-utils');
+    let connectPath = path.join(__dirname, '../', 'src', 'redux/store/connectComponent.js');
+    let routeUtilsPath = path.join(__dirname, '../', 'src', 'commons', 'route-utils');
 
     connectPath = getPathName(connectPath);
     routeUtilsPath = getPathName(routeUtilsPath);

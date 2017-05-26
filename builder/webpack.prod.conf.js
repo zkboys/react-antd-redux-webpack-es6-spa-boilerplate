@@ -1,17 +1,17 @@
-const path = require('path')
-const config = require('./config')
-const utils = require('./utils')
-const webpack = require('webpack')
-const merge = require('webpack-merge')
-const baseWebpackConfig = require('./webpack.base.conf')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const path = require('path');
+const config = require('./config');
+const utils = require('./utils');
+const webpack = require('webpack');
+const merge = require('webpack-merge');
+const baseWebpackConfig = require('./webpack.base.conf');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const os = require('os');
 const UglifyJsParallelPlugin = require('webpack-uglify-parallel');
 
 const sourcePath = path.resolve(__dirname, '../', 'src');
 
-var webpackConfig = merge(baseWebpackConfig, {
+const webpackConfig = merge(baseWebpackConfig, {
     devtool: config.build.productionSourceMap ? '#source-map' : false,
     output: {
         path: config.build.assetsRoot,
@@ -131,7 +131,7 @@ var webpackConfig = merge(baseWebpackConfig, {
 });
 
 if (config.build.productionGzip) {
-    var CompressionWebpackPlugin = require('compression-webpack-plugin')
+    const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
     webpackConfig.plugins.push(
         new CompressionWebpackPlugin({

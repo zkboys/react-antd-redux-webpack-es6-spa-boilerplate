@@ -1,15 +1,15 @@
-var chokidar = require('chokidar');
-var fs = require('fs');
-var config = require('./config');
-var generateAllRoutes = require('./generate-all-routes');
-var generatePageRoute = require('./generate-page-route');
-var generatePageInitState = require('./generate-page-init-state');
+const chokidar = require('chokidar');
+const fs = require('fs');
+const config = require('./config');
+const generateAllRoutes = require('./generate-all-routes');
+const generatePageRoute = require('./generate-page-route');
+const generatePageInitState = require('./generate-page-init-state');
 
-var routesSourceFileName = config.routesFileName;
-var pageSourceFileName = config.pagePath;
-var allRoutesFileName = config.allRoutesFileName;
-var pageInitStateFileName = config.pageInitStateFileName;
-var pageRouteFileName = config.pageRouteFileName;
+const routesSourceFileName = config.routesFileName;
+const pageSourceFileName = config.pagePath;
+const allRoutesFileName = config.allRoutesFileName;
+const pageInitStateFileName = config.pageInitStateFileName;
+const pageRouteFileName = config.pageRouteFileName;
 
 // 删除历史生成文件
 fs.existsSync(allRoutesFileName) && fs.unlinkSync(allRoutesFileName);

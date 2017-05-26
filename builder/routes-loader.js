@@ -13,14 +13,14 @@
  *     });
  * },
  * */
-var utils = require('./utils');
+const utils = require('./utils');
 
 module.exports = function (source, other) {
     this.cacheable();
-    var routesStrTemp = source;
-    var patt = /asyncComponent:[ ]*['"]([^'"]+)['"][,]/gm;
-    var isRoutes = false;
-    var block = null;
+    let routesStrTemp = source;
+    const patt = /asyncComponent:[ ]*['"]([^'"]+)['"][,]/gm;
+    let isRoutes = false;
+    let block = null;
     while ((block = patt.exec(source)) !== null) {
         isRoutes = block[0] && block[1];
         if (isRoutes) {

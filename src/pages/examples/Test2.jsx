@@ -3,7 +3,7 @@ import {PageContent} from 'zk-react/antd';
 import './style-test2.less';
 
 export const PAGE_ROUTE = '/example/test2';
-export default class extends Component {
+export default class Test2 extends Component {
     state = {}
 
     render() {
@@ -19,8 +19,6 @@ export default class extends Component {
                 <div>
                     打包的速度问题怎么办？
                     我的真的啊
-                    这下快了吗？
-                    部分打包功能，会使rebuild速度加快
                 </div>
                 <div className="fast">要的就是速度</div>
             </PageContent>

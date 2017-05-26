@@ -3,8 +3,9 @@
 ## 关于redux
 actions可以被各个页面组件和reducers复用
 
-- 各个页面（组件）通过`const {actions} = this.props`获取actions对象，然后调用`actions.xxx()` 触发action；
-- 各个页面（组件）export出两个变量`LayoutComponent`和`mapStateToProps`，系统就会将这个组件与redux关联，即可使用`this.props.actions`中的方法，获取到redux中的数据；
+- 各个页面（组件）如果挂载到路由，export出两个变量`LayoutComponent`和`mapStateToProps`，系统就会将这个组件与redux关联，即可使用`this.props.actions`中的方法，获取到redux中的数据；
+- 各个页面（组件）如果不是挂载到路由上的，需要显示调用`connectComponent`进行redux的连接
+- 各个页面（组件）如果已经与redux进行连接，通过`const {actions} = this.props`获取actions对象，然后调用`actions.xxx()` 触发action；
 - `mapStateToProps` 用于指定redux的state中哪部分数据用于当前组件，由于reducer的`combineReducers`方法包装之后，将各个reducer的state存放在对应的key中，key指的是combineReducers包装时指定的key，比如：
 
     ```javascript
@@ -95,7 +96,7 @@ export const saveUserMessage = createAction(types.SAVE_USER_MESSAGE,
             userMessage, // 异步action将触发reducer两次，reducer第一次触发获取payload是promise对象，额外的数据就要metaCreator提供了。
             resolved, // 执行异步action成功回调，使页面可以获取异步成功
             rejected, // 执行异步action失败回调，使页面可以处理异步失败
-            autoTipError: '保存失败', // 系统自动提示错误， 默认 ‘未知系统错误’ 传递false，不使用系统提示
+            errorTip: '保存失败', // 系统自动提示错误， 默认 ‘未知系统错误’ 传递false，不使用系统提示
             autoTipSuccess: '个人信息修改成功', // 默认 false，不显示成功提示信息，
         };
     }
@@ -178,7 +179,7 @@ export default handleActions({
 
 ### redux中的异常处理
 - 基于`flux-standard-action` 规范，异常action返回结构为：`{..., payload: error, error: true, ...}`
-- `utils-middleware.js`会统一截获处理异常（无论异步还是同步）， 会根据 `meta.autoTipError`来确定是否全局提示处理异常信息
+- `utils-middleware.js`会统一截获处理异常（无论异步还是同步）， 会根据 `meta.errorTip`来确定是否全局提示处理异常信息
 - `async-action-callback-middleware.js` 会调用actions的回调函数，给具体页面处理异常的机会
 
 

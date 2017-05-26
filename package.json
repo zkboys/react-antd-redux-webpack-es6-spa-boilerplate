@@ -8,7 +8,8 @@
     "dll": "./node_modules/.bin/webpack --config ./builder/webpack.dll.conf.js",
     "dev": "yarn run dll && cross-env NODE_ENV=development node ./builder/dev-server.js",
     "build": "cross-env NODE_ENV=production node ./builder/build.js",
-    "cp": "rm -rf ./node_modules/zk-react && cp -R /Users/wangshubin/workspace/personal/zk-react /Users/wangshubin/workspace/personal/zk-react-template-management/node_modules"
+    "cp": "rm -rf ./node_modules/zk-react && cp -R /Users/wangshubin/workspace/personal/zk-react /Users/wangshubin/workspace/personal/zk-react-template-management/node_modules",
+    "clear-dev-cache": "rm -rf ./node_modules/.cache"
   },
   "dependencies": {
     "antd": "^2.9.0",
@@ -35,7 +36,7 @@
     "redux-undo": "^0.6.1",
     "uuid": "^3.0.1",
     "whatwg-fetch": "^1.0.0",
-    "zk-react": "^1.5.22"
+    "zk-react": "^1.5.24"
   },
   "devDependencies": {
     "add-asset-html-webpack-plugin": "^2.0.1",
