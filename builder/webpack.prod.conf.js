@@ -28,19 +28,12 @@ const webpackConfig = merge(baseWebpackConfig, {
             },
             {
                 test: /\.less$/,
+                exclude: path.resolve(__dirname, '../', 'src/pages/examples/cssModule'),
                 loader: ExtractTextPlugin.extract({
                     use: [
-                        {
-                            loader: 'css-loader', // https://github.com/webpack-contrib/css-loader
-                            // options: {
-                            //     module: true,
-                            //     camelCase: true,
-                            //     localIdentName: '[path][name]-[local]',
-                            // },
-                        },
-                        {
-                            loader: 'postcss-loader',
-                        },
+                        'style-loader',
+                        'css-loader',
+                        'postcss-loader',
                         {
                             loader: 'less-loader',
                             options: {
@@ -48,8 +41,34 @@ const webpackConfig = merge(baseWebpackConfig, {
                                 includePaths: [sourcePath],
                             },
                         },
-                    ]
+                    ],
                 })
+            },
+            {
+                test: /\.less/,
+                include: path.resolve(__dirname, '../', 'src/pages/examples/cssModule'),
+                loader: ExtractTextPlugin.extract({
+                    use: [
+                        'style-loader',
+                        {
+                            // https://github.com/webpack-contrib/css-loader
+                            loader: 'css-loader',
+                            options: {
+                                module: true,
+                                camelCase: true,
+                                localIdentName: '[path][name]-[local]',
+                            },
+                        },
+                        'postcss-loader',
+                        {
+                            loader: 'less-loader',
+                            options: {
+                                sourceMap: false,
+                                includePaths: [sourcePath],
+                            },
+                        },
+                    ],
+                }),
             },
         ],
     },

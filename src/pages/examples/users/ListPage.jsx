@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Table} from 'antd';
-import {promiseAjax} from 'zk-react';
 import {
     PageContent,
     QueryBar,
@@ -10,23 +9,29 @@ import {
     PaginationComponent,
     FontIcon,
 } from 'zk-react/antd';
-import FormComponent from './FormComponent.jsx';
+import QueryItem from './QueryItem.jsx';
 
 export default class extends Component {
     static defaultProps = {
         columns: [],
         toolItems: [],
         queryItems: [],
-        url: '',
-        dataFilter: (data) => data,
-    }
+        showSearchButton: true,
+        showResetButton: true,
+        showPagination: true,
+        total: 0,
+        dataSource: [],
+    };
 
     static propTypes = {
         columns: PropTypes.array.isRequired,
         toolItems: PropTypes.array,
         queryItems: PropTypes.array,
-        url: PropTypes.string.isRequired,
-        dataFilter: PropTypes.func,
+        showSearchButton: PropTypes.bool,
+        showResetButton: PropTypes.bool,
+        showPagination: PropTypes.bool,
+        total: PropTypes.number,
+        dataSource: PropTypes.array,
     };
 
     state = {
@@ -39,8 +44,6 @@ export default class extends Component {
     };
 
     componentWillMount() {
-
-        // TODO: 根据 queryItems 设置 query 的默认值
     }
 
     componentDidMount() {
@@ -48,11 +51,10 @@ export default class extends Component {
     }
 
     componentWillUnmount() {
-        this.searchAjax && this.searchAjax.cancel();
     }
 
     search = (args) => {
-        const {url, dataFilter} = this.props;
+        const {onSearch} = this.props;
         const {pageNum, pageSize, query} = this.state;
         let params = {
             ...query,
@@ -60,26 +62,20 @@ export default class extends Component {
             pageSize,
             ...args,
         };
-        console.log(params);
         this.setState({loading: true});
-        this.searchAjax = promiseAjax.get(url, params);
-        this.searchAjax.then(data => {
-            data = dataFilter(data);
-            this.setState({
-                total: data.total,
-                dataSource: data.list,
-            });
-        }).finally(() => this.setState({loading: false}));
-    }
+        onSearch(params).finally(() => this.setState({loading: false}));
+    };
 
     handleQuery = (query) => {
         this.setState({query});
         this.search({pageNum: 1, ...query});
-    }
+    };
+
     handlePageNumChange = (pageNum) => {
         this.setState({pageNum});
         this.search({pageNum});
     };
+
     handlePageSizeChange = pageSize => {
         this.setState({
             pageNum: 1,
@@ -92,21 +88,34 @@ export default class extends Component {
     };
 
     render() {
-        const {columns, toolItems, queryItems} = this.props;
+        const {
+            columns,
+            toolItems,
+            queryItems,
+            showSearchButton,
+            showResetButton,
+            showPagination,
+            total,
+            dataSource,
+        } = this.props;
+
         const {
             loading,
-            dataSource,
             pageNum,
             pageSize,
-            total,
         } = this.state;
+
         const tableColumns = [...columns];
-        tableColumns.unshift({title: '#', render: (text, record, index) => (index + 1) + ((pageNum - 1) * pageSize)});
+
+        tableColumns.unshift({title: '序号', render: (text, record, index) => (index + 1) + ((pageNum - 1) * pageSize)});
+
         return (
             <PageContent className="example-users">
                 <QueryBar>
-                    <FormComponent
+                    <QueryItem
                         items={queryItems}
+                        showSearchButton={showSearchButton}
+                        showResetButton={showResetButton}
                         onSubmit={this.handleQuery}
                     />
                 </QueryBar>
@@ -136,13 +145,17 @@ export default class extends Component {
                         pagination={false}
                     />
                 </QueryResult>
-                <PaginationComponent
-                    pageSize={pageSize}
-                    pageNum={pageNum}
-                    total={total}
-                    onPageNumChange={this.handlePageNumChange}
-                    onPageSizeChange={this.handlePageSizeChange}
-                />
+                {
+                    showPagination ?
+                        <PaginationComponent
+                            pageSize={pageSize}
+                            pageNum={pageNum}
+                            total={total}
+                            onPageNumChange={this.handlePageNumChange}
+                            onPageSizeChange={this.handlePageSizeChange}
+                        />
+                        : null
+                }
             </PageContent>
         );
     }

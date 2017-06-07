@@ -27,21 +27,35 @@ module.exports = merge(baseWebpackConfig, {
             },
             {
                 test: /\.less/,
+                exclude: path.resolve(__dirname, '../', 'src/pages/examples/cssModule'),
                 use: [
+                    'style-loader',
+                    'css-loader',
+                    'postcss-loader',
                     {
-                        loader: 'style-loader',
+                        loader: 'less-loader',
+                        options: {
+                            sourceMap: false,
+                            includePaths: [sourcePath],
+                        },
                     },
+                ],
+            },
+            {
+                test: /\.less/,
+                include: path.resolve(__dirname, '../', 'src/pages/examples/cssModule'),
+                use: [
+                    'style-loader',
                     {
-                        loader: 'css-loader', // https://github.com/webpack-contrib/css-loader
-                        // options: {
-                        //     module: true,
-                        //     camelCase: true,
-                        //     localIdentName: '[path][name]-[local]',
-                        // },
+                        // https://github.com/webpack-contrib/css-loader
+                        loader: 'css-loader',
+                        options: {
+                            module: true,
+                            camelCase: true,
+                            localIdentName: '[path][name]-[local]',
+                        },
                     },
-                    {
-                        loader: 'postcss-loader',
-                    },
+                    'postcss-loader',
                     {
                         loader: 'less-loader',
                         options: {

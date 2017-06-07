@@ -112,52 +112,6 @@ export const PAGE_ROUTE = '/example/users';
 export const PAGE_ROUTE = '/example/users/+add';
 ```
 
-### redux
-> 页面导出 `LayoutComponent` `mapStateToProps这两个变量`，系统会自动将当前组件与redux进行连接
-
-```
-export class LayoutComponent{...}
-
-export function mapStateToProps(state) {
-    return {
-        ...state.frame,
-    };
-}
-```
-
-如果页面想使用简化的redux（只数据共享，操作不共享），请定义INIT_STATE常量
-```
-// 初始化数据
-export const INIT_STATE = {
-    scope: 'actionsSetState', // 定义命名空间
-    sync: true, // 是否与localStorage进行同步
-    a: {
-        b: {
-            c: ['ccc'],
-            c2: 'c2',
-        },
-        b1: [],
-        b2: 'b2',
-    },
-    d: 'd',
-    e: 'e',
-};
-
-// 注入数据
-export function mapStateToProps(state) {
-    return {
-        ...state.pageState.actionsSetState,
-    };
-}
-
-// 取值
-const {a, d, e} = this.props;
-
-// 赋值
-this.props.actions.setState({a: 'new value'});
-```
-注：非挂载到router上的组件，需要自行调用connectComponent进行redux的连接，所需参数请查看源码。
-
 ## 前后端分离 ngnix配置 参考
 ```
 # 服务地址
@@ -193,6 +147,7 @@ server {
 ## TODO
 - [x] 登录之后，获取菜单数据，并存入session中，由于页面头部是由菜单生成的，如果菜单是异步获取的，将会存在各种问题，所以进入系统时候保证菜单可用
 - [x] 构建优化：css postcss的使用，自动添加前缀等功能
-- [ ] 是否使用 css module功能，好像加不上，antd不是module方式，如果使用module，antd less 构建会失败。
+- [x] 是否使用 css module功能，好像加不上，antd不是module方式，如果使用module，antd less 构建会失败。 通过配置可以区分出那些模块使用css module，那些不使用。
 - [ ] 修改less时可以hot reload ，修改jsx为什么直接reload？
 - [ ] antd 图标本地部署问题：缓存问题，antd.less需要全部引入，会多550KB的css代码
+- [ ] 字体图片，团队有条件还是定制的好，全部引入会多出300~400KB。
