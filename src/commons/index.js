@@ -1,12 +1,9 @@
 import {isDev, isPro, isTest, isRC} from 'zk-react';
+import devAjaxBaseUrl from '../../local/local-ajax-base-url';
 
 export function getAjaxBaseUrl() {
     if (isDev) {
-        return 'http://172.16.135.168:8080/';
-        // return 'http://172.16.41.157:8080/';
-        // return 'http://172.16.40.50:8081/';
-        // return 'http://172.16.20.57:8081';
-        // return 'http://172.16.40.231:8080/';
+        return devAjaxBaseUrl;
     }
     if (isPro) {
         return '/api/';

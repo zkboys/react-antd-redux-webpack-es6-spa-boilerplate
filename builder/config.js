@@ -3,9 +3,9 @@ const srcPath = './src';
 let routesIgnore = [];
 let pagePath = path.join(srcPath, '**/*.jsx');
 if (process.env.NODE_ENV === 'development') {
-    const configLocal = require('../build-config-local.js');
-    routesIgnore = configLocal.routesIgnore;
-    pagePath = configLocal.pagePath;
+    const localConfig = require('../local/local-build-config.js');
+    routesIgnore = localConfig.routesIgnore;
+    pagePath = localConfig.pagePath;
 }
 
 module.exports = {
