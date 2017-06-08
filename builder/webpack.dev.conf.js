@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
-
+const config = require('./config');
 const baseWebpackConfig = require('./webpack.base.conf');
 
 const sourcePath = path.resolve(__dirname, '../', 'src');
@@ -16,8 +16,8 @@ Object.keys(baseWebpackConfig.entry).forEach(name => {
 module.exports = merge(baseWebpackConfig, {
     output: {
         path: path.join(__dirname, '../', 'dist'),
+        publicPath: config.dev.assetsPublicPath,
         filename: '[name].js',
-        publicPath: '/',
     },
     module: {
         rules: [

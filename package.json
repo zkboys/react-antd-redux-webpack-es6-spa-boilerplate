@@ -9,7 +9,7 @@
     "dev": "yarn run dll && cross-env NODE_ENV=development node ./builder/dev-server.js",
     "build": "cross-env NODE_ENV=production node ./builder/build.js",
     "cp": "rm -rf ./node_modules/zk-react && cp -R /Users/wangshubin/workspace/personal/zk-react /Users/wangshubin/workspace/personal/zk-react-template-management/node_modules",
-    "clear-dev-cache": "rm -rf ./node_modules/.cache"
+    "clear-cache": "rm -rf ./node_modules/.cache"
   },
   "dependencies": {
     "antd": "^2.9.0",

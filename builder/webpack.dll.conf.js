@@ -1,35 +1,15 @@
 const path = require('path');
 const webpack = require('webpack');
+const packageJson = require('../package.json');
+
+// 这两个库会导致dll失败
+Reflect.deleteProperty(packageJson.dependencies, 'antd');
+Reflect.deleteProperty(packageJson.dependencies, 'zk-react');
+const deps = Object.keys(packageJson.dependencies);
 
 module.exports = {
     entry: {
-        vendor: [
-            // 'antd',
-            'axios',
-            'axios-mock-adapter',
-            'classnames',
-            'cropperjs',
-            'flux-standard-action',
-            'history',
-            'jszip',
-            'lodash',
-            'mockjs',
-            'nprogress',
-            'prop-types',
-            'query-string',
-            'react',
-            'react-dom',
-            'react-redux',
-            'react-router',
-            'redux',
-            'redux-actions',
-            'redux-logger',
-            'redux-thunk',
-            'redux-undo',
-            'uuid',
-            'whatwg-fetch',
-            // 'zk-react',
-        ]
+        vendor: deps,
     },
     output: {
         path: path.join(__dirname, '../', 'public'),

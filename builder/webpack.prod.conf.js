@@ -11,10 +11,25 @@ const UglifyJsParallelPlugin = require('webpack-uglify-parallel');
 
 const sourcePath = path.resolve(__dirname, '../', 'src');
 
+// Create multiple instances
+const extractCSS = new ExtractTextPlugin({
+    filename: utils.assetsPath('css/[name].[contenthash].css'),
+    disable: false,
+    allChunks: true,
+    ignoreOrder: false,
+});
+const extractCSSModule = new ExtractTextPlugin({
+    filename: utils.assetsPath('css/[name].[contenthash].css'),
+    disable: false,
+    allChunks: true,
+    ignoreOrder: true,
+});
+
 const webpackConfig = merge(baseWebpackConfig, {
     devtool: config.build.productionSourceMap ? '#source-map' : false,
     output: {
         path: config.build.assetsRoot,
+        publicPath: config.build.assetsPublicPath,
         filename: utils.assetsPath('js/[name].[chunkhash].js'),
         chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
     },
@@ -22,16 +37,17 @@ const webpackConfig = merge(baseWebpackConfig, {
         rules: [
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract({
+                loader: extractCSS.extract({
+                    fallback: 'style-loader',
                     use: ['css-loader', 'postcss-loader'],
                 })
             },
             {
                 test: /\.less$/,
                 exclude: path.resolve(__dirname, '../', 'src/pages/examples/cssModule'),
-                loader: ExtractTextPlugin.extract({
+                loader: extractCSS.extract({
+                    fallback: 'style-loader',
                     use: [
-                        'style-loader',
                         'css-loader',
                         'postcss-loader',
                         {
@@ -47,9 +63,9 @@ const webpackConfig = merge(baseWebpackConfig, {
             {
                 test: /\.less/,
                 include: path.resolve(__dirname, '../', 'src/pages/examples/cssModule'),
-                loader: ExtractTextPlugin.extract({
+                loader: extractCSSModule.extract({
+                    fallback: 'style-loader',
                     use: [
-                        'style-loader',
                         {
                             // https://github.com/webpack-contrib/css-loader
                             loader: 'css-loader',
@@ -73,11 +89,8 @@ const webpackConfig = merge(baseWebpackConfig, {
         ],
     },
     plugins: [
-        new ExtractTextPlugin({
-            filename: utils.assetsPath('css/[name].[contenthash].css'),
-            disable: false,
-            allChunks: true
-        }),
+        extractCSS,
+        extractCSSModule,
         // 多线程压缩：83.04s 好像差别不大
         // new UglifyJsParallelPlugin({
         //     workers: os.cpus().length, // usually having as many workers as cpu cores gives good results
