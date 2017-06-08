@@ -8,8 +8,7 @@ import './global.less';
 import {configureStore} from './redux';
 import Router from './route/Router';
 import handleErrorMessage from './commons/handle-error-message';
-import {getCurrentLoginUser, getAjaxBaseUrl} from './commons';
-import mockUrls from './mock/url-config';
+import {getCurrentLoginUser, getAjaxBaseUrl, isMock} from './commons';
 
 if (isDev) {
     require('./mock/index');
@@ -36,9 +35,7 @@ promiseAjax.init({
             message.success(successTip, 3);
         }
     },
-    isMock: (url /* url, data, method, options */) => {
-        return mockUrls.indexOf(url) > -1 || url.startsWith('/mock');
-    },
+    isMock,
 });
 
 const store = configureStore();

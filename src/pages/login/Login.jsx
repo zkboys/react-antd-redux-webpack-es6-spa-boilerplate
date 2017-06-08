@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import {Form, Input, Icon, Button} from 'antd';
 import {isDev} from 'zk-react';
 import * as promiseAjax from 'zk-react/utils/promise-ajax';
-import {session, init as initStorage} from 'zk-react/utils/storage';
+import {init as initStorage} from 'zk-react/utils/storage';
 import {convertToTree} from 'zk-react/utils/tree-utils';
+import {setCurrentLoginUser, setMenuTreeData, isMock, getAjaxBaseUrl} from '../../commons';
 import './style.less';
 
 const FormItem = Form.Item;
@@ -16,15 +17,17 @@ if (isDev) {
     require('../../mock/index');
 
     console.log('current mode is debug, mock is started');
-
-    promiseAjax.init({
-        isMock: (url /* url, data, method, options */) => {
-            return url.startsWith('/mock');
-        },
-    });
 }
 
-class _Login extends Component {
+promiseAjax.init({
+    setOptions: (instance) => {
+        instance.defaults.baseURL = getAjaxBaseUrl();
+    },
+    isMock,
+});
+
+@Form.create()
+class Login extends Component {
     state = {
         loading: false,
         errorMessage: '',
@@ -57,9 +60,8 @@ class _Login extends Component {
                     });
                     promiseAjax.get('/mock/system/menus', null, {errorTip: false}).then(response => {
                         const menuTreeData = convertToTree(response);
-                        session.setItem('menuTreeData', menuTreeData);
-                        // 这里由于keyPrefix 要设置成 currentLoginUser.id 的原因，无法使用封装过的storage
-                        window.sessionStorage.setItem('currentLoginUser', JSON.stringify(currentLoginUser));
+                        setMenuTreeData(menuTreeData);
+                        setCurrentLoginUser(currentLoginUser);
                         window.location.href = '/';
                     }).finally(() => {
                         this.setState({loading: false});
@@ -127,6 +129,5 @@ class _Login extends Component {
         );
     }
 }
-const Login = Form.create()(_Login);
 
 ReactDOM.render(<Login />, document.getElementById('main'));
