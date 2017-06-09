@@ -14,3 +14,4 @@ config.js
 src/other-pages/
 postcss.config.js
 build-config-local.js
+local/local-build-config.js
