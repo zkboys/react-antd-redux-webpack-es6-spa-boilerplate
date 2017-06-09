@@ -35,41 +35,95 @@ export class LayoutComponent extends Component {
         const path = currentTab.path;
         this.props.router.push(path);
     };
+    handleTabEdit = (targetKey, action) => {
+        console.log(targetKey, action);
+        if (action === 'remove') {
+            // 最后一个不删除
+            if (this.tabPageKeys.length <= 0) return;
+
+            let prePath = location.pathname;
+            // 关闭当前tab
+            if (this.activeKey === targetKey) {
+                let preIndex = 0;
+                for (let i = 0; i < this.tabPageKeys.length; i++) {
+                    if (this.tabPageKeys[i].key === targetKey) {
+                        preIndex = i - 1;
+                    }
+                }
+                preIndex = preIndex < 0 ? 0 : preIndex;
+
+                prePath = this.tabPageKeys[preIndex].path;
+            }
+            this.props.router.push(prePath);
+            this.tabPageKeys = this.tabPageKeys.filter(item => item.key !== targetKey);
+            // const removedComponent = this.tabpages[targetKey];
+            // console.log(removedComponent);
+            Reflect.deleteProperty(this.tabPages, targetKey);
+        }
+    };
     tabPageKeys = [];
     tabPages = {};
+    activeKey = 0;
 
     render() {
         const {sideBarCollapsed, showSideBar, showPageHeader, currentSideBarMenuNode} = this.props;
         const sideBarCollapsedWidth = 60;
         const sideBarExpendedWidth = 200;
         const headerHeight = 56;
-        const tabHeight = 37;
+        const tabHeight = 45;
         const pageHeaderHeight = 50;
 
         let paddingLeft = sideBarCollapsed ? sideBarCollapsedWidth : sideBarExpendedWidth;
         paddingLeft = showSideBar ? paddingLeft : 0;
         const paddingTop = showPageHeader ? headerHeight + tabHeight + pageHeaderHeight : headerHeight + tabHeight;
-        if (!this.tabPageKeys.find(item => item.key === currentSideBarMenuNode.key) && currentSideBarMenuNode.key) {
+
+        const menuKey = currentSideBarMenuNode.key;
+        if (!this.tabPageKeys.find(item => item.key === menuKey) && menuKey) {
             this.tabPageKeys.push({
-                key: currentSideBarMenuNode.key,
+                key: menuKey,
                 text: currentSideBarMenuNode.text,
                 path: currentSideBarMenuNode.path,
             });
         }
-        const activeKey = currentSideBarMenuNode.key;
+        const activeKey = this.activeKey = menuKey;
+
+        const pathname = location.pathname;
+        const childrenPathname = this.props.children.props.location.pathname;
 
         if (
-            location.pathname === this.props.children.props.location.pathname
-            && !this.tabPages[currentSideBarMenuNode.key]
+            pathname === childrenPathname
+            && !this.tabPages[menuKey]
         ) {
-            this.tabPages[currentSideBarMenuNode.key] = this.props.children;
+            this.tabPages[menuKey] = this.props.children;
         }
+
+        // 没有菜单对应的页面，通过 /+ 来确定的
+        if (
+            pathname.indexOf('/+') === -1
+            && childrenPathname.indexOf('/+') > -1
+        ) {
+            Reflect.deleteProperty(this.tabPages, menuKey);
+        }
+
+        if (
+            pathname === childrenPathname
+            && pathname.indexOf('/+') > -1
+        ) {
+            this.tabPages[menuKey] = this.props.children;
+        }
+
         return (
             <div className="app-frame">
                 <Header/>
                 <SideBar/>
-                <div style={{position: 'fixed', zIndex: 998, left: paddingLeft, right: 0, background: '#fff', paddingTop: headerHeight}}>
-                    <Tabs activeKey={activeKey} onChange={this.handleTabChange}>
+                <div style={{position: 'fixed', zIndex: 998, left: paddingLeft, right: 0, background: '#fff', paddingTop: headerHeight + 8}}>
+                    <Tabs
+                        hideAdd
+                        animated={false}
+                        type="editable-card"
+                        activeKey={activeKey}
+                        onEdit={this.handleTabEdit}
+                        onChange={this.handleTabChange}>
                         {
                             this.tabPageKeys.map(item => <TabPane tab={item.text} key={item.key}/>)
                         }

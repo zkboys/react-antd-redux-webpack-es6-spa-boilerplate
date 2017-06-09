@@ -13,6 +13,10 @@ export default class LayoutComponent extends Component {
 
     }
 
+    componentWillUnmount() {
+        console.log('unmount');
+    }
+
     render() {
         /*
          *
