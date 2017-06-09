@@ -1,6 +1,20 @@
 # zk-react-template-management
 zk-react 管理系统模板，UI基于antd，完整的登录、退出登录、菜单等结构
 
+## Prepare
+前端开发前期准备工作
+
+### 需要学习的技术
+1. [es6](http://es6.ruanyifeng.com/) 重点：2、3、7、8、9、14、19、20、22
+1. [react](https://facebook.github.io/react/) state props 周期函数 jsx
+1. [UI antd](https://ant.design/index-cn)
+
+### 需要安装的软件
+1. [nodejs](http://nodejs.cn/)
+1. [yarn](https://yarnpkg.com/zh-Hans/)
+1. [ide webstorm](http://www.jetbrains.com/webstorm/) license server : http://idea.imsxm.com/
+1. [git](https://git-scm.com/)
+
 ## Build Setup
 > 使用[yarn](https://yarnpkg.com/zh-Hans/)
 
