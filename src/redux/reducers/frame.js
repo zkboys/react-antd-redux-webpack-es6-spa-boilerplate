@@ -65,7 +65,7 @@ export default handleActions({
             currentSideBarMenuNode = getNodeByPropertyAndValue(menuTreeData, 'path', path);
 
             // 顶级节点有可能设置了某个子节点的path，会导致定位到顶级，而不是具体的菜单节点
-            if (!currentSideBarMenuNode.parentKey) {
+            if (currentSideBarMenuNode && !currentSideBarMenuNode.parentKey) {
                 currentSideBarMenuNode = getNodeByPropertyAndValue(currentSideBarMenuNode.children, 'path', path);
             }
             if (currentSideBarMenuNode) {
