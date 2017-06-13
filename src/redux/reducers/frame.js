@@ -64,6 +64,10 @@ export default handleActions({
             // TODO: 如果path=/user/:id,这种 通过pathname无法匹配到菜单
             currentSideBarMenuNode = getNodeByPropertyAndValue(menuTreeData, 'path', path);
 
+            // 顶级节点有可能设置了某个子节点的path，会导致定位到顶级，而不是具体的菜单节点
+            if (!currentSideBarMenuNode.parentKey) {
+                currentSideBarMenuNode = getNodeByPropertyAndValue(currentSideBarMenuNode.children, 'path', path);
+            }
             if (currentSideBarMenuNode) {
                 pageTitle = currentSideBarMenuNode.text;
                 const parentNodes = currentSideBarMenuNode.parentNodes;
