@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Form, Button} from 'antd';
-import {InputClear, FormItemLayout} from 'zk-react/antd';
+import {getFormItem} from './FormUtils';
 
-class QueryItem extends Component {
+@Form.create()
+export default class QueryItem extends Component {
     static defaultProps = {
         items: [],
         onSubmit: () => {
@@ -25,36 +26,8 @@ class QueryItem extends Component {
         });
     };
 
-    getPlaceholder(item) {
-        const {type = 'input', label, placeholder} = item;
-        if (placeholder) return placeholder;
-
-        if (type === 'input') {
-            return `请输入${label}!`;
-        }
-    }
-
-    getFormElement(item) {
-        const {form} = this.props;
-        const {type = 'input'} = item;
-        const placeholder = this.getPlaceholder(item);
-
-        if (type === 'input') return <InputClear form={form} placeholder={placeholder}/>;
-    }
-
-    getFormItem(item) {
-        const {form} = this.props;
-        const {getFieldDecorator} = form;
-        const {field, decorator} = item;
-        return (
-            <FormItemLayout key={item.field} float {...item}>
-                {getFieldDecorator(field, decorator)(this.getFormElement(item))}
-            </FormItemLayout>
-        );
-    }
-
     render() {
-        const {items, showSearchButton = true, showResetButton = true} = this.props;
+        const {form, items, showSearchButton = true, showResetButton = true} = this.props;
         return (
             <Form onSubmit={this.handleSubmit}>
                 {
@@ -71,7 +44,7 @@ class QueryItem extends Component {
                             <div key={index}>
                                 {
                                     data.map(item => {
-                                        return this.getFormItem(item);
+                                        return getFormItem(item, form);
                                     })
                                 }
                                 {
@@ -113,4 +86,3 @@ class QueryItem extends Component {
         );
     }
 }
-export default Form.create()(QueryItem);

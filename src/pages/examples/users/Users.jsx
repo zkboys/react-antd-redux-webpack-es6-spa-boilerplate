@@ -19,7 +19,7 @@ export default class extends Component {
                 field: 'loginName',
                 label: '登录名',
                 labelSpaceCount: 3,
-                width: 200,
+                width: '25%',
                 placeholder: '请输入登录名',
                 decorator: {
                     rules: [
@@ -30,8 +30,11 @@ export default class extends Component {
             {
                 type: 'input',
                 field: 'name',
-                label: '用户名',
-                labelSpaceCount: 3,
+                label: '可以为空',
+                labelSpaceCount: 4,
+                // label: '',
+                // labelWidth: 0,
+                // colon: false,
                 width: 200,
                 placeholder: '请输入用户名',
                 decorator: {},
@@ -128,7 +131,7 @@ export default class extends Component {
                     dataSource: data.list,
                 });
             });
-    }
+    };
 
     render() {
         const {total, dataSource} = this.state;

@@ -105,8 +105,13 @@ export default class extends Component {
             pageSize,
         } = this.state;
 
-        const tableColumns = [...columns];
-
+        // columns key可以缺省，默认与dataIndex，如果有相同dataIndex列，需要指定key；
+        const tableColumns = columns.map(item => {
+            if (!item.key) {
+                item.key = item.dataIndex;
+            }
+            return item;
+        });
         tableColumns.unshift({title: '序号', render: (text, record, index) => (index + 1) + ((pageNum - 1) * pageSize)});
 
         return (
