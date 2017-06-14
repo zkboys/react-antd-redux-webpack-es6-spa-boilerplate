@@ -63,9 +63,11 @@ export class LayoutComponent extends Component {
 
     getTabName() {
         if (location.pathname === '/') {
-            const {actions} = this.props;
-            actions.hidePageHeader();
-            actions.hideSideBar();
+            setTimeout(() => {
+                const {actions} = this.props;
+                actions.hidePageHeader();
+                actions.hideSideBar();
+            });
             return '首页';
         }
         const {currentSideBarMenuNode} = this.props;
@@ -102,7 +104,7 @@ export class LayoutComponent extends Component {
             this.tabs[key] = {
                 key,
                 name,
-                path: location.href,
+                path: pathname + location.search,
                 component: this.props.children,
             };
         }
