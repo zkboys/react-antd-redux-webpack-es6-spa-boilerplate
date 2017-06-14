@@ -1,11 +1,10 @@
 import {isDev, isPro, isTest, isRC} from 'zk-react';
 import {session} from 'zk-react/utils/storage';
-import devAjaxBaseUrl from '../../local/local-ajax-base-url';
 import mockUrls from '../mock/url-config';
 
 export function getAjaxBaseUrl() {
     if (isDev) {
-        return devAjaxBaseUrl;
+        return require('../../local/local-ajax-base-url'); // 只有div模式才会引用文件
     }
     if (isPro) {
         return '/api/';
