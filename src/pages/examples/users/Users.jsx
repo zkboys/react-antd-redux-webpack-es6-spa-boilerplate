@@ -75,7 +75,7 @@ export default class extends Component {
             text: '添加',
             icon: 'plus-circle-o',
             onClick: () => {
-                this.props.router.push('/example/users/+add');
+                this.props.router.push('/example/users/+add/:userId?tabName=添加用户');
             },
         },
         {
@@ -99,8 +99,8 @@ export default class extends Component {
                 const items = [
                     {
                         label: '修改',
-                        permission: '',
-                        onClick: () => console.log('修改'),
+                        permission: 'CODE-MODIFY',
+                        onClick: () => this.props.router.push(`/example/users/+add/${record.id}?tabName=修改用户`),
                     },
                     {
                         label: '删除',

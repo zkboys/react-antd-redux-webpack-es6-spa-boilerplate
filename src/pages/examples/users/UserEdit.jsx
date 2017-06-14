@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {PageContent} from 'zk-react/antd';
 
-export const PAGE_ROUTE = '/example/users/+add';
+export const PAGE_ROUTE = '/example/users/+add/:userId';
 export class LayoutComponent extends Component {
     state = {}
 
