@@ -5,7 +5,7 @@ import {message} from 'antd';
 import {isDev, promiseAjax} from 'zk-react';
 import {init as initStorage} from 'zk-react/utils/storage';
 import './global.less';
-import {configureStore} from './redux';
+import configureStore from './redux/store/configure-store';
 import Router from './route/Router';
 import handleErrorMessage from './commons/handle-error-message';
 import {getCurrentLoginUser, getAjaxBaseUrl, isMock} from './commons';

@@ -7078,9 +7078,9 @@ yargs@~3.10.0:
     decamelize "^1.0.0"
     window-size "0.1.0"
 
-zk-react@^1.5.30:
-  version "1.5.30"
-  resolved "https://registry.yarnpkg.com/zk-react/-/zk-react-1.5.30.tgz#2905c52f2a6852cfcf71d25efa6d74100feb2dae"
+zk-react@^1.5.33:
+  version "1.5.33"
+  resolved "https://registry.yarnpkg.com/zk-react/-/zk-react-1.5.33.tgz#87e40884d1498ef6dc2bb77979ca4da613b43057"
   dependencies:
     docdash "^0.4.0"
     jsdoc "^3.4.3"

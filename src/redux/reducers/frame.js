@@ -1,9 +1,9 @@
 import {handleActions} from 'redux-actions';
+import handleAsyncReducer from 'zk-react/redux/handle-async-reducer';
 import {convertToTree, getNodeByPropertyAndValue, getTopNodeByNode} from 'zk-react/utils/tree-utils';
 import {uniqueArray} from 'zk-react/utils';
 import {session} from 'zk-react/utils/storage';
 import * as types from '../actionTypes';
-import handleAsyncReducer from '../store/handle-async-reducer';
 
 let initialState = {
     menuTreeData: [],

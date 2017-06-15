@@ -4,7 +4,7 @@ import {Menu} from 'antd';
 import {renderNode} from 'zk-react/utils/tree-utils';
 import {FontIcon} from 'zk-react/antd';
 import {getScrollBarWidth} from 'zk-react/utils';
-import connectComponent from '../redux/store/connectComponent';
+import connectComponent from '../redux/store/connect-component';
 
 
 const SubMenu = Menu.SubMenu;

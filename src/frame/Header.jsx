@@ -6,7 +6,7 @@ import {FontIcon, UserAvatar} from 'zk-react/antd';
 import {getFirstValue} from 'zk-react/utils/tree-utils';
 import {session} from 'zk-react/utils/storage';
 import {toLogin, getCurrentLoginUser} from '../commons';
-import connectComponent from '../redux/store/connectComponent';
+import connectComponent from '../redux/store/connect-component';
 
 class LayoutComponent extends Component {
     componentDidMount() {

@@ -153,7 +153,7 @@ function getComponentString(componentPath) {
  */
 function getRouteAddtionsImportString() {
 
-    let connectPath = path.join(__dirname, '../', 'src', 'redux/store/connectComponent.js');
+    let connectPath = path.join(__dirname, '../', 'src', 'redux/store/connect-component.js');
     let routeUtilsPath = path.join(__dirname, '../', 'src', 'commons', 'route-utils');
 
     connectPath = getPathName(connectPath);
