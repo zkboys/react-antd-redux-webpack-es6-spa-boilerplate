@@ -67,6 +67,7 @@ module.exports = merge(baseWebpackConfig, {
             },
         ],
     },
+    devtool: 'eval-source-map',
     plugins: [
         // 只在开发模式下使用
         // webpack2会忽略未使用的export，打包文件更小

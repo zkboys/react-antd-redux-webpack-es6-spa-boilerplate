@@ -9,7 +9,7 @@ import SideBar from './SideBar';
 import PageHeader from './PageHeader';
 
 const TabPane = Tabs.TabPane;
-
+const IFRAME_TYPE = 'iframe';
 @event()
 export class LayoutComponent extends Component {
 
@@ -77,7 +77,7 @@ export class LayoutComponent extends Component {
     }
 
     render() {
-        const {sideBarCollapsed, showSideBar, showPageHeader} = this.props;
+        const {sideBarCollapsed, showSideBar, showPageHeader, currentSideBarMenuNode} = this.props;
         const sideBarCollapsedWidth = 60;
         const sideBarExpendedWidth = 200;
         const headerHeight = 56;
@@ -108,6 +108,22 @@ export class LayoutComponent extends Component {
                 component: this.props.children,
             };
         }
+        let iframeContentStyle = {};
+        if (currentSideBarMenuNode && currentSideBarMenuNode.url) {
+            if (this.tabs[key] && this.tabs[key].type !== IFRAME_TYPE) {
+                this.tabs[key].component = (
+                    <iframe src={currentSideBarMenuNode.url} frameBorder={0} style={{width: '100%', height: '100%'}}/>
+                );
+                this.tabs[key].type = IFRAME_TYPE;
+            }
+            iframeContentStyle = {
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0,
+            };
+        }
 
         if (this.tabs[key]) {
             this.tabs[key].name = name;
@@ -134,13 +150,16 @@ export class LayoutComponent extends Component {
                     </Tabs>
                 </div>
                 <PageHeader top={headerHeight + tabHeight}/>
-                <div id="frame-content" className="frame-content" style={{paddingLeft, paddingTop}}>
+                <div id="frame-content" className="frame-content" style={{paddingLeft, paddingTop, ...iframeContentStyle}}>
                     {
                         Object.keys(this.tabs).map(k => {
                             const item = this.tabs[k];
                             const style = {
                                 display: item.key === activeKey ? 'block' : 'none',
                             };
+                            if (item.type === IFRAME_TYPE) {
+                                style.height = '100%';
+                            }
                             return (
                                 <div style={style} key={`tab-page-${item.key}`}>
                                     {item.component}
@@ -154,7 +173,9 @@ export class LayoutComponent extends Component {
     }
 }
 
-export function mapStateToProps(state) {
+export function
+
+mapStateToProps(state) {
     return {
         ...state.frame,
     };
