@@ -6,7 +6,7 @@ import './style.less';
 
 export const PAGE_ROUTE = '/error/403';
 
-export class LayoutComponent extends Component {
+export default class Error403 extends Component {
     state = {
         remainSecond: 9,
     }

@@ -3,7 +3,7 @@ import {Router, browserHistory} from 'react-router';
 import allPageRoutes from '../all-routes';
 import connectComponent from '../redux/store/connect-component.js';
 import pageRoutes from '../page-routes';
-import * as Frame from '../frame/TabFrame';
+import * as Frame from '../frame/Frame';
 import * as Home from '../pages/home/Home';
 import * as Error404 from '../pages/error/Error404';
 import {toLogin, getCurrentLoginUser} from '../commons';

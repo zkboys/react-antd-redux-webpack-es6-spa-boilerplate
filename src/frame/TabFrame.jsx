@@ -133,7 +133,15 @@ export class LayoutComponent extends Component {
             <div className="app-frame">
                 <Header/>
                 <SideBar/>
-                <div style={{position: 'fixed', zIndex: 998, left: paddingLeft, right: 0, background: '#fff', paddingTop: headerHeight + 8}}>
+                <div style={{
+                    position: 'fixed',
+                    zIndex: 998,
+                    left: paddingLeft,
+                    right: 0,
+                    background: '#fff',
+                    paddingTop: headerHeight + 8,
+                    transition: 'left 300ms',
+                }}>
                     <Tabs
                         hideAdd
                         animated={false}

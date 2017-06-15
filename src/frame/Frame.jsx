@@ -29,17 +29,30 @@ export class LayoutComponent extends Component {
     }
 
     render() {
-        const {sideBarCollapsed, showSideBar, showPageHeader} = this.props;
+        const {sideBarCollapsed, showSideBar, showPageHeader, currentSideBarMenuNode} = this.props;
         let paddingLeft = sideBarCollapsed ? 60 : 200;
         paddingLeft = showSideBar ? paddingLeft : 0;
         const paddingTop = showPageHeader ? 106 : 56;
+        let children = this.props.children;
+        let iframeContentStyle = {};
+        if (currentSideBarMenuNode && currentSideBarMenuNode.url) {
+            children = <iframe src={currentSideBarMenuNode.url} frameBorder={0} style={{width: '100%', height: '100%'}}/>;
+            iframeContentStyle = {
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0,
+                height: '100%',
+            };
+        }
         return (
             <div className="app-frame">
                 <Header/>
                 <SideBar/>
                 <PageHeader/>
-                <div id="frame-content" className="frame-content" style={{paddingLeft, paddingTop}}>
-                    {this.props.children}
+                <div id="frame-content" className="frame-content" style={{paddingLeft, paddingTop, ...iframeContentStyle}}>
+                    {children}
                 </div>
             </div>
         );

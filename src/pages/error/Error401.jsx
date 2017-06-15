@@ -6,15 +6,12 @@ import {toLogin} from '../../commons';
 
 export const PAGE_ROUTE = '/error/401';
 
-export class LayoutComponent extends Component {
+export default class Error401 extends Component {
     state = {
         remainSecond: 9,
     }
 
     componentWillMount() {
-        const {actions} = this.props;
-        actions.hidePageHeader();
-        actions.hideSideBar();
     }
 
     componentDidMount() {
@@ -65,10 +62,4 @@ export class LayoutComponent extends Component {
             </div>
         );
     }
-}
-
-export function mapStateToProps(state) {
-    return {
-        ...state.frame,
-    };
 }
