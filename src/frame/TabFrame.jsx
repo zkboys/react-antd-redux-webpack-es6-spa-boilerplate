@@ -93,7 +93,6 @@ export class LayoutComponent extends Component {
         const childrenPathname = this.props.children && this.props.children.props.location.pathname;
         const activeKey = this.activeKey = pathname;
 
-        // 根据url，获取children
         const key = pathname;
         const name = this.getTabName();
 
@@ -108,6 +107,7 @@ export class LayoutComponent extends Component {
                 component: this.props.children,
             };
         }
+
         let iframeContentStyle = {};
         if (currentSideBarMenuNode && currentSideBarMenuNode.url) {
             if (this.tabs[key] && this.tabs[key].type !== IFRAME_TYPE) {
