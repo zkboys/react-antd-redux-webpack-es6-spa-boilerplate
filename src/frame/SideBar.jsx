@@ -6,7 +6,7 @@ import {renderNode} from 'zk-react/utils/tree-utils';
 import {FontIcon} from 'zk-react/antd';
 import {getScrollBarWidth} from 'zk-react/utils';
 import connectComponent from '../redux/store/connect-component';
-import {getWindowSize, addEventListener} from '../commons';
+import {getWindowSize, addEventListener, removeEventListener} from '../commons';
 
 
 const SubMenu = Menu.SubMenu;
@@ -16,11 +16,17 @@ class LayoutComponent extends Component {
         windowHeight: 600,
     }
 
-    componentWillMount() {
+    componentDidMount() {
+        this.handleWindowResize();
+        addEventListener(window, 'resize', this.handleWindowResize);
+    }
+
+    componentWillUnmount() {
+        removeEventListener(window, 'resize', this.handleWindowResize);
+    }
+
+    handleWindowResize = () => {
         this.setState({windowHeight: getWindowSize().height});
-        addEventListener(window, 'resize', () => {
-            this.setState({windowHeight: getWindowSize().height});
-        });
     }
 
     handleToggleSideBar = () => {
