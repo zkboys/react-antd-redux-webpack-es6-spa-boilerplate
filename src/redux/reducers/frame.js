@@ -3,7 +3,8 @@ import handleAsyncReducer from 'zk-react/redux/handle-async-reducer';
 import {convertToTree, getNodeByPropertyAndValue, getTopNodeByNode} from 'zk-react/utils/tree-utils';
 import {uniqueArray} from 'zk-react/utils';
 import {session} from 'zk-react/utils/storage';
-import * as types from '../actionTypes';
+import * as systemTypes from 'zk-react/redux/action-types';
+import * as types from '../action-types';
 
 let initialState = {
     menuTreeData: [],
@@ -21,6 +22,21 @@ let initialState = {
 };
 
 export default handleActions({
+    [systemTypes.GET_STATE_FROM_STORAGE](state, action) {
+        const {payload = {}} = action;
+        const {frame} = payload;
+        if (frame) {
+            const {sideBarWidth = 200, sideBarCollapsed = false} = frame;
+            return {
+                ...state,
+                sideBarWidth,
+                sideBarCollapsed,
+            };
+        }
+        return {
+            ...state,
+        };
+    },
     [types.GET_SYSTEM_MENUS]: handleAsyncReducer({
         always(state, /* action */) {
             return state;

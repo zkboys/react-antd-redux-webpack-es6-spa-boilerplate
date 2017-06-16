@@ -90,7 +90,6 @@ class LayoutComponent extends Component {
 
         if (!currentSideBarMenuNode) currentSideBarMenuNode = {};
         return (
-
             <div className="frame-side-bar" style={{width: sideBarCurrentWidth, display: showSideBar ? 'block' : 'none'}}>
                 <div className="logo">
                     <Link to="/">
@@ -123,7 +122,6 @@ class LayoutComponent extends Component {
                     onResize={(event, direction, refToElement) => {
                         if (!sideBarCollapsed) {
                             const newSideBarWidth = parseInt(refToElement.style.width, 10);
-                            console.log(newSideBarWidth);
                             this.props.actions.setSideBarWidth(newSideBarWidth);
                         }
                     }}
