@@ -42,6 +42,7 @@ class LayoutComponent extends Component {
             display: showPageHeader ? 'block' : 'none',
             left: sideBarCollapsed ? sideBarMinWidth : sideBarWidth,
         };
+        if (!showSideBar) style.left = 0;
         if (top) {
             style.top = top;
         }

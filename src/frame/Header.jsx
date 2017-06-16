@@ -69,6 +69,8 @@ class LayoutComponent extends Component {
             left: sideBarCollapsed ? sideBarMinWidth : sideBarWidth,
         };
 
+        if (!showSideBar) style.left = 0;
+
         const user = getCurrentLoginUser() ||
             {
                 name: '匿名',
