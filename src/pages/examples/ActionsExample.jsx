@@ -44,8 +44,8 @@ export class LayoutComponent extends Component {
                         this.props.actions.arrRemove('a.b.c', '11');
                     }}>actions.arrRemove 11</Button>
                     <Button onClick={() => {
-                        this.props.actions.arrRemoveAll('a.b.c', '11');
-                    }}>actions.arrRemoveAll 11</Button>
+                        this.props.actions.arrRemoveAll('a.b.c', '22');
+                    }}>actions.arrRemoveAll 22</Button>
                     <br/>
                     <span>{this.props.a.b.c.join(',')}</span>
                 </p>

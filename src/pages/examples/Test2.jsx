@@ -14,10 +14,9 @@ export default class Test2 extends Component {
             console.log(123);
         });
         this.props.$addEventListener(this.div, 'click', () => {
-            alert('wode');
+            console.log('wode');
         });
     }
-
     render() {
         return (
             <PageContent className="example-font-icon">
