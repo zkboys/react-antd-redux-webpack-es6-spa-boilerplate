@@ -11,7 +11,7 @@
     "clear-cache": "rm -rf ./node_modules/.cache"
   },
   "dependencies": {
-    "antd": "^2.9.0",
+    "antd": "^2.11.0",
     "axios": "^0.16.1",
     "axios-mock-adapter": "^1.8.1",
     "classnames": "^2.2.5",
