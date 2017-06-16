@@ -19,3 +19,5 @@ export const showPageHeader = createAction(types.SHOW_PAGE_HEADER);
 export const hideSideBar = createAction(types.HIDE_SIDE_BAR);
 export const showSideBar = createAction(types.SHOW_SIDE_BAR);
 export const setSideBarWidth = createAction(types.SET_SIDE_BAR_WIDTH, identity, () => ({sync: 'frame'}));
+export const showFullPageLoading = createAction(types.SHOW_FULL_PAGE_LOADING);
+export const hideFullPageLoading = createAction(types.HIDE_FULL_PAGE_LOADING);

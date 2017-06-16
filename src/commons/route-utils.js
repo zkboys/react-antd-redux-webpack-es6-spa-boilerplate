@@ -1,4 +1,5 @@
 import NProgress from 'nprogress';
+import {PubSubMsg} from 'zk-react';
 
 NProgress.configure({showSpinner: false});
 /**
@@ -6,6 +7,7 @@ NProgress.configure({showSpinner: false});
  */
 export function startFetchingComponent() {
     NProgress.start();
+    PubSubMsg.publish('fetching-page-start');
 }
 
 /**
@@ -13,6 +15,7 @@ export function startFetchingComponent() {
  */
 export function endFetchingComponent() {
     NProgress.done();
+    PubSubMsg.publish('fetching-page-end');
 }
 
 /**

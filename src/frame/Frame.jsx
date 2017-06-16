@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {message} from 'antd';
+import {message, Spin} from 'antd';
 import {event} from 'zk-react';
 import 'nprogress/nprogress.css';
 import './style.less';
@@ -17,6 +17,7 @@ export class LayoutComponent extends Component {
         actions.setSystemMenusStatusByUrl();
         actions.getStateFromStorage();
 
+        // redux 中有publish message消息
         $on('message', ({type, message: msg, error = {}}) => {
             if (type === 'error') {
                 handleErrorMessage(error);
@@ -26,10 +27,25 @@ export class LayoutComponent extends Component {
                 message.info(msg, 3);
             }
         });
+
+        $on('fetching-page-start', () => {
+            actions.showFullPageLoading();
+        });
+        $on('fetching-page-end', () => {
+            actions.hideFullPageLoading();
+        });
     }
 
     render() {
-        const {sideBarCollapsed, showSideBar, showPageHeader, currentSideBarMenuNode, sideBarMinWidth, sideBarWidth} = this.props;
+        const {
+            sideBarCollapsed,
+            showSideBar,
+            showPageHeader,
+            currentSideBarMenuNode,
+            sideBarMinWidth,
+            sideBarWidth,
+            fullPageLoading,
+        } = this.props;
         let paddingLeft = sideBarCollapsed ? sideBarMinWidth : sideBarWidth;
         paddingLeft = showSideBar ? paddingLeft : 0;
         const paddingTop = showPageHeader ? 106 : 56;
@@ -52,7 +68,7 @@ export class LayoutComponent extends Component {
                 <SideBar/>
                 <PageHeader/>
                 <div id="frame-content" className="frame-content" style={{paddingLeft, paddingTop, ...iframeContentStyle}}>
-                    {children}
+                    <Spin spinning={fullPageLoading}>{children}</Spin>
                 </div>
             </div>
         );

@@ -19,9 +19,22 @@ let initialState = {
     showSideBar: true,
     sideBarMinWidth: 60,
     sideBarWidth: 200,
+    fullPageLoading: false,
 };
 
 export default handleActions({
+    [types.SHOW_FULL_PAGE_LOADING](state) {
+        return {
+            ...state,
+            fullPageLoading: true,
+        };
+    },
+    [types.HIDE_FULL_PAGE_LOADING](state) {
+        return {
+            ...state,
+            fullPageLoading: false,
+        };
+    },
     [systemTypes.GET_STATE_FROM_STORAGE](state, action) {
         const {payload = {}} = action;
         const {frame} = payload;
