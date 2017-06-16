@@ -62,18 +62,18 @@ class LayoutComponent extends Component {
 
     render() {
         let {currentSideBarMenuNode} = this.props;
-        const {menuOpenKeys, sideBarCollapsed, showSideBar} = this.props;
-        const sideBarWidth = sideBarCollapsed ? 60 : 200;
+        const {menuOpenKeys, sideBarCollapsed, showSideBar, sideBarMinWidth, sideBarWidth} = this.props;
+        const sideBarCurrentWidth = sideBarCollapsed ? sideBarMinWidth : sideBarWidth;
         const mode = sideBarCollapsed ? 'vertical' : 'inline';
         const outerOverFlow = sideBarCollapsed ? 'visible' : 'hidden';
         const innerOverFlow = sideBarCollapsed ? '' : 'scroll';
         const scrollBarWidth = getScrollBarWidth();
-        const innerWidth = (sideBarWidth + scrollBarWidth) - 1; // 1 为outer 的 border
+        const innerWidth = (sideBarCurrentWidth + scrollBarWidth) - 1; // 1 为outer 的 border
         const logo = sideBarCollapsed ? 'ZK' : '管理系统架构';
 
         if (!currentSideBarMenuNode) currentSideBarMenuNode = {};
         return (
-            <div className="frame-side-bar" style={{width: sideBarWidth, display: showSideBar ? 'block' : 'none'}}>
+            <div className="frame-side-bar" style={{width: sideBarCurrentWidth, display: showSideBar ? 'block' : 'none'}}>
                 <div className="logo">
                     <Link to="/">
                         {logo}

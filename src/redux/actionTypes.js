@@ -11,3 +11,4 @@ export const HIDE_PAGE_HEADER = 'HIDE_PAGE_HEADER';
 export const SHOW_PAGE_HEADER = 'SHOW_PAGE_HEADER';
 export const HIDE_SIDE_BAR = 'HIDE_SIDE_BAR';
 export const SHOW_SIDE_BAR = 'SHOW_SIDE_BAR';
+export const SET_SIDE_BAR_WIDTH = 'SET_SIDE_BAR_WIDTH';

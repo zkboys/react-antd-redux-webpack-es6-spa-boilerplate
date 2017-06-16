@@ -77,9 +77,9 @@ export class LayoutComponent extends Component {
     }
 
     render() {
-        const {sideBarCollapsed, showSideBar, showPageHeader, currentSideBarMenuNode} = this.props;
-        const sideBarCollapsedWidth = 60;
-        const sideBarExpendedWidth = 200;
+        const {sideBarCollapsed, showSideBar, showPageHeader, currentSideBarMenuNode, sideBarMinWidth, sideBarWidth} = this.props;
+        const sideBarCollapsedWidth = sideBarMinWidth;
+        const sideBarExpendedWidth = sideBarWidth;
         const headerHeight = 56;
         const tabHeight = 45;
         const pageHeaderHeight = 50;

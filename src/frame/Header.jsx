@@ -60,11 +60,14 @@ class LayoutComponent extends Component {
     }
 
     render() {
-        const {currentTopMenuNode = {}, sideBarCollapsed, showSideBar} = this.props;
+        const {currentTopMenuNode = {}, sideBarCollapsed, showSideBar, sideBarMinWidth, sideBarWidth} = this.props;
         const frameHeaderClass = classNames({
             'side-bar-collapsed': sideBarCollapsed,
             'side-bar-hidden': !showSideBar,
         });
+        const style = {
+            left: sideBarCollapsed ? sideBarMinWidth : sideBarWidth,
+        };
 
         const user = getCurrentLoginUser() ||
             {
@@ -73,8 +76,8 @@ class LayoutComponent extends Component {
                 avatar: '',
             };
         return (
-            <div className={`frame-header ${frameHeaderClass}`}>
-                <div className={`left-menu ${frameHeaderClass}`}>
+            <div className={`frame-header ${frameHeaderClass}`} style={style}>
+                <div className={`left-menu ${frameHeaderClass}`} style={style}>
                     <Menu
                         selectedKeys={[currentTopMenuNode.key]}
                         mode="horizontal"

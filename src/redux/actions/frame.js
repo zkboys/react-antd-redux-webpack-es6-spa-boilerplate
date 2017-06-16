@@ -17,3 +17,4 @@ export const hidePageHeader = createAction(types.HIDE_PAGE_HEADER);
 export const showPageHeader = createAction(types.SHOW_PAGE_HEADER);
 export const hideSideBar = createAction(types.HIDE_SIDE_BAR);
 export const showSideBar = createAction(types.SHOW_SIDE_BAR);
+export const setSideBarWidth = createAction(types.SET_SIDE_BAR_WIDTH);

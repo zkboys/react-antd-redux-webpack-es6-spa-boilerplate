@@ -5,14 +5,10 @@
   z-index: 999;
   top: 0;
   right: 0;
-  left: @sideBarMaxWidth;
   height: @headerHeight;
   background-color: @primaryColor;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   transition: .3s;
-  &.side-bar-collapsed {
-    left: @sideBarMinWidth;
-  }
   &.side-bar-hidden {
     left: 0;
   }
@@ -175,7 +171,6 @@
 .page-header {
   position: fixed;
   top: @headerHeight;
-  left: @sideBarMaxWidth;
   right: 0;
   z-index: 998;
   background: #fff;
@@ -184,9 +179,6 @@
   border-bottom: 1px solid @borderColor;
   padding: 0 16px;
   transition: .3s;
-  &.side-bar-collapsed {
-    left: @sideBarMinWidth;
-  }
   &.side-bar-hidden {
     left: 0;
   }

@@ -29,8 +29,8 @@ export class LayoutComponent extends Component {
     }
 
     render() {
-        const {sideBarCollapsed, showSideBar, showPageHeader, currentSideBarMenuNode} = this.props;
-        let paddingLeft = sideBarCollapsed ? 60 : 200;
+        const {sideBarCollapsed, showSideBar, showPageHeader, currentSideBarMenuNode, sideBarMinWidth, sideBarWidth} = this.props;
+        let paddingLeft = sideBarCollapsed ? sideBarMinWidth : sideBarWidth;
         paddingLeft = showSideBar ? paddingLeft : 0;
         const paddingTop = showPageHeader ? 106 : 56;
         let children = this.props.children;

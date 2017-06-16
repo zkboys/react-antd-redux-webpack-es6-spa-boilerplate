@@ -16,6 +16,8 @@ let initialState = {
     pageTitle: '',
     showPageHeader: true,
     showSideBar: true,
+    sideBarMinWidth: 60,
+    sideBarWidth: 200,
 };
 
 export default handleActions({
@@ -152,6 +154,13 @@ export default handleActions({
         return {
             ...state,
             showSideBar: false,
+        };
+    },
+    [types.SET_SIDE_BAR_WIDTH](state, action) {
+        let sideBarWidth = action.payload;
+        return {
+            ...state,
+            sideBarWidth,
         };
     },
 }, initialState);

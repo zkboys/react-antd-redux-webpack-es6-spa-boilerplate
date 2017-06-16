@@ -34,11 +34,14 @@ class LayoutComponent extends Component {
     }
 
     render() {
-        const {pageTitle, showPageHeader, sideBarCollapsed, showSideBar, top} = this.props;
+        const {pageTitle, showPageHeader, sideBarCollapsed, showSideBar, sideBarMinWidth, sideBarWidth, top} = this.props;
         let className = sideBarCollapsed ? 'side-bar-collapsed' : '';
         className = showSideBar ? className : `${showSideBar} side-bar-hidden`;
 
-        const style = {display: showPageHeader ? 'block' : 'none'};
+        const style = {
+            display: showPageHeader ? 'block' : 'none',
+            left: sideBarCollapsed ? sideBarMinWidth : sideBarWidth,
+        };
         if (top) {
             style.top = top;
         }
