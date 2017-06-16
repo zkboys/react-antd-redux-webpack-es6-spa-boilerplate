@@ -10,7 +10,7 @@ import PageHeader from './PageHeader';
 
 @event()
 export class LayoutComponent extends Component {
-    state = {}
+    state = {};
 
     componentWillMount() {
         const {actions, $on} = this.props;
@@ -28,9 +28,11 @@ export class LayoutComponent extends Component {
             }
         });
 
+        // 开始异步获取页面js
         $on('fetching-page-start', () => {
             actions.showFullPageLoading();
         });
+        // 结束异步获取页面js
         $on('fetching-page-end', () => {
             actions.hideFullPageLoading();
         });
@@ -48,12 +50,15 @@ export class LayoutComponent extends Component {
         } = this.props;
         let paddingLeft = sideBarCollapsed ? sideBarMinWidth : sideBarWidth;
         paddingLeft = showSideBar ? paddingLeft : 0;
+
         const paddingTop = showPageHeader ? 106 : 56;
         let children = this.props.children;
-        let iframeContentStyle = {};
+        let iFrameContentStyle = {};
+
+        // 通过url，加载iFrame页面
         if (currentSideBarMenuNode && currentSideBarMenuNode.url) {
             children = <iframe src={currentSideBarMenuNode.url} frameBorder={0} style={{width: '100%', height: '100%'}}/>;
-            iframeContentStyle = {
+            iFrameContentStyle = {
                 position: 'absolute',
                 top: 0,
                 right: 0,
@@ -62,12 +67,13 @@ export class LayoutComponent extends Component {
                 height: '100%',
             };
         }
+
         return (
             <div className="app-frame">
                 <Header/>
                 <SideBar/>
                 <PageHeader/>
-                <div id="frame-content" className="frame-content" style={{paddingLeft, paddingTop, ...iframeContentStyle}}>
+                <div id="frame-content" className="frame-content" style={{paddingLeft, paddingTop, ...iFrameContentStyle}}>
                     <Spin spinning={fullPageLoading}>{children}</Spin>
                 </div>
             </div>
@@ -75,8 +81,4 @@ export class LayoutComponent extends Component {
     }
 }
 
-export function mapStateToProps(state) {
-    return {
-        ...state.frame,
-    };
-}
+export const mapStateToProps = (state) => ({...state.frame});
