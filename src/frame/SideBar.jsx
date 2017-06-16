@@ -4,13 +4,13 @@ import {Menu} from 'antd';
 import Rnd from 'react-rnd';
 import {renderNode} from 'zk-react/utils/tree-utils';
 import {FontIcon} from 'zk-react/antd';
-import {getScrollBarWidth} from 'zk-react/utils';
+import {getScrollBarWidth, getWindowSize} from 'zk-react/utils';
+import domEvent from 'zk-react/utils/dom-event-decorator';
 import connectComponent from '../redux/store/connect-component';
-import {getWindowSize, addEventListener, removeEventListener} from '../commons';
-
 
 const SubMenu = Menu.SubMenu;
 
+@domEvent()
 class LayoutComponent extends Component {
     state = {
         windowHeight: 600,
@@ -18,25 +18,21 @@ class LayoutComponent extends Component {
 
     componentDidMount() {
         this.handleWindowResize();
-        addEventListener(window, 'resize', this.handleWindowResize);
-    }
-
-    componentWillUnmount() {
-        removeEventListener(window, 'resize', this.handleWindowResize);
+        this.props.$addEventListener(window, 'resize', this.handleWindowResize);
     }
 
     handleWindowResize = () => {
         this.setState({windowHeight: getWindowSize().height});
-    }
+    };
 
     handleToggleSideBar = () => {
         const {actions} = this.props;
         actions.toggleSideBar();
-    }
+    };
     handleOpenChange = (openKeys) => {
         const {actions} = this.props;
         actions.setSystemMenuOpenKeys(openKeys);
-    }
+    };
 
     renderMenus() {
         const {currentTopMenuNode, sideBarCollapsed} = this.props;

@@ -45,35 +45,3 @@ export function toLogin() {
 export function isMock(url /* url, data, method, options */) {
     return mockUrls.indexOf(url) > -1 || url.startsWith('/mock');
 }
-
-export function getWindowSize() {
-    const w = window;
-    const d = document;
-    const e = d.documentElement;
-    const g = d.getElementsByTagName('body')[0];
-    const width = w.innerWidth || e.clientWidth || g.clientWidth;
-    const height = w.innerHeight || e.clientHeight || g.clientHeight;
-    return {width, height};
-}
-
-export function addEventListener(element, type, handler) {
-    if (!element) return;
-    if (element.addEventListener) {
-        element.addEventListener(type, handler, false);
-    } else if (element.attachEvent) {
-        element.attachEvent(`on${type}`, handler);
-    } else {
-        element[`on${type}`] = handler;
-    }
-}
-
-export function removeEventListener(element, type, handler) {
-    if (!element) return;
-    if (element.removeEventListener) {
-        element.removeEventListener(type, handler, false);
-    } else if (element.detachEvent) {
-        element.detachEvent(`on${type}`, handler);
-    } else {
-        element[`on${type}`] = null;
-    }
-}
