@@ -5,10 +5,10 @@
   "author": "wangshubin",
   "private": true,
   "scripts": {
+    "clear-cache": "rimraf ./node_modules/.cache && rimraf ./.happypack",
     "dll": "./node_modules/.bin/webpack --config ./builder/webpack.dll.conf.js",
-    "dev": "yarn run dll && cross-env NODE_ENV=development node ./builder/dev-server.js",
-    "build": "cross-env NODE_ENV=production node ./builder/build.js",
-    "clear-cache": "rimraf ./node_modules/.cache && rimraf ./.happypack"
+    "dev": "yarn run clear-cache && yarn run dll && cross-env NODE_ENV=development node ./builder/dev-server.js",
+    "build": "yarn run clear-cache && cross-env NODE_ENV=production node ./builder/build.js"
   },
   "dependencies": {
     "antd": "^2.11.0",

@@ -75,10 +75,10 @@ module.exports = merge(baseWebpackConfig, {
         // 这个项目会相差1.7M
         new webpack.DllReferencePlugin({
             context: '.',
-            manifest: require(path.join(__dirname, '../', 'public', 'vendor-manifest.json')),
+            manifest: require(path.join(__dirname, '../', 'dist', 'vendor-manifest.json')),
         }),
         new AddAssetHtmlPlugin({
-            filepath: path.join(__dirname, '../', 'public', 'vendor.dll.js'),
+            filepath: path.join(__dirname, '../', 'dist', 'vendor.dll.js'),
             includeSourcemap: false,
             hash: true,
         }),
