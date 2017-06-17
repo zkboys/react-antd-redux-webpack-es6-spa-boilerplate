@@ -4,7 +4,7 @@
  * */
 
 const path = require('path');
-const srcPath = './src';
+const srcPath = path.join(__dirname, '../src');
 
 module.exports = {
     routesIgnore: [ // 忽略文件，不进行构建，提供部分模块打包功能

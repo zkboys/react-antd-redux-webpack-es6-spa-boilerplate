@@ -1,5 +1,5 @@
 const path = require('path');
-const srcPath = './src';
+const srcPath = path.join(__dirname, '../src');
 let routesIgnore = [];
 let pagePath = path.join(srcPath, '**/*.jsx');
 if (process.env.NODE_ENV === 'development') {

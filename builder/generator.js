@@ -1,3 +1,4 @@
+const path = require('path');
 const chokidar = require('chokidar');
 const fs = require('fs');
 const config = require('./config');

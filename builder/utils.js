@@ -2,6 +2,14 @@ const path = require('path');
 const glob = require('glob');
 const os = require('os');
 const config = require('./config');
+const crypto = require('crypto');
+
+function md5(str) {
+    const md5sum = crypto.createHash('md5');
+    md5sum.update(str);
+    str = md5sum.digest('hex');
+    return str;
+}
 
 function assetsPath(_path) {
     const assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -82,6 +90,7 @@ function getImportStr(pathName, star) {
 function getPathName(pathName) {
     const extName = path.extname(pathName);
     pathName = pathName.replace(extName, '');
+
     if (process.platform.indexOf('win') >= 0) {
         pathName = pathName.replace(/\\/g, "\/");
     }
@@ -89,29 +98,31 @@ function getPathName(pathName) {
     return pathName;
 }
 /**
- * 根据文件的相对路径，生成moduleName
+ * 根据文件的路径，生成moduleName
  * @param pathName
  * @param ext
  * @returns {string}
  */
 function getModuleName(pathName) {
-    const extName = path.extname(pathName);
-    pathName = pathName.replace(extName, '');
-    pathName = pathName.split(path.sep);
-    let pName = '';
-    pathName.forEach(function (p) {
-        if (p) {
-            const ps = p.split('-');
-            ps.forEach(function (v) {
-                pName += v.replace(/(\w)/, function (v) {
-                    return v.toUpperCase()
-                });
-            });
-        }
-    });
-    pName = pName.replace(/\./g, '');
-    pName = pName.replace(':', '');
-    return pName;
+    return `module_${md5(pathName)}`;
+    //
+    // const extName = path.extname(pathName);
+    // pathName = pathName.replace(extName, '');
+    // pathName = pathName.split(path.sep);
+    // let pName = '';
+    // pathName.forEach(function (p) {
+    //     if (p) {
+    //         const ps = p.split('-');
+    //         ps.forEach(function (v) {
+    //             pName += v.replace(/(\w)/, function (v) {
+    //                 return v.toUpperCase()
+    //             });
+    //         });
+    //     }
+    // });
+    // pName = pName.replace(/\./g, '');
+    // pName = pName.replace(':', '');
+    // return pName;
 }
 
 /**

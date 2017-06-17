@@ -174,6 +174,7 @@ server {
 1. git clone zk-react-template-management object-name
 2. cd object-name
 3. rm -rf .git
-4. change _local to local
-5. yarn
+4. change local-default to local
+5. rm -rf local-default
+6. yarn
 
