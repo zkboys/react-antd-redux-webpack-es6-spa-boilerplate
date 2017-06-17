@@ -8,7 +8,7 @@
     "dll": "./node_modules/.bin/webpack --config ./builder/webpack.dll.conf.js",
     "dev": "yarn run dll && cross-env NODE_ENV=development node ./builder/dev-server.js",
     "build": "cross-env NODE_ENV=production node ./builder/build.js",
-    "clear-cache": "rm -rf ./node_modules/.cache"
+    "clear-cache": "rimraf ./node_modules/.cache && rimraf ./.happypack"
   },
   "dependencies": {
     "antd": "^2.11.0",
@@ -16,6 +16,7 @@
     "axios-mock-adapter": "^1.8.1",
     "classnames": "^2.2.5",
     "cropperjs": "^1.0.0-rc",
+    "enquire.js": "^2.1.6",
     "flux-standard-action": "^1.2.0",
     "history": "3.2.1",
     "jszip": "^3.1.3",
@@ -83,6 +84,7 @@
     "postcss-cssnext": "^2.11.0",
     "postcss-import": "^10.0.0",
     "postcss-loader": "^2.0.5",
+    "rimraf": "^2.6.1",
     "style-loader": "^0.18.0",
     "url-loader": "^0.5.8",
     "webpack": "^2.5.1",
