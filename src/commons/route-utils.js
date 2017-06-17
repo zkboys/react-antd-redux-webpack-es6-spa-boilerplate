@@ -1,5 +1,5 @@
 import NProgress from 'nprogress';
-import {PubSubMsg} from 'zk-react';
+import * as PubSubMsg from 'zk-react/utils/pubsubmsg';
 
 NProgress.configure({showSpinner: false});
 /**

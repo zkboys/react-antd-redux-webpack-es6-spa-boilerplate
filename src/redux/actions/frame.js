@@ -1,5 +1,5 @@
 import {createAction} from 'redux-actions';
-import {promiseAjax} from 'zk-react';
+import * as promiseAjax from 'zk-react/utils/promise-ajax';
 import {identity} from 'lodash/util';
 import * as types from '../action-types';
 

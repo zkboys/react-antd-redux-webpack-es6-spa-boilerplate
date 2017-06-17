@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Spin} from 'antd';
-import {ajax} from 'zk-react';
+import ajax from 'zk-react/utils/promise-ajax-decorator';
 import {PageContent} from 'zk-react/antd';
 import './style.less';
 

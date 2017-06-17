@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Operator} from 'zk-react/antd';
-import {ajax} from 'zk-react';
+import ajax from 'zk-react/utils/promise-ajax-decorator';
 import ListPage from './ListPage';
 
 export const PAGE_ROUTE = '/example/users';
