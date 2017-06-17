@@ -1,5 +1,5 @@
 import {handleActions} from 'redux-actions';
-import handleAsyncReducer from 'zk-react/redux/handle-async-reducer';
+import {handleAsyncReducer} from 'zk-react/redux';
 import * as types from '../action-types';
 
 let initialState = {

@@ -1,8 +1,8 @@
-import defaultConnect from 'zk-react/redux/connect';
+import {connect} from 'zk-react/redux';
 import actions from '../actions';
 
 const options = {
     withRef: true,
 };
-export default defaultConnect({actions, options});
+export default connect({actions, options});
 

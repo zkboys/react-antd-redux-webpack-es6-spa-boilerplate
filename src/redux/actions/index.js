@@ -1,6 +1,4 @@
-import checkActions from 'zk-react/redux/check-action';
-import actionUtils from 'zk-react/redux/action-utils';
-import * as page from 'zk-react/redux/action-page';
+import {checkAction, actionUtils, actionPage} from 'zk-react/redux';
 import pageInitState from '../../page-init-state';
 import * as demo from './demo';
 import * as frame from './frame';
@@ -9,10 +7,10 @@ const syncKeys = ['settings', 'frame']; // 需要同步的数据，对应meta中
 const utils = actionUtils({pageInitState, syncKeys});
 
 const actions = {
-    page,
+    actionPage,
     utils,
     demo,
     frame,
 };
 
-export default checkActions(actions);
+export default checkAction(actions);
