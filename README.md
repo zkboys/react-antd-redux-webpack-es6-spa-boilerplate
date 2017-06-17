@@ -169,3 +169,11 @@ server {
 - [ ] antd 自定义异步校验，多个异步校验互相干扰问题
 - [ ] antd edit-cell其他表单元素完善、 可配置form组件（可用于查询条件、简单的form）
 - [ ] 菜单匹配时，如果path携带参数，怎么能匹配成功？
+
+## 脚手架步骤
+1. git clone zk-react-template-management object-name
+2. cd object-name
+3. rm -rf .git
+4. change _local to local
+5. yarn
+

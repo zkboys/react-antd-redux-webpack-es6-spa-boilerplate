@@ -1,9 +1,12 @@
-import {isDev, isPro, isTest, isRC} from 'zk-react';
 import {session} from 'zk-react/utils/storage';
 import mockUrls from '../mock/url-config';
 
+export const isPro = process.env.NODE_ENV === 'production';
+export const isTest = process.env.NODE_ENV === 'test';
+export const isRC = process.env.NODE_ENV === 'rc';
+
 export function getAjaxBaseUrl() {
-    if (isDev) {
+    if (process.env.NODE_ENV === 'development') { // 这种写法，webpack打包production模式代码时，会把这个if分支的代码干掉
         return require('../../local/local-ajax-base-url'); // 只有div模式才会引用文件
     }
     if (isPro) {

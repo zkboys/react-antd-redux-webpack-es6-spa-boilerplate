@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Form, Input, Icon, Button} from 'antd';
-import {isDev} from 'zk-react';
 import * as promiseAjax from 'zk-react/utils/promise-ajax';
 import {init as initStorage} from 'zk-react/utils/storage';
 import {convertToTree} from 'zk-react/utils/tree-utils';
@@ -13,7 +12,7 @@ function hasErrors(fieldsError) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
 
-if (isDev) {
+if (process.env.NODE_ENV === 'development') {
     require('../../mock/index');
 
     console.log('current mode is debug, mock is started');

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {message} from 'antd';
-import {isDev} from 'zk-react';
 import * as promiseAjax from 'zk-react/utils/promise-ajax';
 import {init as initStorage} from 'zk-react/utils/storage';
 import './global.less';
@@ -11,7 +10,7 @@ import Router from './route/Router';
 import handleErrorMessage from './commons/handle-error-message';
 import {getCurrentLoginUser, getAjaxBaseUrl, isMock} from './commons';
 
-if (isDev) {
+if (process.env.NODE_ENV === 'development') {
     require('./mock/index');
 
     console.log('current mode is debug, mock is started');
