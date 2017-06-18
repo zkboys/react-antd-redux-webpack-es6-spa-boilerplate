@@ -6,6 +6,13 @@ export default [
         path: '',
     },
     {
+        key: 'example-menus-promise',
+        parentKey: 'example',
+        text: '菜单&权限',
+        icon: 'fa-users',
+        path: '/organization/menus',
+    },
+    {
         key: 'example-form-layout',
         parentKey: 'example',
         text: '表单布局',
