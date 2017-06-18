@@ -5,7 +5,7 @@ import Rnd from 'react-rnd';
 import {renderNode} from 'zk-tookit/utils/tree-utils';
 import {FontIcon} from 'zk-tookit/antd';
 import {getScrollBarWidth, getWindowSize} from 'zk-tookit/utils';
-import {domEvent} from 'zk-tookit/react-hoc';
+import {domEvent} from 'zk-tookit/react';
 import connectComponent from '../redux/store/connect-component';
 
 const SubMenu = Menu.SubMenu;

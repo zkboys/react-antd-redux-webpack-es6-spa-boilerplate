@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Operator} from 'zk-tookit/antd';
-import {ajax} from 'zk-tookit/react-hoc';
+import {ajax} from 'zk-tookit/react';
 import ListPage from './ListPage';
 
 export const PAGE_ROUTE = '/example/users';

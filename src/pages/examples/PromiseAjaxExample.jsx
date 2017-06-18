@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Spin} from 'antd';
-import {ajax} from 'zk-tookit/react-hoc';
+import {ajax} from 'zk-tookit/react';
 import {PageContent} from 'zk-tookit/antd';
 import './style.less';
 
