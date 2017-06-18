@@ -1,4 +1,4 @@
-import {session} from 'zk-react/utils/storage';
+import {session} from 'zk-tookit/utils/storage';
 import mockUrls from '../mock/url-config';
 
 export const isPro = process.env.NODE_ENV === 'production';

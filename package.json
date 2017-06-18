@@ -1,5 +1,5 @@
 {
-  "name": "zk-react-demo",
+  "name": "zk-react-template-management",
   "version": "1.0.0",
   "description": "A React.js project",
   "author": "wangshubin",
@@ -38,7 +38,7 @@
     "redux-undo": "^0.6.1",
     "uuid": "^3.0.1",
     "whatwg-fetch": "^1.0.0",
-    "zk-react": "^1.6.7"
+    "zk-tookit": "^0.0.1"
   },
   "devDependencies": {
     "add-asset-html-webpack-plugin": "^2.0.1",

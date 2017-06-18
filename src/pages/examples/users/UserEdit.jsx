@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {PageContent} from 'zk-react/antd';
+import {PageContent} from 'zk-tookit/antd';
 
 export const PAGE_ROUTE = '/example/users/+add/:userId';
 export class LayoutComponent extends Component {

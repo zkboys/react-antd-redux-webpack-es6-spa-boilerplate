@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {PageContent} from 'zk-react/antd';
-import domEvent from 'zk-react/utils/dom-event-decorator';
+import {PageContent} from 'zk-tookit/antd';
+import {domEvent} from 'zk-tookit/react-hoc';
 import './style-test2.less';
 
 export const PAGE_ROUTE = '/example/test2';

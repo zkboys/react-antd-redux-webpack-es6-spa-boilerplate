@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {message, Spin} from 'antd';
-import event from 'zk-react/utils/event-decorator';
+import {event} from 'zk-tookit/react-hoc';
 import 'nprogress/nprogress.css';
 import './style.less';
 import handleErrorMessage from '../commons/handle-error-message';

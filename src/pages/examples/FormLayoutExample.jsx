@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Form, Input, Select, Row, Col} from 'antd';
-import {PageContent, FontIcon, FormItemLayout, InputClear} from 'zk-react/antd';
+import {PageContent, FontIcon, FormItemLayout, InputClear} from 'zk-tookit/antd';
 
 const Option = Select.Option;
 export const PAGE_ROUTE = '/form/layout';

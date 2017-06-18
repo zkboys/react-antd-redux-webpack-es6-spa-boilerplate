@@ -1,5 +1,5 @@
 import MockAdapter from 'axios-mock-adapter';
-import * as promiseAjax from 'zk-react/utils/promise-ajax';
+import * as promiseAjax from 'zk-tookit/utils/promise-ajax';
 import mockAjax from './mock-ajax';
 import mockMenu from './mock-menu';
 import mockUser from './mock-user';

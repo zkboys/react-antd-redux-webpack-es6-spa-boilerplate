@@ -8,7 +8,7 @@ import {
     QueryResult,
     PaginationComponent,
     FontIcon,
-} from 'zk-react/antd';
+} from 'zk-tookit/antd';
 import QueryItem from './QueryItem.jsx';
 
 export default class extends Component {

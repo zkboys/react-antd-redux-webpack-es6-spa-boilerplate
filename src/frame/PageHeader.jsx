@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Breadcrumb} from 'antd';
 import {Link} from 'react-router';
-import {FontIcon} from 'zk-react/antd';
+import {FontIcon} from 'zk-tookit/antd';
 import connectComponent from '../redux/store/connect-component';
 
 class LayoutComponent extends Component {

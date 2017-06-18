@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {compressImageToSize, getImageFileInfo} from 'zk-react/utils/image-utils';
+import {compressImageToSize, getImageFileInfo} from 'zk-tookit/utils/image-utils';
 
 export const PAGE_ROUTE = '/example/zip-file';
 export class LayoutComponent extends Component {

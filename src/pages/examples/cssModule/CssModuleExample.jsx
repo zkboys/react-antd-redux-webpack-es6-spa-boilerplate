@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
-import {QueryBar} from 'zk-react/antd';
+import {QueryBar} from 'zk-tookit/antd';
 import styles from './style.less';
 
 export const PAGE_ROUTE = '/example/css';

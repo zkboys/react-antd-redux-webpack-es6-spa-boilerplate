@@ -1,30 +1,29 @@
 export default {
     actionsSetState: {
-        scope: 'actionsSetState',
-        sync: true,
-        a: {
-            b: {
-                c: ['ccc'],
-                c2: 'c2',
-            },
-            b1: [],
-            b2: 'b2',
+    scope: 'actionsSetState',
+    sync: true,
+    a: {
+        b: {
+            c: ['ccc'],
+            c2: 'c2',
         },
-        d: 'd',
-        e: 'e',
+        b1: [],
+        b2: 'b2',
     },
+    d: 'd',
+    e: 'e',
+},
     promiseAjax: {
-        scope: 'promiseAjax',
-        sync: true,
-        a: {
-            b: {
-                c: ['ccc'],
-                c2: 'c2',
-            },
-            b1: [],
-            b2: 'b2',
+    scope: 'promiseAjax',
+    sync: true,
+    a: {
+        b: {
+            c: ['ccc'],
+            c2: 'c2',
         },
-        d: 'd',
-        e: 'e',
-    }
-};
+        b1: [],
+        b2: 'b2',
+    },
+    d: 'd',
+    e: 'e',
+}};

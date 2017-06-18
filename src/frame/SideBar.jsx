@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {Menu} from 'antd';
 import Rnd from 'react-rnd';
-import {renderNode} from 'zk-react/utils/tree-utils';
-import {FontIcon} from 'zk-react/antd';
-import {getScrollBarWidth, getWindowSize} from 'zk-react/utils';
-import domEvent from 'zk-react/utils/dom-event-decorator';
+import {renderNode} from 'zk-tookit/utils/tree-utils';
+import {FontIcon} from 'zk-tookit/antd';
+import {getScrollBarWidth, getWindowSize} from 'zk-tookit/utils';
+import {domEvent} from 'zk-tookit/react-hoc';
 import connectComponent from '../redux/store/connect-component';
 
 const SubMenu = Menu.SubMenu;

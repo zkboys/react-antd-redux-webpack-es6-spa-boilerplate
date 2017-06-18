@@ -18,7 +18,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                exclude: /node_modules[\\/](?!(zk-react)[\\/]).*/, // zk-react需要webpack构建 exclude: /node_modules\/(?!(MY-MODULE|ANOTHER-ONE)\/).*/,
+                exclude: /node_modules[\\/](?!(zk-tookit)[\\/]).*/, // zk-tookit需要webpack构建 exclude: /node_modules\/(?!(MY-MODULE|ANOTHER-ONE)\/).*/,
                 enforce: "pre",
                 loader: "eslint-loader",
                 options: {
@@ -27,7 +27,7 @@ module.exports = {
             },
             {
                 test: /\.(js|jsx)$/,
-                exclude: /node_modules[\\/](?!(zk-react)[\\/]).*/, // zk-react需要webpack构建 exclude: /node_modules\/(?!(MY-MODULE|ANOTHER-ONE)\/).*/,
+                exclude: /node_modules[\\/](?!(zk-tookit)[\\/]).*/, // zk-tookit需要webpack构建 exclude: /node_modules\/(?!(MY-MODULE|ANOTHER-ONE)\/).*/,
                 loader: ['happypack/loader'],
             },
             {

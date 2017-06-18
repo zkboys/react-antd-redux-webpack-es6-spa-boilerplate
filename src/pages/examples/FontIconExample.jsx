@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Card} from 'antd';
-import {PageContent, FontIcon, FontIconSelector, FontIconModal} from 'zk-react/antd';
+import {PageContent, FontIcon, FontIconSelector, FontIconModal} from 'zk-tookit/antd';
 
 export const PAGE_ROUTE = '/example/font-icon';
 export default class extends Component {

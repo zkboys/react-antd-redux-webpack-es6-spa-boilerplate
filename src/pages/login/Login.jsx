@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Form, Input, Icon, Button} from 'antd';
-import * as promiseAjax from 'zk-react/utils/promise-ajax';
-import {init as initStorage} from 'zk-react/utils/storage';
-import {convertToTree} from 'zk-react/utils/tree-utils';
+import * as promiseAjax from 'zk-tookit/utils/promise-ajax';
+import {init as initStorage} from 'zk-tookit/utils/storage';
+import {convertToTree} from 'zk-tookit/utils/tree-utils';
 import {setCurrentLoginUser, setMenuTreeData, isMock, getAjaxBaseUrl} from '../../commons';
 import './style.less';
 

@@ -1,4 +1,4 @@
-import {connect} from 'zk-react/redux';
+import {connect} from 'zk-tookit/redux';
 import actions from '../actions';
 
 const options = {

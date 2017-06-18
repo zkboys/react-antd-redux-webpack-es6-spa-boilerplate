@@ -5,7 +5,7 @@ import {
     middlewarePromise,
     middlewareSyncReducerToLocalStorage,
     middlewareUtils,
-} from 'zk-react/redux';
+} from 'zk-tookit/redux';
 import reducers from '../reducers';
 
 

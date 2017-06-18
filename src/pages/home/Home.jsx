@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
-import {PageContent} from 'zk-react/antd';
+import {PageContent} from 'zk-tookit/antd';
 import {Button} from 'antd';
 import pageRoutes from '../../page-routes';
 import './style.less';

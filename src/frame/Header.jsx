@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {Menu, Popconfirm, Popover, Badge} from 'antd';
 import {Link} from 'react-router';
 import classNames from 'classnames';
-import {FontIcon, UserAvatar} from 'zk-react/antd';
-import {getFirstValue} from 'zk-react/utils/tree-utils';
-import {session} from 'zk-react/utils/storage';
+import {FontIcon, UserAvatar} from 'zk-tookit/antd';
+import {getFirstValue} from 'zk-tookit/utils/tree-utils';
+import {session} from 'zk-tookit/utils/storage';
 import {toLogin, getCurrentLoginUser} from '../commons';
 import connectComponent from '../redux/store/connect-component';
 

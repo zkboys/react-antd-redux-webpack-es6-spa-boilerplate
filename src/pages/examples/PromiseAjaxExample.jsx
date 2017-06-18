@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Spin} from 'antd';
-import ajax from 'zk-react/utils/promise-ajax-decorator';
-import {PageContent} from 'zk-react/antd';
+import {ajax} from 'zk-tookit/react-hoc';
+import {PageContent} from 'zk-tookit/antd';
 import './style.less';
 
 export const PAGE_ROUTE = '/example/promise-ajax';

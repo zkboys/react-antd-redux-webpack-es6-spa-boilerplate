@@ -1,4 +1,4 @@
-import {checkAction, actionUtils, actionPage} from 'zk-react/redux';
+import {checkAction, actionUtils, actionPage} from 'zk-tookit/redux';
 import pageInitState from '../../page-init-state';
 import * as demo from './demo';
 import * as frame from './frame';
