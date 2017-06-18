@@ -1,6 +1,4 @@
-export const DEMO = 'DEMO';
-
-// system menu
+// frame
 export const GET_SYSTEM_MENUS = 'GET_SYSTEM_MENUS';
 export const SET_SYSTEM_MENUS_STATUS_BY_URL = 'SET_SYSTEM_MENUS_STATUS_BY_URL';
 export const SET_SYSTEM_MENU_OPEN_KEYS = 'SET_SYSTEM_MENU_OPEN_KEYS';
@@ -14,3 +12,6 @@ export const SHOW_SIDE_BAR = 'SHOW_SIDE_BAR';
 export const SET_SIDE_BAR_WIDTH = 'SET_SIDE_BAR_WIDTH';
 export const SHOW_FULL_PAGE_LOADING = 'SHOW_FULL_PAGE_LOADING';
 export const HIDE_FULL_PAGE_LOADING = 'HIDE_FULL_PAGE_LOADING';
+
+// demo
+export const DEMO = 'DEMO';
