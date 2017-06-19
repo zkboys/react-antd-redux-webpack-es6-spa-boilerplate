@@ -82,8 +82,8 @@ class Login extends Component {
         const passwordError = isFieldTouched('password') && getFieldError('password');
         // 账号/密码：test/111111
         return (
-            <div className="login-root">
-                <div className="box">
+            <div styleName="root" className="login-background">
+                <div styleName="box">
                     <h1>用户登录</h1>
                     <Form onSubmit={this.handleSubmit}>
                         <FormItem
@@ -120,7 +120,7 @@ class Login extends Component {
                             </Button>
                         </FormItem>
                     </Form>
-                    <div className="error-message">
+                    <div styleName="error-message">
                         {errorMessage}
                     </div>
                 </div>

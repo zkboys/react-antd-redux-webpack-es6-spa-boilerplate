@@ -1,13 +1,17 @@
 @import "../../variables";
 
-:global .login-root {
+// https://github.com/webpack-contrib/css-loader/issues/167
+:global .login-background {
+  background: url(./login-bg.jpg);
+}
+
+.root {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   background-size: cover;
-  background: url(./login-bg.jpg);
   .box {
     position: absolute;
     top: 50%;
