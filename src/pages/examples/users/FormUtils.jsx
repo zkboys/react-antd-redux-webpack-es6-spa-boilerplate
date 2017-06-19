@@ -3,10 +3,11 @@
  * */
 import React from 'react';
 import {InputClear, FormItemLayout} from 'zk-tookit/antd';
+import {InputNumber, Input, Select, Checkbox, Radio} from 'antd';
 
 // input number textarea password mobile email select select-tree checkbox radio switch data time data-time cascader
 /*
- * item 大多是 FormItemLayout 所需参数
+ * item 大多是 FormItemLayout 所需参数 及 表单元素所需参数
  type: 'input',
  field: 'loginName',
  label: '登录名',
@@ -18,13 +19,18 @@ import {InputClear, FormItemLayout} from 'zk-tookit/antd';
  {required: false, message: '请输入用户名'},
  ],
  },
+ elementProps: {} 元素的一些props，具体参考antd
  *
  * */
+function isInputLikeElement(type) {
+    return ['input', 'textarea', 'password', 'mobile', 'email'].includes(type);
+}
+
 export function getPlaceholder(item) {
-    const {type = 'input', label, placeholder} = item;
+    const {type = 'input', label, placeholder, elementProps = {}} = item;
+    if (elementProps.placeholder) return elementProps.placeholder;
     if (placeholder) return placeholder;
-    const inputLikeElements = ['number', 'textarea', 'password', 'mobile', 'email'];
-    if (inputLikeElements.includes(type)) {
+    if (isInputLikeElement(type)) {
         return `请输入${label}!`;
     }
 
@@ -32,12 +38,40 @@ export function getPlaceholder(item) {
 }
 
 export function getFormElement(item, form) {
-    const {type = 'input'} = item;
-    const placeholder = getPlaceholder(item);
+    const {type = 'input', elementProps = {}} = item;
+    elementProps.placeholder = getPlaceholder(item);
+    /*
+     input number textarea password mobile email select select-tree checkbox checkbox-group radio radio-group
+     TODO: switch data time data-time cascader
+     * */
+    if (isInputLikeElement(type)) {
+        if (type === 'input') return <InputClear {...elementProps} form={form}/>;
+        return <Input {...elementProps}/>;
+    }
 
-    if (type === 'input') return <InputClear form={form} placeholder={placeholder}/>;
+    if (type === 'number') return <InputNumber {...elementProps}/>;
 
-    // TODO 其他类型
+    if (type === 'select') {
+        const Option = Select.Option;
+        const {options = []} = elementProps;
+        return (
+            <Select {...elementProps}>
+                {
+                    options.map(opt => <Option key={opt.value} {...opt}>{opt.title}</Option>)
+                }
+            </Select>
+        );
+    }
+
+    if (type === 'checkbox') return <Checkbox {...elementProps}>{elementProps.title}</Checkbox>;
+
+    if (type === 'checkbox-group') return <Checkbox.Group {...elementProps}/>;
+
+    if (type === 'radio') return <Radio {...elementProps}>{elementProps.title}</Radio>;
+
+    if (type === 'radio-group') return <Radio.Group {...elementProps}/>;
+
+    // TODO 其他类型，碰到需求的时候，再补充
 }
 
 export function getFormItem(item, form) {

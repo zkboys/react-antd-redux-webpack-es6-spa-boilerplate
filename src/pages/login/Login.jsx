@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
+import cssModules from 'react-css-modules';
 import ReactDOM from 'react-dom';
 import {Form, Input, Icon, Button} from 'antd';
 import * as promiseAjax from 'zk-tookit/utils/promise-ajax';
 import {init as initStorage} from 'zk-tookit/utils/storage';
 import {convertToTree} from 'zk-tookit/utils/tree-utils';
 import {setCurrentLoginUser, setMenuTreeData, isMock, getAjaxBaseUrl} from '../../commons';
-import './style.less';
+import styles from './style.less';
 
 const FormItem = Form.Item;
 function hasErrors(fieldsError) {
@@ -26,6 +27,7 @@ promiseAjax.init({
 });
 
 @Form.create()
+@cssModules(styles) // 注意这两个装饰器的顺序
 class Login extends Component {
     state = {
         loading: false,
@@ -82,8 +84,8 @@ class Login extends Component {
         const passwordError = isFieldTouched('password') && getFieldError('password');
         // 账号/密码：test/111111
         return (
-            <div className="login">
-                <div className="login-box">
+            <div styleName="root">
+                <div styleName="box">
                     <h1>用户登录</h1>
                     <Form onSubmit={this.handleSubmit}>
                         <FormItem
@@ -120,7 +122,7 @@ class Login extends Component {
                             </Button>
                         </FormItem>
                     </Form>
-                    <div className="error-message">
+                    <div styleName="error-message">
                         {errorMessage}
                     </div>
                 </div>

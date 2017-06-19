@@ -44,7 +44,7 @@ const webpackConfig = merge(baseWebpackConfig, {
             },
             {
                 test: /\.less$/,
-                exclude: path.resolve(__dirname, '../', 'src/pages/examples/cssModule'),
+                exclude: config.useCSSModulePath,
                 loader: extractCSS.extract({
                     fallback: 'style-loader',
                     use: [
@@ -62,7 +62,7 @@ const webpackConfig = merge(baseWebpackConfig, {
             },
             {
                 test: /\.less/,
-                include: path.resolve(__dirname, '../', 'src/pages/examples/cssModule'),
+                include: config.useCSSModulePath,
                 loader: extractCSSModule.extract({
                     fallback: 'style-loader',
                     use: [

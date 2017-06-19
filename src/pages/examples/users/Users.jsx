@@ -67,6 +67,102 @@ export default class extends Component {
             placeholder: '请输入用户名',
             decorator: {},
         },
+        {
+            type: 'number',
+            field: 'number',
+            label: 'number',
+            labelSpaceCount: 3,
+            width: 200,
+            placeholder: '请输入数字',
+            decorator: {},
+            elementProps: {
+                min: 0,
+                max: 100,
+                step: 10,
+                precision: 2, // 精度
+                disabled: false,
+                size: 'large',
+                formatter: value => value,
+                parser: value => value,
+            },
+        },
+        {
+            type: 'textarea',
+            field: 'textarea',
+            label: 'textarea',
+            labelSpaceCount: 3,
+            width: 200,
+            placeholder: '一个文本框',
+            decorator: {},
+        },
+        {
+            type: 'password',
+            field: 'password',
+            label: 'password',
+            labelSpaceCount: 3,
+            width: 200,
+            placeholder: '一个密码框',
+            decorator: {},
+        },
+        {
+            type: 'mobile',
+            field: 'mobile',
+            label: 'mobile',
+            labelSpaceCount: 3,
+            width: 200,
+            placeholder: '一个电话',
+            decorator: {},
+        },
+        {
+            type: 'email',
+            field: 'email',
+            label: 'email',
+            labelSpaceCount: 3,
+            width: 200,
+            placeholder: '一个邮件',
+            decorator: {},
+        },
+        {
+            type: 'select',
+            field: 'select',
+            label: 'select',
+            labelSpaceCount: 3,
+            width: 200,
+            placeholder: '一个select',
+            decorator: {},
+            elementProps: {
+                options: [
+                    {value: '0', title: '测试1'},
+                    {value: '1', title: '测试2'},
+                ],
+            },
+        },
+        {
+            type: 'checkbox',
+            field: 'checkbox',
+            // label: '复选',
+            labelSpaceCount: 3,
+            width: 200,
+            placeholder: '复选框',
+            decorator: {},
+            elementProps: {
+                title: '复选啊',
+            },
+        },
+        {
+            type: 'checkbox-group',
+            field: 'checkboxGroup',
+            label: '复选组',
+            labelSpaceCount: 3,
+            width: 400,
+            elementProps: {
+                options: [
+                    {label: '苹果', value: 'Apple'},
+                    {label: '梨', value: 'Pear'},
+                    {label: '橘子', value: 'Orange'},
+                ],
+            },
+        },
     ];
 
     toolItems = [
@@ -78,14 +174,14 @@ export default class extends Component {
                 this.props.router.push('/example/users/+add/:userId?tabName=添加用户');
             },
         },
-        {
-            type: 'danger',
-            text: '删除选中',
-            icon: 'minus-circle-o',
-            onClick: () => {
-                console.log('删除选中');
-            },
-        },
+        // {
+        //     type: 'danger',
+        //     text: '删除选中',
+        //     icon: 'minus-circle-o',
+        //     onClick: () => {
+        //         console.log('删除选中');
+        //     },
+        // },
     ];
 
     columns = [
@@ -124,6 +220,7 @@ export default class extends Component {
     ];
 
     handleSearch = (params) => {
+        console.log(params);
         return this.props.$ajax.get('/mock/users', params)
             .then(data => {
                 this.setState({

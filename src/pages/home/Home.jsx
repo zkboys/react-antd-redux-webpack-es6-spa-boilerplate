@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
+import cssModules from 'react-css-modules';
 import {Link} from 'react-router';
 import {PageContent} from 'zk-tookit/antd';
 import {Button} from 'antd';
 import pageRoutes from '../../page-routes';
-import './style.less';
+import styles from './style.less';
 
+@cssModules(styles)
 export class LayoutComponent extends Component {
     state = {}
 
@@ -49,8 +51,8 @@ export class LayoutComponent extends Component {
 
     render() {
         return (
-            <PageContent className="home">
-                <h1>home123</h1>
+            <PageContent styleName="root">
+                <h1 styleName="title">home123</h1>
                 <Button onClick={this.handleGetMenus}>重新获取菜单</Button>
                 {
                     pageRoutes.map(route => <div key={route.path}><Link to={route.path}>{route.path}</Link></div>)

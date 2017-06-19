@@ -27,7 +27,7 @@ module.exports = merge(baseWebpackConfig, {
             },
             {
                 test: /\.less/,
-                exclude: path.resolve(__dirname, '../', 'src/pages/examples/cssModule'),
+                exclude: config.useCSSModulePath,
                 use: [
                     'style-loader',
                     'css-loader',
@@ -43,7 +43,7 @@ module.exports = merge(baseWebpackConfig, {
             },
             {
                 test: /\.less/,
-                include: path.resolve(__dirname, '../', 'src/pages/examples/cssModule'),
+                include: config.useCSSModulePath,
                 use: [
                     'style-loader',
                     {
