@@ -9,6 +9,18 @@
         "libraryName": "antd",
         "style": "css"
       }
+    ],
+    [
+      "react-css-modules",
+      {
+        "generateScopedName": "[path][name]-[local]",
+        "webpackHotModuleReloading": true,
+        "filetypes": {
+          ".less": {
+            "syntax": "postcss-less"
+          }
+        }
+      }
     ]
   ],
   "presets": [

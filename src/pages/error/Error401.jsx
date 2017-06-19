@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
-import cssModules from 'react-css-modules';
 import {Button} from 'antd';
 import error401 from './401.png';
-import styles from './style.less';
+import './style.less';
 import {toLogin} from '../../commons';
 
 export const PAGE_ROUTE = '/error/401';
 
-@cssModules(styles, {allowMultiple: true})
 export default class Error401 extends Component {
     state = {
         remainSecond: 9,

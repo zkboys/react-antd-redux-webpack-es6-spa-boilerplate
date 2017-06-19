@@ -11,6 +11,8 @@ zk-react 管理系统模板，UI基于antd，完整的登录、退出登录、�
 1. 时间处理：[moment](http://momentjs.com/)
 1. js工具：[lodash](https://lodash.com/)
 1. 构建：[webpack](https://doc.webpack-china.org/)
+1. cssModule：[css-module](https://github.com/gajus/react-css-modules)
+1. 数据管理：[redux](http://redux.js.org/)
 
 ### 需要安装的软件
 1. [nodejs](http://nodejs.cn/)
@@ -172,6 +174,8 @@ server {
 - [ ] antd 自定义异步校验，多个异步校验互相干扰问题
 - [ ] antd edit-cell其他表单元素完善、 可配置form组件（可用于查询条件、简单的form）
 - [ ] 菜单匹配时，如果path携带参数，怎么能匹配成功？
+- [ ] css module class name 长短问题
+- [ ] css module=true background: url(); 问题 Module not found: Error: Can't resolve 'login-bg.jpg'
 
 ## 脚手架步骤
 1. git clone zk-react-template-management object-name

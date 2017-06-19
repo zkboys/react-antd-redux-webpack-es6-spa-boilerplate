@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import cssModules from 'react-css-modules';
 import {Link} from 'react-router';
 import {PageContent} from 'zk-tookit/antd';
 import {Button} from 'antd';
 import pageRoutes from '../../page-routes';
-import styles from './style.less';
+import './style.less';
 
-@cssModules(styles)
 export class LayoutComponent extends Component {
     state = {}
 

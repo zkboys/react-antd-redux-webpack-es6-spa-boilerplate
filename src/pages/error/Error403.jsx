@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
-import cssModules from 'react-css-modules';
 import {Button} from 'antd';
 import error403 from './403.png';
-import styles from './style.less';
-
+import './style.less';
 
 export const PAGE_ROUTE = '/error/403';
 
-@cssModules(styles, {allowMultiple: true})
 export default class Error403 extends Component {
     state = {
         remainSecond: 9,

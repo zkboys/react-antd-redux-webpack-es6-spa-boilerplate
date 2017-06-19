@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-import cssModules from 'react-css-modules';
 import {QueryBar} from 'zk-tookit/antd';
-import styles from './style.less';
+import './style.less';
 
 export const PAGE_ROUTE = '/example/css';
 
-@cssModules(styles)
 export default class LayoutComponent extends Component {
     state = {}
 
