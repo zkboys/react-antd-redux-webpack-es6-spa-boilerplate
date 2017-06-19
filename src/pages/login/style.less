@@ -1,10 +1,5 @@
 @import "../../variables";
 
-// https://github.com/webpack-contrib/css-loader/issues/167
-:global .login-background {
-  background: url(./login-bg.jpg);
-}
-
 .root {
   position: absolute;
   top: 0;
@@ -12,6 +7,9 @@
   bottom: 0;
   left: 0;
   background-size: cover;
+  // https://github.com/webpack-contrib/css-loader/issues/167
+  // TODO: background: url(./login-bg.jpg); // 这么写报错，但是下面这么写就可以了，这个是特么bug？
+  background: url(../login/login-bg.jpg);
   .box {
     position: absolute;
     top: 50%;
