@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Operator, ListPage} from 'zk-tookit/antd';
 import {ajax} from 'zk-tookit/react';
+import {hasPermission} from '../../../commons';
 
 export const PAGE_ROUTE = '/example/users';
 
@@ -223,6 +224,7 @@ export default class extends Component {
             type: 'primary',
             text: '添加',
             icon: 'plus-circle-o',
+            permission: 'SYSTEM_ADD_USER',
             onClick: () => {
                 this.props.router.push('/example/users/+add/:userId?tabName=添加用户');
             },
@@ -267,7 +269,7 @@ export default class extends Component {
                     },
                 ];
 
-                return (<Operator items={items} hasPermission={() => true}/>);
+                return (<Operator items={items} hasPermission={hasPermission}/>);
             },
         },
     ];
@@ -297,6 +299,7 @@ export default class extends Component {
                 total={total}
                 dataSource={dataSource}
                 showPagination
+                hasPermission={hasPermission}
             />
         );
     }
