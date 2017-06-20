@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {Operator} from 'zk-tookit/antd';
+import {Operator, ListPage} from 'zk-tookit/antd';
 import {ajax} from 'zk-tookit/react';
-import ListPage from './ListPage';
 
 export const PAGE_ROUTE = '/example/users';
 
@@ -162,6 +161,60 @@ export default class extends Component {
                     {label: '橘子', value: 'Orange'},
                 ],
             },
+        },
+        {
+            type: 'switch',
+            field: 'switch',
+            label: '开关',
+            labelSpaceCount: 3,
+            width: 200,
+            decorator: {},
+        },
+        {
+            type: 'data',
+            field: 'data',
+            label: '日期',
+            labelSpaceCount: 3,
+            width: 200,
+            decorator: {},
+        },
+        {
+            type: 'data',
+            field: 'dataTime',
+            label: '日期&时间',
+            labelSpaceCount: 5,
+            width: 300,
+            decorator: {},
+            elementProps: {
+                showTime: true,
+                format: 'YYYY-MM-DD HH:mm:ss',
+            },
+        },
+        {
+            type: 'month',
+            field: 'month',
+            label: '月份',
+            labelSpaceCount: 3,
+            width: 200,
+            decorator: {},
+        },
+        {
+            type: 'data-range',
+            field: 'data-range',
+            label: '日期区间',
+            labelSpaceCount: 5,
+            width: 400,
+            // placeholder: ['开始时间', '结束时间'],
+            decorator: {},
+        },
+        {
+            type: 'time',
+            field: 'time',
+            label: '时间',
+            labelSpaceCount: 5,
+            width: 400,
+            // placeholder: ['开始时间', '结束时间'],
+            decorator: {},
         },
     ];
 
