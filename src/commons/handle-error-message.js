@@ -1,6 +1,8 @@
 import {message} from 'antd';
 
-export default function (error) {
+export default function (error, errorTip) {
+    if (errorTip === false) return;
+    if (errorTip) return message.error(errorTip, 3);
     let msg = '操作失败';
     if (error.response) {
         const resData = error.response.data;

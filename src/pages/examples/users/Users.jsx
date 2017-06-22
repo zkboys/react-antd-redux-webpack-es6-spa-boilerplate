@@ -289,7 +289,6 @@ export default class extends Component {
         const {total, dataSource} = this.state;
         return (
             <ListPage
-                dataFilter={data => data}
                 queryItems={this.queryItems}
                 showSearchButton
                 showResetButton={false}

@@ -136,6 +136,7 @@ export default class extends Component {
         });
         return (
             <Tree
+                selectable={false}
                 checkable
                 checkStrictly
                 checkedKeys={{checked: checkedKeys}}
