@@ -132,8 +132,8 @@ export default class extends Component {
             decorator: {},
             elementProps: {
                 options: [
-                    {value: '0', title: '测试1'},
-                    {value: '1', title: '测试2'},
+                    {value: '0', label: '测试1'},
+                    {value: '1', label: '测试2'},
                 ],
             },
         },
@@ -146,7 +146,7 @@ export default class extends Component {
             placeholder: '复选框',
             decorator: {},
             elementProps: {
-                title: '复选啊',
+                label: '复选啊',
             },
         },
         {

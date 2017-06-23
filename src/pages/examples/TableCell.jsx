@@ -60,6 +60,11 @@ export default class extends Component {
                         field="name"
                         placeholder="请输入域名"
                         text={text}
+                        decorator={{
+                            rules: [
+                                {required: true, message: '请输入域名'},
+                            ],
+                        }}
                         defaultShowEdit={record.defaultShowEdit}
                         onSubmit={(value) => {
                             if (record.isNewAdd) {
