@@ -7,7 +7,7 @@ export const isRC = process.env.NODE_ENV === 'rc';
 
 export function getAjaxBaseUrl() {
     if (process.env.NODE_ENV === 'development') { // 这种写法，webpack打包production模式代码时，会把这个if分支的代码干掉
-        return require('../../local/local-ajax-base-url'); // 只有div模式才会引用文件
+        return require('../../local/local-ajax-base-url').default; // 只有div模式才会引用文件
     }
     if (isPro) {
         return '/api/';

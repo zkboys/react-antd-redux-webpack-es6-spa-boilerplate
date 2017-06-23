@@ -6,6 +6,13 @@ export default [
         path: '',
     },
     {
+        key: 'example-table-cell',
+        parentKey: 'example',
+        text: '可编辑单元格',
+        icon: 'fa-users',
+        path: '/example/table-cell',
+    },
+    {
         key: 'example-menus-promise',
         parentKey: 'example',
         text: '菜单&权限',
