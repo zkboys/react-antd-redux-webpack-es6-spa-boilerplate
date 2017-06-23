@@ -297,6 +297,7 @@ export default class extends Component {
                 onSearch={this.handleSearch}
                 total={total}
                 dataSource={dataSource}
+                rowKey={(record) => record.id}
                 showPagination
                 hasPermission={hasPermission}
             />
