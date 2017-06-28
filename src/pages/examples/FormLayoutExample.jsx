@@ -22,6 +22,8 @@ export class LayoutComponent extends Component {
                     key={i}
                     label="这个短吗12"
                     labelWidth={100}
+                    tip="提示"
+                    tipWidth={50}
                     width={200 + (i * 10)}
                     float
                 >
@@ -48,6 +50,9 @@ export class LayoutComponent extends Component {
                     <FormItemLayout
                         label="用户那个名"
                         labelSpaceCount={labelSpaceCount}
+                        tip="我是哪个提示信息"
+                        tipWidth={120}
+                        width={500}
                     >
                         {getFieldDecorator('userName', {
                             rules: [{required: false, message: 'Please input your username!'}],
@@ -62,6 +67,7 @@ export class LayoutComponent extends Component {
                     <FormItemLayout
                         label="我是下拉"
                         labelSpaceCount={labelSpaceCount}
+                        tip={<a href="http://www.baidu.com">百度</a>}
                     >
                         {getFieldDecorator('userName22', {
                             rules: [{required: true, message: 'Please input your username!'}],
