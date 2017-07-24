@@ -111,6 +111,25 @@ export default class extends Component {
             render: (text, record) => {
                 const items = [
                     {
+                        type: 'prompt',
+                        label: '驳回',
+                        permission: '',
+                        title: '驳回原因',
+                        okText: '驳回',
+                        cancelText: '取消',
+                        onCancel: () => console.log('cancel'),
+                        onConfirm: value => console.log(value),
+                        decorator: {
+                            rules: [
+                                {required: true, message: '请输入驳回原因！'},
+                            ],
+                        },
+                        inputProps: {
+                            placeholder: 'place input reject reason',
+                            rows: 3,
+                        },
+                    },
+                    {
                         label: '删除',
                         permission: '',
                         confirm: {

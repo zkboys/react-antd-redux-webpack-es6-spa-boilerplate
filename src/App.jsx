@@ -8,7 +8,7 @@ import './global.less';
 import configureStore from './redux/store/configure-store';
 import Router from './route/Router';
 import handleErrorMessage from './commons/handle-error-message';
-import {getCurrentLoginUser, getAjaxBaseUrl, isMock} from './commons';
+import {getCurrentLoginUser, getAjaxBaseUrl, isMock, hasPermission} from './commons';
 
 if (process.env.NODE_ENV === 'development') {
     require('./mock/index');
@@ -27,7 +27,7 @@ promiseAjax.init({
     },
     onShowErrorTip: (err, errorTip) => {
         if (errorTip !== false) {
-            handleErrorMessage(err);
+            handleErrorMessage(err, errorTip);
         }
     },
     onShowSuccessTip: (response, successTip) => {
@@ -36,6 +36,7 @@ promiseAjax.init({
         }
     },
     isMock,
+    hasPermission,
 });
 
 const store = configureStore();

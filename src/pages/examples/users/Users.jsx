@@ -205,7 +205,7 @@ export default class extends Component {
             label: '日期区间',
             labelSpaceCount: 5,
             width: 400,
-            // placeholder: ['开始时间', '结束时间'],
+            placeholder: ['开始时间', '结束时间'],
             decorator: {},
         },
         {
@@ -276,13 +276,13 @@ export default class extends Component {
 
     handleSearch = (params) => {
         console.log(params);
-        return this.props.$ajax.get('/mock/users', params)
+        return this.props.$ajax.get('/mock/users', params, {permission: 'USER_SEARCH'})
             .then(data => {
                 this.setState({
                     total: data.total,
                     dataSource: data.list,
                 });
-            });
+            }); // 这个可以隐藏控制台的error输出：.catch(() => false);
     };
 
     render() {
