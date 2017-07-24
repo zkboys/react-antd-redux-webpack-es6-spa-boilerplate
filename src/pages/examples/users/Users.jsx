@@ -10,6 +10,7 @@ export default class extends Component {
     state = {
         total: 0,
         dataSource: [],
+        selectedRowKeys: [],
     };
 
     queryItems = [
@@ -255,6 +256,7 @@ export default class extends Component {
                     },
                     {
                         label: '删除',
+                        color: 'red',
                         permission: '',
                         confirm: {
                             title: `您确定要删除“${record.loginName}”？`,
@@ -300,6 +302,12 @@ export default class extends Component {
                 rowKey={(record) => record.id}
                 showPagination
                 hasPermission={hasPermission}
+                tableProps={{
+                    rowSelection: {
+                        selectedRowKeys: this.state.selectedRowKeys,
+                        onChange: selectedRowKeys => this.setState({selectedRowKeys}),
+                    },
+                }}
             />
         );
     }
