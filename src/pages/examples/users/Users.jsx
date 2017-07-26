@@ -207,7 +207,12 @@ export default class extends Component {
             labelSpaceCount: 5,
             width: 400,
             placeholder: ['开始时间', '结束时间'],
-            decorator: {},
+            decorator: {
+                getValueFromEvent(momentArray, stringArray) {
+                    console.log(stringArray);
+                    return momentArray;
+                },
+            },
         },
         {
             type: 'time',
@@ -228,6 +233,18 @@ export default class extends Component {
             permission: 'SYSTEM_ADD_USER',
             onClick: () => {
                 this.props.router.push('/example/users/+add/:userId?tabName=添加用户');
+            },
+        },
+        {
+            permission: 'SYSTEM_ADD_USER',
+            component: <a href="https://www.baidu.com">baidu</a>,
+        },
+        {
+            permission: 'SYSTEM_ADD_USER',
+            getComponent: () => {
+                const {params = {}} = this.state;
+                console.log(params.time);
+                return <a href="https://www.baidu.com">{String(params.time)}</a>;
             },
         },
         // {
@@ -278,6 +295,7 @@ export default class extends Component {
 
     handleSearch = (params) => {
         console.log(params);
+        this.setState({params});
         return this.props.$ajax.get('/mock/users', params, {permission: 'USER_SEARCH'})
             .then(data => {
                 this.setState({

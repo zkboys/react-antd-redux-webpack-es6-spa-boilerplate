@@ -52,6 +52,7 @@ export class LayoutComponent extends Component {
                         labelSpaceCount={labelSpaceCount}
                         tip="我是哪个提示信息"
                         tipWidth={120}
+                        tipColor="red"
                         width={500}
                     >
                         {getFieldDecorator('userName', {
