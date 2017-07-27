@@ -40,6 +40,7 @@ module.exports = {
         "indent": [2, 4],
         "object-curly-spacing": 0, // { 内侧空格 }
         "no-underscore-dangle": 0, // 下划线命名，数据库返回的 _id 总是报错
+        "react/no-multi-comp": 0, // 同一个文件不予许导出两个文件
         "react/jsx-indent": [2, 4],
         "react/jsx-indent-props": [2, 4],
         "react/jsx-space-before-closing": 0, // <FIcon /> 空格
@@ -51,7 +52,6 @@ module.exports = {
         "linebreak-style": 0, // windows Linux 换行监测
         // "import/no-extraneous-dependencies": 0
         "arrow-parens": 0,
+        "no-trailing-spaces": 0, // 尾部空格
     }
-}
-
-
+};

@@ -274,6 +274,7 @@ export default class extends Component {
                     {
                         label: '删除',
                         color: 'red',
+                        isMore: true,
                         permission: '',
                         confirm: {
                             title: `您确定要删除“${record.loginName}”？`,
@@ -285,6 +286,32 @@ export default class extends Component {
                                 });
                             },
                         },
+                    },
+                    {
+                        label: '驳回',
+                        loading: false,
+                        color: 'green',
+                        permission: '',
+                        prompt: { // 这个加入更多，弹出之后，输入，输入框会出现无法定位bug，prompt尽量不要加入更多，或者改为弹框等其他形式。
+                            title: '驳回原因',
+                            okText: 'OK',
+                            cancelText: 'CANCEL',
+                            onCancel: () => alert('cancel'),
+                            onConfirm: value => alert(value),
+                            inputProps: {
+                                style: {width: 200},
+                                placeholder: '请输入驳回原因',
+                            },
+                            decorator: {
+                                rules: [
+                                    {required: true, message: '请输入驳回原因'},
+                                ],
+                            },
+                        },
+                    },
+                    {
+                        label: <a href="https://www.baidu.com">百度</a>,
+                        isMore: true,
                     },
                 ];
 
