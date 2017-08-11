@@ -52,7 +52,7 @@ export default class extends Component {
             title: '域名',
             dataIndex: 'name',
             key: 'name',
-            width: '30%',
+            width: 200,
             render: (text, record) => {
                 return (
                     <EditableCell
@@ -65,7 +65,7 @@ export default class extends Component {
                                 {required: true, message: '请输入域名'},
                             ],
                         }}
-                        defaultShowEdit={record.defaultShowEdit}
+                        showEdit
                         onSubmit={(value) => {
                             if (record.isNewAdd) {
                                 // TODO: 添加操作

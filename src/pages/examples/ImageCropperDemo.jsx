@@ -29,6 +29,7 @@ export class LayoutComponent extends Component {
                         const file = files[0];
                         getImageData(file).then(data => {
                             const preview = document.querySelector('#preview');
+                            console.log(data.length);
                             preview.src = data;
                             this.setState({imgUrl: data});
                         });

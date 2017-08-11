@@ -49,8 +49,7 @@ export function isMock(url /* url, data, method, options */) {
     return mockUrls.indexOf(url) > -1 || url.startsWith('/mock');
 }
 
-export function hasPermission(code) {
+export function hasPermission(/* code */) {
     // 根据code，进行是否拥有权限判断
-    console.log(code);
     return true;
 }
