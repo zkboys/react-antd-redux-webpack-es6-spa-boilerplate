@@ -6,6 +6,13 @@ export default [
         path: '',
     },
     {
+        key: 'zk-axios',
+        parentKey: 'example',
+        text: 'ajax请求封装',
+        icon: 'fa-users',
+        path: '/example/zk-axios',
+    },
+    {
         key: 'example-table-cell',
         parentKey: 'example',
         text: '可编辑单元格',

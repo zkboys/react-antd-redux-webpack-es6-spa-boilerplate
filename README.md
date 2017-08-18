@@ -167,12 +167,13 @@ server {
 - [x] 左侧菜单可拖动缩放宽度
 - [x] zk-react 开发模式构建慢问题，升级到webpack2.0，添加了一些优化
 - [x] antd 通用校验规则整理到zk-react中
+- [x] antd edit-cell其他表单元素完善、 可配置form组件（可用于查询条件、简单的form）
+- [ ] 系统注入到props中的变量统一使用'$'开头，比如$ajax $event $domEvent $service $actions
 - [ ] 字体图标，团队有条件还是定制的好，全部引入会多出300~400KB。
 - [ ] 修改less时可以hot reload ，修改jsx为什么直接reload？
 - [ ] antd 图标本地部署问题：缓存问题，antd.less需要全部引入，会多550KB的css代码
 - [ ] docker 前端生产环境部署
-- [ ] antd 自定义异步校验，多个异步校验互相干扰问题
-- [ ] antd edit-cell其他表单元素完善、 可配置form组件（可用于查询条件、简单的form）
+- [ ] antd 自定义异步校验，多个异步校验互相干扰问题 可以使用Promise.all包装各个请求？
 - [ ] 菜单匹配时，如果path携带参数，怎么能匹配成功？
 - [ ] css module class name 长短问题
 - [ ] css module=true background: url(); 问题 Module not found: Error: Can't resolve 'login-bg.jpg'
@@ -184,4 +185,69 @@ server {
 4. change local-default to local
 5. rm -rf local-default
 6. yarn
+
+
+## 第三方UI
+1. antd
+1. react-color
+
+## 自定义组件
+1. 基于antd扩展的自定义业务无关组件
+
+## 第三方js库
+1. 工具方法： lodash
+1. ajax请求：axios
+1. mock数据： mockjs axios-mock-adapter
+1. 字符串校验：validator.js
+1. jsx中className处理：classnames
+1. jsx中内联样式处理：reactcss
+1. 时间处理：moment
+1. 进度条：nprogress
+1. url地址解析：query-string
+1. 随机字符串：uuid
+
+## 自定义js库
+1. 图片处理
+1. 树操作方法
+1. 发布订阅
+1. 正则
+1. 校验方法
+1. 存储
+
+## 构建
+
+## redux
+
+## router
+
+## 脚本、自动化
+
+## 项目结构
+
+## 如何简化规范开发
+1. 公共组件编写规范
+1. 通用业务组件
+    1. 通用业务组件编写规范
+    1. 什么场景适合整理通用组件
+    1. 业务组件粒度
+1. 大型web项目结构、项目分层，为什么这么分层
+1. 可以提高项目开发效率，提高代码质量的最佳实践
+    1. 菜单、页面标题、面包屑导航自动获取+可配置
+    1. 简化的redux写法、与存储自动同步、异步redux写法、异常处理
+    1. ajax自动提示封装、全局+局部配置、ajax高阶组件自动释放资源、统一错误处理
+    1. 路由简化配置，页面直接声明一个PAGE_ROUTE变量，自动生成路由配置文件
+    1. 后端交互统一封装成service、提供基于restFull，提供BaseService、service高阶组件自动释放资源。
+    1. mock规则可配置
+    1. 基础CRUD代码生成
+    1. IDE模板，新建文件初始化代码
+
+## 前端开发流程
+
+1. 需求评审、确认
+1. 基于需求文档、产品原型进行页面开发
+1. 基于swagger（接口规范）接口对接
+1. 真实接口对接，前后端联调
+1. 基于需求、原型、测试用例进行页面整体自测
+1. 提测、修改bug
+
 
