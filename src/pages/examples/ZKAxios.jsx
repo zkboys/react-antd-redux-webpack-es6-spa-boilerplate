@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Button, Spin} from 'antd';
 import {PageContent} from 'zk-tookit/antd';
-import ZkAxios from '../../../zk-axios';
-import createAjaxHoc from '../../../zk-axios/react-hoc';
+import ZkAxios from 'zk-tookit/axios';
+import createAjaxHoc from 'zk-tookit/axios/react-hoc';
 import {isMock} from '../../commons';
 import './style.less';
 
