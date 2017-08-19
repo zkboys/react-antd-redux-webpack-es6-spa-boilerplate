@@ -1,14 +1,11 @@
 import {createAction} from 'redux-actions';
-import * as promiseAjax from 'zk-tookit/utils/promise-ajax';
 import {identity} from 'lodash/util';
 import * as types from '../action-types';
+import {getMenuTreeData} from '../../commons';
 
-export const getSystemMenus = createAction(types.GET_SYSTEM_MENUS,
-    () => promiseAjax.get('/mock/system/menus', null, {errorTip: false}), // TODO 修改这个链接
-    (resolved, rejected) => ({resolved, rejected})
-);
-
-export const setSystemMenusStatusByUrl = createAction(types.SET_SYSTEM_MENUS_STATUS_BY_URL);
+export const setSystemMenusStatusByUrl = createAction(types.SET_SYSTEM_MENUS_STATUS_BY_URL, () => {
+    return getMenuTreeData() || [];
+});
 
 export const setSystemMenuOpenKeys = createAction(types.SET_SYSTEM_MENU_OPEN_KEYS);
 export const toggleSideBar = createAction(types.TOGGLE_SIDE_BAR, identity, () => ({sync: 'frame'}));

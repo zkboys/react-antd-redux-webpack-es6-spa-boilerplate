@@ -38,9 +38,7 @@ class LayoutComponent extends Component {
         const {currentTopMenuNode, sideBarCollapsed} = this.props;
 
         if (currentTopMenuNode && currentTopMenuNode.children) {
-            if (sideBarCollapsed) {
-                currentTopMenuNode.children.forEach(item => item.isTop = true);
-            }
+            currentTopMenuNode.children.forEach(item => item.isTop = true);
             return renderNode(currentTopMenuNode.children, (item, children) => {
                 const isTop = item.isTop;
                 const key = item.key;
@@ -48,6 +46,10 @@ class LayoutComponent extends Component {
                 const text = item.text;
                 const icon = item.icon;
                 let title = <span><FontIcon type={icon}/>{text}</span>;
+
+                if (!isTop) {
+                    title = <span>{text}</span>;
+                }
 
                 if (sideBarCollapsed && isTop) {
                     title = <span><FontIcon type={icon}/><span className="side-bar-top-menu-text">{text}</span></span>;
@@ -60,6 +62,7 @@ class LayoutComponent extends Component {
                         </SubMenu>
                     );
                 }
+
                 return (
                     <Menu.Item key={key}>
                         <Link to={path}>
@@ -81,8 +84,8 @@ class LayoutComponent extends Component {
         const outerOverFlow = sideBarCollapsed ? 'visible' : 'hidden';
         const innerOverFlow = sideBarCollapsed ? '' : 'scroll';
         const scrollBarWidth = getScrollBarWidth();
-        const innerWidth = (sideBarCurrentWidth + scrollBarWidth) - 1; // 1 为outer 的 border
-        const logo = sideBarCollapsed ? 'ZK' : '管理系统架构';
+        const innerWidth = sideBarCollapsed ? sideBarCurrentWidth - 1 : (sideBarCurrentWidth + scrollBarWidth) - 1; // 1 为outer 的 border
+        const logo = sideBarCollapsed ? '星岚' : '星岚酒店管理系统';
 
         if (!currentSideBarMenuNode) currentSideBarMenuNode = {};
         return (
@@ -123,7 +126,7 @@ class LayoutComponent extends Component {
                     }}
                 >
                     <div className="menu-outer" style={{overflow: outerOverFlow, top: 0}}>
-                        <div className="menu-inner" style={{width: innerWidth, overflowY: innerOverFlow}}>
+                        <div className="menu-inner" style={{width: innerWidth, overflowY: innerOverFlow, overflowX: sideBarCollapsed ? 'visible' : 'hidden'}}>
                             <Menu
                                 style={{display: sideBarCollapsed ? 'none' : 'block'}}
                                 mode={mode}

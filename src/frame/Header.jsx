@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import {Menu, Popconfirm, Popover, Badge} from 'antd';
 import {Link} from 'react-router';
 import classNames from 'classnames';
+import {ajax} from 'zk-tookit/react';
 import {FontIcon, UserAvatar} from 'zk-tookit/antd';
 import {getFirstValue} from 'zk-tookit/utils/tree-utils';
-import {session} from 'zk-tookit/utils/storage';
 import {toLogin, getCurrentLoginUser} from '../commons';
 import connectComponent from '../redux/store/connect-component';
 
+@ajax()
 class LayoutComponent extends Component {
     componentDidMount() {
 
@@ -22,20 +23,33 @@ class LayoutComponent extends Component {
                 popover.style.position = 'fixed';
             }, 0);
         }
-    }
+    };
 
     handleLogout = () => {
-        session.clear();
-        toLogin();
-    }
+        this.props.$ajax.post('/v1/logout').then(() => {
+            toLogin();
+        });
+    };
 
     renderMenus() {
         const {menuTreeData = []} = this.props;
+        if (process.env.NODE_ENV === 'development') {
+            const menuAndPermission = menuTreeData.find(item => item.key === 'menu_permission');
+            if (!menuAndPermission) {
+                menuTreeData.push({
+                    key: 'menu_permission',
+                    path: '/system/menu',
+                    text: '菜单&权限',
+                    icon: 'code-o',
+                });
+            }
+        }
         return menuTreeData.map(node => {
             const key = node.key;
             const path = getFirstValue(menuTreeData, node, 'path');
             const icon = node.icon;
             const text = node.text;
+            if (text === '系统') return null;
             return (
                 <Menu.Item key={key}>
                     <Link to={path}>
@@ -77,6 +91,7 @@ class LayoutComponent extends Component {
                 loginName: 'no name',
                 avatar: '',
             };
+        const showNotice = false;
         return (
             <div className={`frame-header ${frameHeaderClass}`} style={style}>
                 <div className={`left-menu ${frameHeaderClass}`} style={style}>
@@ -88,20 +103,26 @@ class LayoutComponent extends Component {
                     </Menu>
                 </div>
                 <div className="right-menu">
-                    <Popover
-                        content={this.renderNoticeContent()}
-                    >
+                    {
+                        showNotice ? // 暂时先不显示，有需求再加
+                            <Popover
+                                content={this.renderNoticeContent()}
+                            >
+                                <div className="right-menu-item">
+                                    <Badge count={100}>
+                                        <FontIcon type="message"/>
+                                        <span className="notice-label">通知</span>
+                                    </Badge>
+                                </div>
+                            </Popover>
+                            : null
+                    }
+                    <Link to="/system/profile">
                         <div className="right-menu-item">
-                            <Badge count={100}>
-                                <FontIcon type="message"/>
-                                <span className="notice-label">通知</span>
-                            </Badge>
+                            <UserAvatar user={user}/>
+                            <span>{user.name}</span>
                         </div>
-                    </Popover>
-                    <div className="right-menu-item">
-                        <UserAvatar user={user}/>
-                        <span>{user.name}</span>
-                    </div>
+                    </Link>
                     <Popconfirm
                         onVisibleChange={this.handleLogoutPopVisibleChange}
                         placement="bottomRight"

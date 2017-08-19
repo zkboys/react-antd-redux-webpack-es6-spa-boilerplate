@@ -1,0 +1,109 @@
+import React, {Component} from 'react';
+import {Operator, ListPage} from 'zk-tookit/antd';
+import {ajax} from 'zk-tookit/react';
+import {hasPermission} from '../../commons';
+
+export const PAGE_ROUTE = '/<%= pluralityName %>';
+
+@ajax()
+export default class <%= capitalName %>List extends Component {
+    state = {
+        total: 0,
+        dataSource: [],
+    };
+
+    queryItems = [
+        [
+            {
+                type: 'input',
+                field: 'name',
+                label: '名称',
+                labelSpaceCount: 4,
+                width: 200,
+                placeholder: '请输入名称',
+            },
+        ],
+    ];
+
+    toolItems = [
+        {
+            type: 'primary',
+            text: '添加',
+            icon: 'fa-plus',
+            visible: hasPermission('<%= functionPrefix %>_ADD'),
+            onClick: () => {
+                this.props.router.push('/<%= pluralityName %>/+edit/:id');
+            },
+        },
+    ];
+
+    columns = [<% for (let i = 0;i<fields.length;i++){%>
+        {title: '<%= fields[i].title%>', dataIndex: '<%= fields[i].dataIndex%>'},<%}%>
+        {
+            title: '操作',
+            key: 'operator',
+            render: (text, record) => {
+                const {id, name} = record;
+                const successTip = `删除“${name}”成功！`;
+                const items = [
+                    {
+                        label: '修改',
+                        visible: hasPermission('<%= functionPrefix %>_UPDATE'),
+                        onClick: () => {
+                            this.props.router.push(`/<%= pluralityName %>/+edit/${id}`);
+                        },
+                    },
+                    {
+                        label: '删除',
+                        visible: hasPermission('<%= functionPrefix %>_DELETE'),
+                        confirm: {
+                            title: `您确定要删除“${name}”？`,
+                            onConfirm: () => {
+                                this.props.$ajax.del(`<%= ajaxUrl %>/${id}`, null, {successTip}).then(() => {
+                                    const dataSource = this.state.dataSource.filter(item => item.id !== id);
+                                    this.setState({
+                                        dataSource,
+                                    });
+                                });
+                            },
+                        },
+                    },
+                ];
+
+                return (<Operator items={items}/>);
+            },
+        },
+    ];
+
+    handleSearch = (params) => {
+        if (params) {
+            this.setState({params});
+        } else {
+            params = this.state.params;
+        }
+        return this.props.$ajax.get('<%= ajaxUrl %>', params)
+            .then(res => {
+                this.setState({
+                    total: res.total,
+                    dataSource: res.list,
+                });
+            });
+    };
+
+    render() {
+        const {total, dataSource} = this.state;
+        return (
+            <ListPage
+                queryItems={this.queryItems}
+                showSearchButton
+                showResetButton={false}
+                toolItems={this.toolItems}
+                columns={this.columns}
+                onSearch={this.handleSearch}
+                dataSource={dataSource}
+                rowKey={record => record._id}
+                total={total}
+            />
+        );
+    }
+}

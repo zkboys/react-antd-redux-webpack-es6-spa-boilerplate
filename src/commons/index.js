@@ -7,7 +7,8 @@ export const isRC = process.env.NODE_ENV === 'rc';
 
 export function getAjaxBaseUrl() {
     if (process.env.NODE_ENV === 'development') { // 这种写法，webpack打包production模式代码时，会把这个if分支的代码干掉
-        return require('../../local/local-ajax-base-url').default; // 只有div模式才会引用文件
+        return 'http://lb-haproxy.dev.default.ffpms.:10001';
+        // return 'http://172.16.1.111:8080'; // 刘金龙
     }
     if (isPro) {
         return '/api/';
@@ -23,7 +24,8 @@ export function getAjaxBaseUrl() {
     return '/';
 }
 
-// 这里由于keyPrefix 要设置成 currentLoginUser.id 的原因，无法使用封装过的storage
+// 这里由于App.jsx 中要对storage进行初始化，要用到 currentLoginUser.id 作为 keyPrefix
+// 所以不能使用 封装的storage相关方法
 export function getCurrentLoginUser() {
     const currentLoginUser = window.sessionStorage.getItem('currentLoginUser');
     return currentLoginUser ? JSON.parse(currentLoginUser) : null;
@@ -42,6 +44,8 @@ export function setMenuTreeData(menuTreeData) {
 }
 
 export function toLogin() {
+    session.clear();
+    window.sessionStorage.clear();
     return window.location.href = '/login.html';
 }
 
@@ -49,7 +53,15 @@ export function isMock(url /* url, data, method, options */) {
     return mockUrls.indexOf(url) > -1 || url.startsWith('/mock');
 }
 
-export function hasPermission(/* code */) {
-    // 根据code，进行是否拥有权限判断
-    return true;
+export function hasPermission(code) {
+    const currentLoginUser = getCurrentLoginUser();
+    if (currentLoginUser) {
+        const {permissions = []} = currentLoginUser;
+        return permissions.includes(code);
+    }
+    return false;
+}
+
+export function getDefaultPass() {
+    return '123456';
 }

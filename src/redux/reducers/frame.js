@@ -1,8 +1,7 @@
 import {handleActions} from 'redux-actions';
-import {handleAsyncReducer, actionTypes as systemTypes} from 'zk-tookit/redux';
-import {convertToTree, getNodeByPropertyAndValue, getTopNodeByNode} from 'zk-tookit/utils/tree-utils';
+import {actionTypes as systemTypes} from 'zk-tookit/redux';
+import {getNodeByPropertyAndValue, getTopNodeByNode} from 'zk-tookit/utils/tree-utils';
 import {uniqueArray} from 'zk-tookit/utils';
-import {session} from 'zk-tookit/utils/storage';
 import * as types from '../action-types';
 
 let initialState = {
@@ -49,36 +48,8 @@ export default handleActions({
             ...state,
         };
     },
-    [types.GET_SYSTEM_MENUS]: handleAsyncReducer({
-        always(state, /* action */) {
-            return state;
-        },
-        pending(state, /* action */) {
-            return state;
-        },
-        resolve(state, action) {
-            const {payload} = action;
-            let menuTreeData = state.menuTreeData;
-
-            if (payload && payload.length) {
-                menuTreeData = convertToTree(payload);
-            }
-            session.setItem('menuTreeData', menuTreeData);
-
-            return {
-                ...state,
-                menuTreeData,
-            };
-        },
-        reject(state, /* action */) {
-            return state;
-        },
-        complete(state, /* action */) {
-            return state;
-        },
-    }),
-    [types.SET_SYSTEM_MENUS_STATUS_BY_URL](state) {
-        const menuTreeData = session.getItem('menuTreeData') || [];
+    [types.SET_SYSTEM_MENUS_STATUS_BY_URL](state, action) {
+        const menuTreeData = action.payload;
         let currentSideBarMenuNode = {};
         let currentTopMenuNode = {};
         let menuOpenKeys = [...state.menuOpenKeys];

@@ -30,6 +30,8 @@
       cursor: pointer;
       color: #fff;
       .font-icon {
+        width: 14px;
+        text-align: right;
         margin-left: 8px;
         margin-right: 8px;
         font-size: 14px;
@@ -56,6 +58,29 @@
       border-radius: 50%;
       text-align: center;
     }
+
+    /* 选择域样式 */
+    .right-menu-item:hover {
+      .ant-select-selection--single,
+      .ant-select-selection__rendered {
+        background: none;
+      }
+    }
+    .ant-select-selection--single {
+      height: 56px;
+      background: @primaryColor;
+      border: none;
+      box-shadow: none;
+      transition: all 0ms;
+      .ant-select-selection__rendered {
+        background: @primaryColor;
+        color: #fff;
+        line-height: 56px;
+      }
+      .ant-select-arrow {
+        color: #fff;
+      }
+    }
   }
   .ant-menu-horizontal {
     padding-top: 6px;
@@ -63,7 +88,9 @@
     background: none;
   }
   .font-icon {
-    margin-right: 8px;
+    width: 12px;
+    text-align: right;
+    margin-right: 3px;
   }
   .ant-menu-horizontal > .ant-menu-item > a,
   .ant-menu-horizontal > .ant-menu-submenu > a {
@@ -125,7 +152,9 @@
       border-right: 0;
     }
     .font-icon {
-      margin-right: 8px;
+      width: 12px;
+      text-align: right;
+      margin-right: 3px;
     }
     a {
       text-decoration: none;
@@ -156,7 +185,7 @@
   .ant-menu-vertical {
     .ant-menu-item {
       transition: all 0ms;
-      text-align: center;
+      text-align: left;
     }
   }
 }
@@ -197,7 +226,9 @@
     float: right;
   }
   .font-icon {
-    margin-right: 8px;
+    width: 12px;
+    text-align: right;
+    margin-right: 3px;
   }
 }
 

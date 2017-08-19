@@ -2,11 +2,11 @@ const path = require('path');
 const srcPath = path.join(__dirname, '../src');
 let routesIgnore = [];
 let pagePath = path.join(srcPath, '**/*.jsx');
-if (process.env.NODE_ENV === 'development') {
-    const localConfig = require('../local/local-build-config.js');
-    routesIgnore = localConfig.routesIgnore;
-    pagePath = localConfig.pagePath;
-}
+// if (process.env.NODE_ENV === 'development') {
+//     const localConfig = require('../local/local-build-config.js');
+//     routesIgnore = localConfig.routesIgnore;
+//     pagePath = localConfig.pagePath;
+// }
 
 module.exports = {
     staticPath: './static', // 非webpack构建的静态文件存放目录，会被一同拷贝到assetsRoot目录下

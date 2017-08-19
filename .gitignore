@@ -36,3 +36,5 @@ page-routes.js
 page-init-state.js
 .happypack
 /zk-tookit/
+local-config.js
+/local/
