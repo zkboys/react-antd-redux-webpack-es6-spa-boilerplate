@@ -15,34 +15,3 @@
 @sideBarSubMenuFontColor: #999;
 @idCardPictureWidth: 102px;
 @idCardPictureHeight: 126px;
-
-.switch-animation() {
-  &.leaving.right {
-    opacity: 0;
-    transform: translate(20px, 0);
-  }
-
-  &.leaving.left {
-    opacity: 0;
-    transform: translate(-20px, 0);
-  }
-
-  &.leaving.down {
-    opacity: 0;
-    transform: translate(0, 20px);
-  }
-
-  &.leaving.up {
-    opacity: 0;
-    transform: translate(0, -20px);
-  }
-
-  &.leaving.fade {
-    opacity: 0;
-  }
-
-  &.entered {
-    opacity: 1;
-    transform: translate(0, 0);
-  }
-}

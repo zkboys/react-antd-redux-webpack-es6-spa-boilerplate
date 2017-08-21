@@ -47,6 +47,7 @@ class Login extends Component {
                             id: res.id,
                             name: res.name,
                             loginName: res.loginName,
+                            avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503905795&di=5ce1df5955d014e0c537b4459ea50136&imgtype=jpg&er=1&src=http%3A%2F%2Fimg1.touxiang.cn%2Fuploads%2F20120822%2F22-063649_260.jpg',
                         };
                         setCurrentLoginUser(currentLoginUser);
                         window.location.href = '/';
@@ -106,6 +107,7 @@ class Login extends Component {
                             </Button>
                         </FormItem>
                     </Form>
+                    <div style={{textAlign: 'center', color: 'red'}}>用户名/密码：test/111111</div>
                     <div styleName="error-message">
                         {errorMessage}
                     </div>

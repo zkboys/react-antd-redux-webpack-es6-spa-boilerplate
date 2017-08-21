@@ -1,7 +1,8 @@
 # zk-react-template-management
-> zk-react 管理系统架构
+> 管理系统架构，基于 antd + react + redux + webpack + ES6 的单页面应用
 
 1. UI基于antd，完整的登录、退出登录、菜单等结构
+1. 前后端分离，单独开发，单独部署。
 1. 基于webpack2.0进行构建，对构建进行了优化，提高rebuild速度，提高开发效率
 1. 菜单、页面标题、面包屑导航自动获取+可配置
 1. 简化的redux写法、与存储自动同步、异步redux写法、异常处理，相关文档在: src/redux/README.md
@@ -10,6 +11,8 @@
 1. 后端交互统一封装成service、提供基于restFull，提供BaseService基础方法、service高阶组件自动释放资源。
 1. mock规则可配置
 1. 基础CRUD代码生成。脚本在bin目录下
+1. css 模块化
+1. 使用eslint 结合 webpack 统一代码规范
 
 ## Build Setup
 > 使用[yarn](https://yarnpkg.com/zh-Hans/)
@@ -135,19 +138,6 @@ componentWillMount() {
 }
 ```
 
-## 页面写法
-> 为了简化开发，通过脚本自动生成部分代码，需要注意几个约定
-
-### 路由
-> 页面导出 PAGE_ROUTE 常量即可，常量的值对应菜单的path
-
-```
-export const PAGE_ROUTE = '/example/users';
-
-// 如果二级页面保持父级页面菜单选中状态，二级页面路由约定：parent_page_route/+child_page_route，通过`/+`进行分割
-export const PAGE_ROUTE = '/example/users/+add';
-```
-
 ## 前后端分离 ngnix配置 参考
 ```
 # 服务地址
@@ -157,20 +147,20 @@ upstream api_service {
 }
 #
 server {
-        listen       80;
-        server_name  localhost;
-        location / {
-          root /home/app/nginx/html; // 前端打包之后的文件存放路径
-          index index.html;
-          try_files $uri $uri/ /index.html; #react-router 防止页面刷新出现404
-        }
-        location ^~/api { // 代理ajax请求，前端的ajax请求配置了统一的baseUrl = ‘/api’
-           proxy_pass http://api_service/;
-           proxy_set_header Host  $http_host;
-           proxy_set_header Connection close;
-           proxy_set_header X-Real-IP $remote_addr;
-           proxy_set_header X-Forwarded-Server $host;
-        }
+    listen       80;
+    server_name  localhost;
+    location / {
+      root /home/app/nginx/html; // 前端打包之后的文件存放路径
+      index index.html;
+      try_files $uri $uri/ /index.html; #react-router 防止页面刷新出现404
+    }
+    location ^~/api { // 代理ajax请求，前端的ajax请求配置了统一的baseUrl = ‘/api’
+       proxy_pass http://api_service/;
+       proxy_set_header Host  $http_host;
+       proxy_set_header Connection close;
+       proxy_set_header X-Real-IP $remote_addr;
+       proxy_set_header X-Forwarded-Server $host;
+    }
 }
 ```
 
@@ -194,6 +184,7 @@ server {
 - [ ] 菜单匹配时，如果path携带参数，怎么能匹配成功？
 - [ ] css module class name 长短问题
 - [ ] css module=true background: url(); 问题 Module not found: Error: Can't resolve 'login-bg.jpg'
+- [ ] 测试：单元测试，端对端测试
 
 ## 脚手架步骤
 1. git clone zk-react-template-management object-name

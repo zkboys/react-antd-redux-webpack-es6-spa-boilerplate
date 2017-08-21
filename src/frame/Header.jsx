@@ -82,7 +82,7 @@ class LayoutComponent extends Component {
                 loginName: 'no name',
                 avatar: '',
             };
-        const showNotice = false;
+        const showNotice = true;
         return (
             <div className={`frame-header ${frameHeaderClass}`} style={style}>
                 <div className={`left-menu ${frameHeaderClass}`} style={style}>

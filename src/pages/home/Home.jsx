@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router';
 import {PageContent} from 'zk-tookit/antd';
-import {Button} from 'antd';
-import pageRoutes from '../../page-routes';
 import './style.less';
 
 export class LayoutComponent extends Component {
@@ -11,20 +8,11 @@ export class LayoutComponent extends Component {
     componentWillReceiveProps(/* nextProps */) {
     }
 
-    handleGetMenus = () => {
-        const {actions} = this.props;
-        actions.getSystemMenus(() => {
-            setTimeout(() => {
-                actions.setSystemMenusStatusByUrl();
-            });
-        });
-    }
-
     componentWillMount() {
         const {actions} = this.props;
         // actions.hidePageHeader();
         actions.hideSideBar();
-        actions.setPageTitle('自定义页面标题');
+        actions.setPageTitle('我是自定义页面标题');
         actions.setPageBreadcrumbs([
             {
                 key: 'zidingyi',
@@ -50,11 +38,7 @@ export class LayoutComponent extends Component {
     render() {
         return (
             <PageContent styleName="root">
-                <h1 styleName="title">home123</h1>
-                <Button onClick={this.handleGetMenus}>重新获取菜单</Button>
-                {
-                    pageRoutes.map(route => <div key={route.path}><Link to={route.path}>{route.path}</Link></div>)
-                }
+                <h1 styleName="title">需要丰富一下首页，提高吸引力</h1>
             </PageContent>
         );
     }
