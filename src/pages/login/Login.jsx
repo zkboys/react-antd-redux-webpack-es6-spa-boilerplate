@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Form, Input, Icon, Button} from 'antd';
-import * as promiseAjax from 'zk-tookit/utils/promise-ajax';
-import {init as initStorage} from 'zk-tookit/utils/storage';
-import {convertToTree} from 'zk-tookit/utils/tree-utils';
-import {setCurrentLoginUser, setMenuTreeData, isMock, getAjaxBaseUrl} from '../../commons';
+import {setCurrentLoginUser} from '../../commons';
+import service from '../../services/service-hoc';
 import './style.less';
 
 const FormItem = Form.Item;
@@ -18,14 +16,8 @@ if (process.env.NODE_ENV === 'development') {
     console.log('current mode is debug, mock is started');
 }
 
-promiseAjax.init({
-    setOptions: (instance) => {
-        instance.defaults.baseURL = getAjaxBaseUrl();
-    },
-    isMock,
-});
-
 @Form.create()
+@service()
 class Login extends Component {
     state = {
         loading: false,
@@ -44,31 +36,25 @@ class Login extends Component {
         }
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
                 const {userName, password} = values;
+
                 this.setState({loading: true, errorMessage: ''});
-                // TODO 修改url，考虑着两个请求是否可以合并为一个？
-                promiseAjax.post('/mock/login', {userName, password}, {errorTip: false}).then(res => {
-                    const currentLoginUser = {
-                        id: res.id,
-                        name: res.name,
-                        loginName: res.loginName,
-                    };
-                    initStorage({
-                        keyPrefix: currentLoginUser.id,
-                    });
-                    promiseAjax.get('/mock/system/menus', null, {errorTip: false}).then(response => {
-                        const menuTreeData = convertToTree(response);
-                        setMenuTreeData(menuTreeData);
+
+                this.props.$service.systemService
+                    .login({userName, password}, {errorTip: false})
+                    .then(res => {
+                        const currentLoginUser = {
+                            id: res.id,
+                            name: res.name,
+                            loginName: res.loginName,
+                        };
                         setCurrentLoginUser(currentLoginUser);
                         window.location.href = '/';
-                    }).finally(() => {
-                        this.setState({loading: false});
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        this.setState({loading: false, errorMessage: error.message});
                     });
-                }).catch(error => {
-                    console.log(error);
-                    this.setState({loading: false, errorMessage: error.message});
-                });
             }
         });
     }

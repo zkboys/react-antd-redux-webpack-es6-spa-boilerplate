@@ -5,7 +5,7 @@ export default function (mock) {
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve([200, menus]);
-            }, 1000);
+            }, 500);
         });
     });
 }

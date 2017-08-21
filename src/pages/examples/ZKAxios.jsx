@@ -1,22 +1,8 @@
 import React, {Component} from 'react';
 import {Button, Spin} from 'antd';
 import {PageContent} from 'zk-tookit/antd';
-import ZkAxios from 'zk-tookit/axios';
-import createAjaxHoc from 'zk-tookit/axios/react-hoc';
-import {isMock} from '../../commons';
+import {ajax} from '../../commons';
 import './style.less';
-
-// TODO 这些初始化工作应该放到commons中
-const zkAxios = new ZkAxios({
-    isMock,
-});
-
-// 创建高阶组件
-const ajax = createAjaxHoc(zkAxios);
-
-// mockjs使用的axios实例
-export const mockInstance = zkAxios.mockInstance;
-
 
 export const PAGE_ROUTE = '/example/zk-axios';
 export const INIT_STATE = {
@@ -34,7 +20,7 @@ export const INIT_STATE = {
     e: 'e',
 };
 
-@ajax()
+@ajax() // 这种方式不推荐使用，推荐ajax统一封装到service中
 export default class PromiseAjaxExample extends Component {
     state = {
         timeOutGetting: false,

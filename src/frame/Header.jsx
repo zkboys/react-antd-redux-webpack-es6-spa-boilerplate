@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {Menu, Popconfirm, Popover, Badge} from 'antd';
 import {Link} from 'react-router';
 import classNames from 'classnames';
-import {ajax} from 'zk-tookit/react';
 import {FontIcon, UserAvatar} from 'zk-tookit/antd';
 import {getFirstValue} from 'zk-tookit/utils/tree-utils';
+import service from '../services/service-hoc';
 import {toLogin, getCurrentLoginUser} from '../commons';
 import connectComponent from '../redux/store/connect-component';
 
-@ajax()
+@service()
 class LayoutComponent extends Component {
     componentDidMount() {
 
@@ -26,9 +26,11 @@ class LayoutComponent extends Component {
     };
 
     handleLogout = () => {
-        this.props.$ajax.post('/v1/logout').then(() => {
-            toLogin();
-        });
+        this.props.$service.systemService
+            .logout()
+            .then(() => {
+                toLogin();
+            });
     };
 
     renderMenus() {

@@ -19,7 +19,7 @@ module.exports = {
     pageInitStateFileName: path.join(srcPath, 'page-init-state.js'),
     pageRouteFileName: path.join(srcPath, './page-routes.js'),
     useESLint: true,
-    useCSSModulePath: path.resolve(__dirname, '../', 'src/pages'),
+    useCSSModulePath: path.join(srcPath, 'pages'), // path.resolve(__dirname, '../', 'src/pages'),
     build: {
         env: '"production"',
         assetsRoot: path.join(__dirname, '../public'), // webpack 构建生成文件存放路径

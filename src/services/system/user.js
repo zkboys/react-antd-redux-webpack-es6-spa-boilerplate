@@ -1,8 +1,8 @@
 import BaseService from '../base-service';
 
-export default class FloorService extends BaseService {
+export default class SystemService extends BaseService {
     constructor(...args) {
         super(...args);
-        this.url = '/v1/floor';
+        this.url = '/mock/users';
     }
 }

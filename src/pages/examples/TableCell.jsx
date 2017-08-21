@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {message} from 'antd';
 import {Operator, ListPage, EditableCell} from 'zk-tookit/antd';
-import {ajax} from 'zk-tookit/react';
+import service from '../../services/service-hoc';
 
 export const PAGE_ROUTE = '/example/table-cell';
 
-@ajax()
+@service()
 export default class extends Component {
     state = {
         total: 0,
@@ -152,9 +152,8 @@ export default class extends Component {
     ];
 
     handleSearch = (params) => {
-        console.log(params);
-        // TODO 请求后端
-        return this.props.$ajax.get('/mock/users', params)
+        return this.props.$service.userService
+            .getByPage(params)
             .then(data => {
                 this.setState({
                     total: data.total,

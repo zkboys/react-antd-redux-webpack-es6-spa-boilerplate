@@ -18,6 +18,13 @@ export default function (mock) {
             }, 1000);
         });
     });
+    mock.onPost('/mock/logout').reply(() => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve([200, {}]);
+            }, 500);
+        });
+    });
     mock.onPost('/mock/login').reply((config) => {
         const {
             userName,

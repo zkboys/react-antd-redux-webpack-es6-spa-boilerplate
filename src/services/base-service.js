@@ -1,4 +1,4 @@
-import * as ajax from 'zk-tookit/utils/promise-ajax';
+import {zkAxios} from '../commons';
 
 export default class BaseService {
     constructor() {
@@ -18,30 +18,30 @@ export default class BaseService {
     }
 
     add(params, options) {
-        const ajaxToken = ajax.post(this.url, params, options);
+        const ajaxToken = zkAxios.post(this.url, params, options);
         this.resource.push(ajaxToken);
 
         return ajaxToken;
     }
 
     deleteById(id, options) {
-        const ajaxToken = ajax.del(`${this.url}/${id}`, null, options);
+        const ajaxToken = zkAxios.del(`${this.url}/${id}`, null, options);
         this.resource.push(ajaxToken);
 
         return ajaxToken;
     }
 
     update(params, options) {
-        const ajaxToken = ajax.put(this.url, params, options);
+        const ajaxToken = zkAxios.put(this.url, params, options);
         this.resource.push(ajaxToken);
 
         return ajaxToken;
     }
 
     getByPage(params, options) {
-        const ajaxToken = ajax.get(this.url, params, options);
+        const ajaxToken = zkAxios.get(this.url, params, options);
         this.resource.push(ajaxToken); // 存入资源集合中，调用组件被卸载会调用release方法会统一释放
-        
+
         return ajaxToken.then(res => {
             return {
                 total: res.total,
@@ -51,14 +51,14 @@ export default class BaseService {
     }
 
     getAll(params, options) {
-        const ajaxToken = ajax.get(this.url, params, options);
+        const ajaxToken = zkAxios.get(this.url, params, options);
         this.resource.push(ajaxToken);
 
         return ajaxToken.then(res => res.list || []);
     }
 
     getById(id, options) {
-        const ajaxToken = ajax.get(`${this.url}/${id}`, null, options);
+        const ajaxToken = zkAxios.get(`${this.url}/${id}`, null, options);
         this.resource.push(ajaxToken);
 
         return ajaxToken;

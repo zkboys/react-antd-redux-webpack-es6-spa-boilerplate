@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {Operator, ListPage} from 'zk-tookit/antd';
-import {ajax} from 'zk-tookit/react';
 import {hasPermission} from '../../../commons';
+import service from '../../../services/service-hoc';
 
 export const PAGE_ROUTE = '/example/users';
 
-@ajax()
+@service()
 export default class extends Component {
     state = {
         total: 0,
@@ -305,13 +305,14 @@ export default class extends Component {
                             title: `您确定要${tip}“${name}”？`,
                             onConfirm: () => {
                                 // TODO 修改这个请求
-                                this.props.$ajax.del(
-                                    `/v1/roomType/${id}`,
-                                    null,
-                                    {successTip: `${tip}“${name}”成功！`}
-                                ).then(() => {
-                                    this.handleSearch();
-                                });
+                                this.props.$service.userService
+                                    .deleteById(
+                                        id,
+                                        {successTip: `${tip}“${name}”成功！`}
+                                    )
+                                    .then(() => {
+                                        this.handleSearch();
+                                    });
                             },
                         },
                     },
@@ -437,7 +438,9 @@ export default class extends Component {
     handleSearch = (params) => {
         console.log(params);
         this.setState({params});
-        return this.props.$ajax.get('/mock/users', params, {permission: 'USER_SEARCH'})
+
+        return this.props.$service.userService
+            .getByPage(params, {permission: 'USER_SEARCH'})
             .then(data => {
                 this.setState({
                     total: data.total,
