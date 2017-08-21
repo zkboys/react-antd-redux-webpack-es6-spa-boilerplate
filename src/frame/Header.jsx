@@ -35,17 +35,6 @@ class LayoutComponent extends Component {
 
     renderMenus() {
         const {menuTreeData = []} = this.props;
-        if (process.env.NODE_ENV === 'development') {
-            const menuAndPermission = menuTreeData.find(item => item.key === 'menu_permission');
-            if (!menuAndPermission) {
-                menuTreeData.push({
-                    key: 'menu_permission',
-                    path: '/system/menu',
-                    text: '菜单&权限',
-                    icon: 'code-o',
-                });
-            }
-        }
         return menuTreeData.map(node => {
             const key = node.key;
             const path = getFirstValue(menuTreeData, node, 'path');
