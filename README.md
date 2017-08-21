@@ -1,67 +1,84 @@
 # zk-react-template-management
-zk-react 管理系统模板，UI基于antd，完整的登录、退出登录、菜单等结构
+> zk-react 管理系统架构
 
-## Prepare
-前端开发前期准备工作
-
-### 需要学习的技术
-1. [es6](http://es6.ruanyifeng.com/) 重点：2、3、7、8、9、14、19、20、22
-1. [react](https://facebook.github.io/react/) state props 周期函数 jsx
-1. [UI antd](https://ant.design/index-cn)
-1. 时间处理：[moment](http://momentjs.com/)
-1. js工具：[lodash](https://lodash.com/)
-1. 构建：[webpack](https://doc.webpack-china.org/)
-1. cssModule：[css-module](https://github.com/gajus/react-css-modules)
-1. 数据管理：[redux](http://redux.js.org/)
-
-### 需要安装的软件
-1. [nodejs](http://nodejs.cn/)
-1. [yarn](https://yarnpkg.com/zh-Hans/)
-1. [ide webstorm](http://www.jetbrains.com/webstorm/) license server : http://idea.imsxm.com/
-1. [git](https://git-scm.com/)
+1. UI基于antd，完整的登录、退出登录、菜单等结构
+1. 基于webpack2.0进行构建，对构建进行了优化，提高rebuild速度，提高开发效率
+1. 菜单、页面标题、面包屑导航自动获取+可配置
+1. 简化的redux写法、与存储自动同步、异步redux写法、异常处理，相关文档在: src/redux/README.md
+1. ajax自动提示封装、全局+局部配置、ajax高阶组件自动释放资源、前后端约定统一错误处理
+1. 路由简化配置，页面直接声明一个PAGE_ROUTE变量，自动生成路由配置文件。相关文档在: src/route/README.md
+1. 后端交互统一封装成service、提供基于restFull，提供BaseService基础方法、service高阶组件自动释放资源。
+1. mock规则可配置
+1. 基础CRUD代码生成。脚本在bin目录下
 
 ## Build Setup
 > 使用[yarn](https://yarnpkg.com/zh-Hans/)
 
 ``` bash
-# install dependencies
+# 安装所有依赖
 $ yarn
 
-# serve with hot reload at localhost:8080
-yarn run dev
+# 启动开发
+$ yarn dev
 
-# build for production with minification
-yarn run build
+# 生产环境构建
+$ yarn build
 
-# clear cache 如果发现源码与webpack编译文件明显不一致，有可能是缓存脏数据
-yarn run clear-dev-cache
+# 清除缓存（如果发现源码与webpack编译文件明显不一致，有可能是缓存脏数据）
+$ yarn clear-cache
 
 ```
 
 ## 项目结构
 ```
-├── commons             // 系统公共方法，组件
-├── constants           // redux相关常量、系统其他常量
-├── frame               // 页面框架，头部+左侧等
-├── mock                // mock数据，截获ajax请求，便于前端单独调试
-│   └── mockdata        // 模拟数据 mockjs
-├── pages               // 业务页面，业务开发主要关系目录
-│   ├── error           // 一些error页面，404 403 401 等等
-│   ├── examples        // 一些例子
-│   └── home            // 首页
-├── redux               // redux 相关
-│   ├── actions         // redux action定义
-│   ├── reducers        // redux reducers定义目录
-│   └── actionTypes.js  // actions 和 reducers使用的types常量
-├── App.jsx             // 项目入口文件
-└── global.less         // 全局样式定义
+.
+├── .happypack                  // happypack缓存文件
+├── bin                         // 代码生成脚本
+├── builder                     // 构建工具
+├── dist                        // 开发构建时，生成的临时文件，生产环境不用
+├── local-default               // 个性化配置，用户分模块打包、个人配置等，只开发模式有效，目前没启用，预留功能
+├── public                      // 构建之后的代码，用户生产环境部署
+├── src                         // 开发主要目录
+│    ├── commons                // 系统公共方法，组件
+│    ├── frame                  // 页面框架，头部+左侧等
+│    ├── mock                   // mock数据，截获ajax请求，便于前端单独调试
+│    │   └── mockdata           // 模拟数据 mockjs
+│    ├── pages                  // 业务页面，业务开发主要关系目录
+│    │   ├── error              // 一些error页面，404 403 401 等等
+│    │   ├── examples           // 一些例子
+│    │   └── home               // 首页
+│    ├── redux                  // redux 相关
+│    │   ├── actions            // redux action定义
+│    │   ├── reducers           // redux reducers定义目录
+│    │   ├── store              // redux store
+│    │   └── actionTypes.js     // actions 和 reducers使用的types常量
+│    ├── route                  // 路由 相关
+│    ├── services               // 前端服务，一般是ajax请求等一些封装，提供基础数据
+│    ├── all-routes.js          // 脚本生成的路由配置文件
+│    ├── App.jsx                // 项目入口文件
+│    ├── global.less            // 全局样式定义
+│    ├── page-init-state.js     // 全局样式定义
+│    ├── page-init-state.js     // 脚本生成的简化redux写法的初始化state
+│    ├── page-routes.js         // 脚本生成的路由配置文件
+│    └── variables.less         // 主题变量
+├── static                      // 非构建依赖的静态文件
+├── .babelrc
+├── .eslintignore
+├── .eslintrc.js
+├── .gitignore
+├── favicon.png
+├── index.html
+├── package.json
+├── postcss.config.js
+├── README.md
+└── yarn.lock
 
 ```
 
 ## 系统菜单激活状态
 > 系统菜单的激活状态根据url地址，自动判定
 
-- 如果是二级页面，不如添加页面，需要保持其父级页面菜单状态，菜单path需要写成`parentPath/+childPath`，使用`/+`作为分界，比如：
+如果是二级页面，比如添加页面，需要保持其父级页面菜单状态，菜单path需要写成`parentPath/+childPath`，使用`/+`作为分界，比如：
 ```
 list页面：
 export const PAGE_ROUTE = '/example/users'
@@ -77,8 +94,8 @@ export const PAGE_ROUTE = '/example/users/+add'
 ### 显示隐藏
 ```
 componentWillMount() {
-    const {actions} = this.props;
-    actions.hidePageHeader();
+    const {$actions} = this.props;
+    $actions.hidePageHeader();
 }
 
 ```
@@ -86,16 +103,16 @@ componentWillMount() {
 ### 修改标题
 ```
 componentWillMount() {
-    const {actions} = this.props;
-    actions.setPageTitle('自定义页面标题');
+    const {$actions} = this.props;
+    $actions.setPageTitle('自定义页面标题');
 }
 ```
 
 ### 自定义面包屑导航
 ```
 componentWillMount() {
-    const {actions} = this.props;
-    actions.setPageBreadcrumbs([
+    const {$actions} = this.props;
+    $actions.setPageBreadcrumbs([
         {
             key: 'zidingyi',
             path: '',

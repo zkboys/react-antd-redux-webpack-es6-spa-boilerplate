@@ -13,9 +13,9 @@ export class LayoutComponent extends Component {
     state = {};
 
     componentWillMount() {
-        const {actions, $on} = this.props;
-        actions.setSystemMenusStatusByUrl();
-        actions.getStateFromStorage();
+        const {$actions, $on} = this.props;
+        $actions.setSystemMenusStatusByUrl();
+        $actions.getStateFromStorage();
 
         // redux 中有publish message消息
         $on('message', ({type, message: msg, error = {}}) => {
@@ -30,11 +30,11 @@ export class LayoutComponent extends Component {
 
         // 开始异步获取页面js
         $on('fetching-page-start', () => {
-            actions.showFullPageLoading();
+            $actions.showFullPageLoading();
         });
         // 结束异步获取页面js
         $on('fetching-page-end', () => {
-            actions.hideFullPageLoading();
+            $actions.hideFullPageLoading();
         });
     }
 
