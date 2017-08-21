@@ -54,12 +54,10 @@ class LayoutComponent extends Component {
     renderNoticeContent() {
         return (
             <div>
-                <p>消息1消息1消息1消息1消息1消息1</p>
-                <p>消息2</p>
-                <p>消息3</p>
-                <p>消息4</p>
-                <p>消息5</p>
-                <p>消息6</p>
+                <p><a href="https://github.com/zkboys/zk-react-template-management" target="_blank" rel="noopener noreferrer">新的后端架构上线了！</a></p>
+                <p><a href="https://github.com/zkboys/zk-react-template-management" target="_blank" rel="noopener noreferrer">老总喊你去他办公室一趟！</a></p>
+                <p><a href="https://github.com/zkboys/zk-react-template-management" target="_blank" rel="noopener noreferrer">热烈祝贺公司成立5周年，明天全体放假一天！</a></p>
+                <p><a href="https://github.com/zkboys/zk-react-template-management" target="_blank" rel="noopener noreferrer">战狼2免费送票！</a></p>
             </div>
         );
     }

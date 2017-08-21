@@ -38,7 +38,7 @@ export class LayoutComponent extends Component {
     render() {
         return (
             <PageContent styleName="root">
-                <h1 styleName="title">需要丰富一下首页，提高吸引力</h1>
+                <h1 styleName="title">假装首页有内容</h1>
             </PageContent>
         );
     }
