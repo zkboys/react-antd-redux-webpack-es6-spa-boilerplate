@@ -1,22 +1,34 @@
 # zk-react-template-management
 > 管理系统架构，基于 antd + react + redux + webpack + ES6 的单页面应用
 
-1. UI基于antd，完整的登录、退出登录、菜单等结构
-1. 前后端分离，单独开发，单独部署。
-1. 基于webpack2.0进行构建，对构建进行了优化，提高rebuild速度，提高开发效率
-1. 菜单、页面标题、面包屑导航自动获取+可配置
-1. 简化的redux写法、与存储自动同步、异步redux写法、异常处理，相关文档在: src/redux/README.md
-1. ajax自动提示封装、全局+局部配置、ajax高阶组件自动释放资源、前后端约定统一错误处理
-1. 路由简化配置，页面直接声明一个PAGE_ROUTE变量，自动生成路由配置文件。相关文档在: src/route/README.md
+管理系统往往是大量的表单表格等页面，存在大量的体力劳动，基于长期的管理系统开发，整理出一套管理系统架构、组件、通用方法来提高开发效率，可以以此为基础，快速创建管理系统项目。simple is all，make coding easy!
+
+架构功能一览：
+
+1. UI基于antd，完整的登录、退出登录、菜单等结构。
+1. 前后端分离，前后端可以并行开发，前端单独部署。
+1. 基于webpack2.0进行构建，对构建进行了优化，提高rebuild速度，提高开发效率。
+1. 菜单、页面标题、面包屑导航自动获取+可配置。
+1. redux写法封装、简化的redux写法、与存储自动同步、异步redux写法、异常处理，相关文档在: src/redux/README.md。
+1. ajax自动提示封装、全局+局部配置、ajax高阶组件自动释放资源、前后端约定统一错误处理。
+1. 路由简化配置，页面直接声明一个PAGE_ROUTE变量，自动生成路由配置文件。相关文档在: src/route/README.md。
 1. 后端交互统一封装成service、提供基于restFull，提供BaseService基础方法、service高阶组件自动释放资源。
-1. mock规则可配置
-1. 基础CRUD代码生成。脚本在bin目录下
-1. css 模块化
-1. 使用eslint 结合 webpack 统一代码规范
+1. mock规则可配置，快速切换mock数据与真实数据
+1. 基础CRUD代码生成，减少不必要的体力劳动。脚本在bin目录下。
+1. css 模块化，有效避免css命名冲突，提高css命令灵活性。
+1. 使用eslint 结合 webpack 统一代码规范，降低各个开发人员直接的沟通成本，提高代码质量。
 
-## Build Setup
-> 使用[yarn](https://yarnpkg.com/zh-Hans/)
+## 开发环境
+1. node v7.2.1
+2. yarn v0.27.5
+3. 兼容windows/mac 还没在ubuntu上开发，未知。
 
+## 安装、开发/生产构建
+> 推荐使用[yarn](https://yarnpkg.com/zh-Hans/)进行构建，yarn可以更好的组织依赖，下载依赖速度更快，也许还需要翻墙。
+您也可以使用[npm](https://www.npmjs.com/)；
+下载速度慢，可以考虑使用[淘宝的cnpm](http://npm.taobao.org/)
+
+yarn:
 ``` bash
 # 安装所有依赖
 $ yarn
@@ -29,6 +41,35 @@ $ yarn build
 
 # 清除缓存（如果发现源码与webpack编译文件明显不一致，有可能是缓存脏数据）
 $ yarn clear-cache
+```
+npm:
+``` bash
+# 安装所有依赖
+$ npm install
+
+# 启动开发
+$ npm run dev
+
+# 生产环境构建
+$ npm run build
+
+# 清除缓存（如果发现源码与webpack编译文件明显不一致，有可能是缓存脏数据）
+$ npm run clear-cache
+```
+cnpm:
+``` bash
+
+# 安装所有依赖
+$ cnpm install
+
+# 启动开发
+$ cnpm run dev
+
+# 生产环境构建
+$ cnpm run build
+
+# 清除缓存（如果发现源码与webpack编译文件明显不一致，有可能是缓存脏数据）
+$ cnpm run clear-cache
 
 ```
 
