@@ -3,7 +3,7 @@
 
 管理系统往往是大量的表单表格等页面，存在大量的体力劳动，基于长期的管理系统开发，整理出一套管理系统架构、组件、通用方法来提高开发效率，可以以此为基础，快速创建管理系统项目。simple is all，make coding easy!
 
-架构功能一览：
+## 架构功能一览：
 
 1. UI基于antd，完整的登录、退出登录、菜单等结构。
 1. 前后端分离，前后端可以并行开发，前端单独部署。
@@ -116,8 +116,13 @@ $ cnpm run clear-cache
 ├── postcss.config.js
 ├── README.md
 └── yarn.lock
-
 ```
+
+## 文件命名约定
+
+1. 文件夹小写英文加连字符"-"，比如：`src/pages/user-center`
+1. less文件、js文件 小写英文加连字符"-"，比如：`user-center.less`、`user-center.js`
+1. jsx文件（组件），首字母大写，驼峰命名，比如：`UserCenter.jsx`
 
 ## 系统菜单激活状态
 > 系统菜单的激活状态根据url地址，自动判定
@@ -271,3 +276,4 @@ module.exports = {
 - [ ] css module class name 长短问题
 - [ ] css module=true background: url(); 问题 Module not found: Error: Can't resolve 'login-bg.jpg'
 - [ ] 测试：单元测试，端对端测试
+- [ ] 使用ts重构？
