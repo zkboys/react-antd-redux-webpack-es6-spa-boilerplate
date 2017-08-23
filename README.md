@@ -164,6 +164,51 @@ server {
 }
 ```
 
+## 构建拆分 TODO
+> 基于配置，进行不同项目的打包构建，解决不同项目，但是类似，有很多通用组件，但是要单独发布的情景
+
+构建可以传入config文件，基于config文件可以构建出不同的项目
+```
+"dev": "yarn run clear-cache && yarn run dll && cross-env NODE_ENV=development node ./builder/dev-server.js --cfg ./xxx.config.js",
+```
+
+xxx.config.js如下
+```js
+module.exports = {
+    // 系统框架，路由配置时用到了
+    frame: require('./src/frame/Frame.jsx'),
+    // 主页，路由配置用到了
+    home: require('./src/pages/home/Home.jsx'),
+    // 404页面，路由配置用到了
+    error404: require('./src/pages/error/Error404.jsx'),
+
+    // 业务页面所在目录，用来构建路由以及init state，字符串或者数组
+    pagePath: './src/pages/**/*.jsx',
+    // pagePath: [
+    //     './src/pages/reserve/**/*.jsx',
+    //     './src/pages/sale/**/*.jsx',
+    // ],
+
+    // 忽略文件，不进行构建，提供部分模块打包功能，一般是配合补充 pagePath 进行使用，字符串或者数组
+    pageIgnore: [
+        // '**/ActionsExample.jsx',
+    ],
+
+    // webpack配置，区分不同环境
+    webpack: {
+        base: {
+            entry: {
+                app: './src/App.jsx',
+                login: './src/pages/login/Login.jsx',
+            },
+        },
+        dev: {},
+        prod: {},
+        dll: {},
+    },
+};
+```
+
 ## TODO
 - [x] 登录之后，获取菜单数据，并存入session中，由于页面头部是由菜单生成的，如果菜单是异步获取的，将会存在各种问题，所以进入系统时候保证菜单可用
 - [x] 构建优化：css postcss的使用，自动添加前缀等功能
