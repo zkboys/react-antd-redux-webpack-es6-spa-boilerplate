@@ -1,7 +1,8 @@
-# zk-react-template-management
+# react-antd-redux-webpack-es6-spa-boilerplate
 > 管理系统架构，基于 antd + react + redux + webpack + ES6 的单页面应用
 
-管理系统往往是大量的表单表格等页面，存在大量的体力劳动，基于长期的管理系统开发，整理出一套管理系统架构、组件、通用方法来提高开发效率，可以以此为基础，快速创建管理系统项目。simple is all，make coding easy!
+管理系统往往是大量的表单表格等页面，存在大量的体力劳动，基于长期的管理系统开发，整理出一套管理系统架构、组件、通用方法来提高开发效率。
+可以以此为基础，快速创建管理系统项目。simple is all，make coding easy!
 
 ## 架构功能一览：
 
@@ -138,13 +139,12 @@ export const PAGE_ROUTE = '/example/users/+add'
 ```
 
 ## 页面头部
-> 页面头部可以控制显示隐藏、修改标题、修改面包屑
+> 页面头部标题、面包屑导航系统会根据页面状态自动获取，但也可以控制显示隐藏、修改标题、修改面包屑。
 
 ### 显示隐藏
 ```
 componentWillMount() {
-    const {$actions} = this.props;
-    $actions.hidePageHeader();
+    this.props.$actions.hidePageHeader();
 }
 
 ```
@@ -152,16 +152,14 @@ componentWillMount() {
 ### 修改标题
 ```
 componentWillMount() {
-    const {$actions} = this.props;
-    $actions.setPageTitle('自定义页面标题');
+    this.props.$actions.setPageTitle('自定义页面标题');
 }
 ```
 
 ### 自定义面包屑导航
 ```
 componentWillMount() {
-    const {$actions} = this.props;
-    $actions.setPageBreadcrumbs([
+    this.props.$actions.setPageBreadcrumbs([
         {
             key: 'zidingyi',
             path: '',
@@ -221,13 +219,6 @@ server {
 xxx.config.js如下
 ```js
 module.exports = {
-    // 系统框架，路由配置时用到了
-    frame: require('./src/frame/Frame.jsx'),
-    // 主页，路由配置用到了
-    home: require('./src/pages/home/Home.jsx'),
-    // 404页面，路由配置用到了
-    error404: require('./src/pages/error/Error404.jsx'),
-
     // 业务页面所在目录，用来构建路由以及init state，字符串或者数组
     pagePath: './src/pages/**/*.jsx',
     // pagePath: [
