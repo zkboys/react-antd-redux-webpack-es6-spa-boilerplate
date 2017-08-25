@@ -3,8 +3,10 @@
 
 管理系统往往是大量的表单表格等页面，存在大量的体力劳动，基于长期的管理系统开发，整理出一套管理系统架构、组件、通用方法来提高开发效率。
 可以以此为基础，快速创建管理系统项目。simple is all，make coding easy!
+感谢[ant design](https://ant.design/index-cn)提供如此出色的UI库及设计思想，让开发变得简单很多！祝[ant design](https://ant.design/index-cn)越做越好！
 
 ## 架构功能一览：
+> 如果您想找华丽的UI，这个框架会让你失望，它目前只关注了如何简化编码，提高开发效率。
 
 1. UI基于antd，完整的登录、退出登录、菜单等结构。
 1. 前后端分离，前后端可以并行开发，前端单独部署。
@@ -16,6 +18,7 @@
 1. 后端交互统一封装成service、提供基于restFull，提供BaseService基础方法、service高阶组件自动释放资源。
 1. mock规则可配置，快速切换mock数据与真实数据
 1. 基础CRUD代码生成，减少不必要的体力劳动。脚本在bin目录下。
+1. 列表页可配置，通过ListPage组件，通过简单的配置，可以生成列表页面。
 1. css 模块化，有效避免css命名冲突，提高css命令灵活性。
 1. 使用eslint 结合 webpack 统一代码规范，降低各个开发人员直接的沟通成本，提高代码质量。
 
@@ -208,8 +211,9 @@ server {
 }
 ```
 
-## 构建拆分 TODO
-> 基于配置，进行不同项目的打包构建，解决不同项目，但是类似，有很多通用组件，但是要单独发布的情景
+## 构建拆分
+> 基于配置，进行不同项目的打包构建，解决不同项目，但是类似，有很多通用组件，但是要单独发布的情景；
+如果项目相差较大，没有太多的公共部分，还是建议单独建立一个项目。
 
 构建可以传入config文件，基于config文件可以构建出不同的项目
 ```
@@ -269,5 +273,5 @@ module.exports = {
 - [ ] css module class name 长短问题
 - [ ] css module=true background: url(); 问题 Module not found: Error: Can't resolve 'login-bg.jpg'
 - [ ] 测试：单元测试，端对端测试
-- [ ] 整理demo
+- [ ] 整理完善demo、文档
 - [ ] TypeScript + immutable 重构
