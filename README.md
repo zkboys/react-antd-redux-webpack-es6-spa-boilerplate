@@ -247,9 +247,11 @@ module.exports = {
 ```
 
 ## TODO
-- [x] 登录之后，获取菜单数据，并存入session中，由于页面头部是由菜单生成的，如果菜单是异步获取的，将会存在各种问题，所以进入系统时候保证菜单可用
+- [x] 登录之后，获取菜单数据，并存入session中，由于页面头部是由菜单生成的，如果菜单是异步获取的，将会存在各种问题，所以进入系统时候保证菜单可用。
+      已经改为进入App之前获取菜单，这样刷新页面就可以获取最新菜单，不必重新登录。
 - [x] 构建优化：css postcss的使用，自动添加前缀等功能
-- [x] 是否使用 css module功能，好像加不上，antd不是module方式，如果使用module，antd less 构建会失败。 通过配置可以区分出那些模块使用css module，那些不使用。
+- [x] 是否使用 css module功能，好像加不上，antd不是module方式，如果使用module，antd less 构建会失败。
+      通过配置可以区分出那些模块使用css module，那些不使用。
 - [x] 添加事件，移除事件的高阶组件
 - [x] redux 中数据，实现部分数据同步到localStorage中，目前是可以选择性恢复，可以满足需求
 - [x] source-map改如何使用
@@ -267,4 +269,5 @@ module.exports = {
 - [ ] css module class name 长短问题
 - [ ] css module=true background: url(); 问题 Module not found: Error: Can't resolve 'login-bg.jpg'
 - [ ] 测试：单元测试，端对端测试
-- [ ] 使用ts重构？
+- [ ] 整理demo
+- [ ] TypeScript + immutable 重构
