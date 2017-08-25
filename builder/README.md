@@ -9,7 +9,7 @@
 ## 分模块打包
 config.js中进行如下配置，可以进行分模块打包
 ```
-routesIgnore: routesIgnore, // 忽略含有路由的文件，不进行构建，提供部分模块打包功能，提高reBuild速度
+pageIgnore: pageIgnore, // 忽略含有路由的文件，不进行构建，提供部分模块打包功能，提高reBuild速度
 pagePath: pagePath, // 使用了PAGE_ROUTE INIT_STATE 文件所在目录，与routesIgnore同样可以控制打包模块
 ```
 

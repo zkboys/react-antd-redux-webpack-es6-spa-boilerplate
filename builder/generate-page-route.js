@@ -1,7 +1,7 @@
 /* eslint-disable */
 const fs = require('fs');
 const path = require('path');
-const glob = require('glob');
+const globby = require('globby');
 const utils = require('./utils');
 const config = require('./config');
 
@@ -90,7 +90,7 @@ function getPathsAndPathNames(sourceFilePath, targetFileName, filter) {
         };
     const paths = [];
     const pathNames = [];
-    const files = glob.sync(sourceFilePath, {ignore: config.routesIgnore, absolute: true});
+    const files = globby.sync(sourceFilePath, {ignore: config.pageIgnore, absolute: true});
     if (files && files.length) {
         for (let i = 0; i < files.length; i++) {
             const file = files[i];

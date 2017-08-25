@@ -1,14 +1,17 @@
 const path = require('path');
 const webpack = require('webpack');
+const merge = require('webpack-merge');
 const HappyPack = require('happypack');
-const sourcePath = path.resolve(__dirname, '../', 'src');
+const config = require('./config');
+const sourcePath = config.sourceFilePath;
+const webpackBaseConfig = config.webpackConfig.base;
 
-module.exports = {
+Object.keys(webpackBaseConfig.entry).forEach(name => {
+    webpackBaseConfig.entry[name] = ['babel-polyfill'].concat(webpackBaseConfig.entry[name]);
+});
+
+module.exports = merge({
     cache: true,
-    entry: {
-        app: './src/App.jsx',
-        login: './src/pages/login/Login.jsx',
-    },
     resolve: {
         extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx'],
         modules: [path.resolve(__dirname, '../', 'node_modules'), sourcePath],
@@ -50,10 +53,13 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin({
-            'process.env': {NODE_ENV: JSON.stringify(process.env.NODE_ENV)}
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+                PROJECT_ENV: JSON.stringify(process.env.PROJECT_ENV)
+            }
         }),
         new HappyPack({
             loaders: ['babel-loader?cacheDirectory=true'],
         }),
     ],
-};
+}, webpackBaseConfig);

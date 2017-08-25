@@ -1,7 +1,7 @@
 /* eslint-disable */
 const fs = require('fs');
 const path = require('path');
-const glob = require('glob');
+const globby = require('globby');
 const utils = require('./utils');
 const config = require('./config');
 
@@ -29,7 +29,7 @@ exports.handlePageInitStateWatch = function (event, pathName) {
 
 exports.generateAllInitState = function () {
     const finalString = {};
-    const files = glob.sync(sourceFileName, {ignore: config.routesIgnore});
+    const files = globby.sync(sourceFileName, {ignore: config.pageIgnore});
     if (files && files.length) {
         for (let i = 0; i < files.length; i++) {
             const file = files[i];

@@ -1,13 +1,17 @@
 const path = require('path');
 const webpack = require('webpack');
+const merge = require('webpack-merge');
 const packageJson = require('../package.json');
+const config = require('./config');
 
 // 这两个库会导致dll失败
 Reflect.deleteProperty(packageJson.dependencies, 'antd');
 Reflect.deleteProperty(packageJson.dependencies, 'zk-tookit');
 const deps = Object.keys(packageJson.dependencies);
 
-module.exports = {
+const webpackDllConfig = config.webpackConfig.dll;
+
+module.exports = merge({
     entry: {
         vendor: deps,
     },
@@ -37,4 +41,4 @@ module.exports = {
             name: '[name]_library'
         })
     ]
-};
+}, webpackDllConfig);

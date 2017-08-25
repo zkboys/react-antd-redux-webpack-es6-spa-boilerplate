@@ -9,7 +9,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const os = require('os');
 const UglifyJsParallelPlugin = require('webpack-uglify-parallel');
 
-const sourcePath = path.resolve(__dirname, '../', 'src');
+const sourcePath = config.sourceFilePath;
+const webpackProdConfig = config.webpackConfig.prod;
 
 // Create multiple instances
 const extractCSS = new ExtractTextPlugin({
@@ -130,7 +131,7 @@ const webpackConfig = merge(baseWebpackConfig, {
             favicon: './favicon.png',
             filename: 'index.html',
             template: './index.html',
-            title: 'REACT管理系统架构',
+            title: '酒店管理系统',
             inject: true,
             minify: {
                 removeComments: true,
@@ -160,7 +161,7 @@ const webpackConfig = merge(baseWebpackConfig, {
             chunksSortMode: 'dependency',
         }),
     ],
-});
+}, webpackProdConfig);
 
 if (config.build.productionGzip) {
     const CompressionWebpackPlugin = require('compression-webpack-plugin')

@@ -1,5 +1,5 @@
 const path = require('path');
-const glob = require('glob');
+const globby = require('globby');
 const os = require('os');
 const config = require('./config');
 const crypto = require('crypto');
@@ -30,7 +30,7 @@ function getImportsAndModules(sourceFilePath, targetFileName, filter, star) {
         };
     const imports = [];
     const modules = [];
-    const files = glob.sync(sourceFilePath, {ignore: config.routesIgnore});
+    const files = globby.sync(sourceFilePath, {ignore: config.pageIgnore});
     if (files && files.length) {
         for (let i = 0; i < files.length; i++) {
             const file = files[i];

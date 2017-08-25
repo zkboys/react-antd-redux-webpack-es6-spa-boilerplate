@@ -28,7 +28,7 @@ function generate() {
 exports.generate = generate;
 exports.watch = function () {
     if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'dev') {
-        chokidar.watch([routesSourceFileName, pageSourceFileName], {ignored: config.routesIgnore}).on('all', (event, pathName) => {
+        chokidar.watch([routesSourceFileName, pageSourceFileName], {ignored: config.pageIgnore}).on('all', (event, pathName) => {
             generateAllRoutes.handleWatchAllRoutes(event, pathName);
             generatePageInitState.handlePageInitStateWatch(event, pathName);
             generatePageRoute.handlePageRouteWatch(event, pathName);

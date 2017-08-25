@@ -6,7 +6,8 @@ const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const config = require('./config');
 const baseWebpackConfig = require('./webpack.base.conf');
 
-const sourcePath = path.resolve(__dirname, '../', 'src');
+const sourcePath = config.sourceFilePath;
+const webpackDevConfig = config.webpackConfig.dev;
 
 Object.keys(baseWebpackConfig.entry).forEach(name => {
     // add hot-reload related code to entry chunks
@@ -89,7 +90,7 @@ module.exports = merge(baseWebpackConfig, {
             favicon: './favicon.png',
             filename: 'index.html',
             template: './index.html',
-            title: 'REACT管理系统架构',
+            title: '酒店管理系统',
             inject: true,
         }),
         new HtmlWebpackPlugin({
@@ -105,4 +106,4 @@ module.exports = merge(baseWebpackConfig, {
             filename: 'common.js',
         }),
     ]
-});
+}, webpackDevConfig);
