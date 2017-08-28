@@ -5,6 +5,8 @@
 可以以此为基础，快速创建管理系统项目。simple is all，make coding easy!
 感谢[ant design](https://ant.design/index-cn)提供如此出色的UI库及设计思想，让开发变得简单很多！祝[ant design](https://ant.design/index-cn)越做越好！
 
+QQ交流群：667271903
+
 ## 架构功能一览：
 > 如果您想找华丽的UI，这个框架会让你失望，它目前只关注了如何简化编码，提高开发效率。
 
