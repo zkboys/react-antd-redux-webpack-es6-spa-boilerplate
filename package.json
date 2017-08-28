@@ -41,7 +41,7 @@
     "redux-undo": "^0.6.1",
     "uuid": "^3.0.1",
     "whatwg-fetch": "^1.0.0",
-    "zk-tookit": "^0.0.57"
+    "zk-tookit": "^0.0.60"
   },
   "devDependencies": {
     "add-asset-html-webpack-plugin": "^2.0.1",
