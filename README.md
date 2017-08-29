@@ -277,5 +277,5 @@ module.exports = {
 - [ ] css module class name 长短问题
 - [ ] css module=true background: url(); 问题 Module not found: Error: Can't resolve 'login-bg.jpg'
 - [ ] 测试：单元测试，端对端测试
-- [ ] 整理完善demo、文档
-- [ ] TypeScript + immutable 重构
+- [ ] 整理完善demo、文档，使用jsdoc？es6支持情况如何？
+- [ ] TypeScript + immutable 重构，团队人员情况，学习成本，开发成本？
