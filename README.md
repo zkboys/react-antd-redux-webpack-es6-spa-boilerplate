@@ -32,7 +32,7 @@ QQ交流群：667271903
 3. 兼容windows/mac 还没在ubuntu上开发，未知。
 
 ## 安装、开发/生产构建
-> 推荐使用[yarn](https://yarnpkg.com/zh-Hans/)进行构建，yarn可以更好的组织依赖，下载依赖速度更快，也许还需要翻墙。
+> 必须使用[yarn](https://yarnpkg.com/zh-Hans/)进行构建。yarn可以更好的组织依赖，下载依赖速度更快，也许还需要翻墙。
 使用[npm](https://www.npmjs.com/)或者[淘宝的cnpm](http://npm.taobao.org/)安装之后运行`npm run dev `会报错无法启动；
 
 yarn:
