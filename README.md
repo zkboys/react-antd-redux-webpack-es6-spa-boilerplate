@@ -33,8 +33,7 @@ QQ交流群：667271903
 
 ## 安装、开发/生产构建
 > 推荐使用[yarn](https://yarnpkg.com/zh-Hans/)进行构建，yarn可以更好的组织依赖，下载依赖速度更快，也许还需要翻墙。
-您也可以使用[npm](https://www.npmjs.com/)；
-下载速度慢，可以考虑使用[淘宝的cnpm](http://npm.taobao.org/)
+使用[npm](https://www.npmjs.com/)或者[淘宝的cnpm](http://npm.taobao.org/)安装之后运行`npm run dev `会报错无法启动；
 
 yarn:
 ``` bash
@@ -49,36 +48,6 @@ $ yarn build
 
 # 清除缓存（如果发现源码与webpack编译文件明显不一致，有可能是缓存脏数据）
 $ yarn clear-cache
-```
-npm:
-``` bash
-# 安装所有依赖
-$ npm install
-
-# 启动开发
-$ npm run dev
-
-# 生产环境构建
-$ npm run build
-
-# 清除缓存（如果发现源码与webpack编译文件明显不一致，有可能是缓存脏数据）
-$ npm run clear-cache
-```
-cnpm:
-``` bash
-
-# 安装所有依赖
-$ cnpm install
-
-# 启动开发
-$ cnpm run dev
-
-# 生产环境构建
-$ cnpm run build
-
-# 清除缓存（如果发现源码与webpack编译文件明显不一致，有可能是缓存脏数据）
-$ cnpm run clear-cache
-
 ```
 
 ## 项目结构
