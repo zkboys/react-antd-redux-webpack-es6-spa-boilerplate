@@ -10,6 +10,7 @@
     "build": "yarn run clear-cache && cross-env NODE_ENV=production node ./builder/build.js --cfg ./builder.config.js"
   },
   "dependencies": {
+    "animate.css": "^3.5.2",
     "antd": "^2.12.5",
     "axios": "^0.16.1",
     "axios-mock-adapter": "^1.8.1",
