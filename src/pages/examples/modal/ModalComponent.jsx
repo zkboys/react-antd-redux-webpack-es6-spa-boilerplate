@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Modal} from 'antd';
+import {Modal} from 'zk-tookit/antd';
 
 export default class ModalComponent extends Component {
     static defaultProps = {
@@ -23,13 +23,6 @@ export default class ModalComponent extends Component {
 
     componentDidMount() {
 
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (!this.props.visible && nextProps.visible) {
-            // 打开时，重新请求数据，保证Modal每次开启都使用最新的数据
-            this.handleBeforeOpen();
-        }
     }
 
     // 弹框第一次打开、再次打开前触发，可以用来从新获取最新数据，初始化弹窗状态
@@ -62,6 +55,7 @@ export default class ModalComponent extends Component {
                 visible={visible}
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
+                beforeOpen={this.handleBeforeOpen}
                 afterClose={this.handleAfterClose}
             >
                 这里是弹框内容
