@@ -7,6 +7,7 @@ const config = require('./config');
 // 这两个库会导致dll失败
 Reflect.deleteProperty(packageJson.dependencies, 'antd');
 Reflect.deleteProperty(packageJson.dependencies, 'zk-tookit');
+Reflect.deleteProperty(packageJson.dependencies, 'animate.css');
 const deps = Object.keys(packageJson.dependencies);
 
 const webpackDllConfig = config.webpackConfig.dll;
