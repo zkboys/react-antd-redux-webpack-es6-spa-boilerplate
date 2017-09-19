@@ -14,7 +14,7 @@
     [
       "react-css-modules",
       {
-        "generateScopedName": "[path][name]-[local]",
+        "generateScopedName": "[hash:base64:5]",
         "webpackHotModuleReloading": true,
         "filetypes": {
           ".less": {

@@ -238,12 +238,12 @@ module.exports = {
 - [x] antd edit-cell其他表单元素完善、 可配置form组件（可用于查询条件、简单的form）
 - [x] antd 自定义异步校验，多个异步校验互相干扰问题 可以使用Promise.all包装各个请求
 - [x] 系统注入到props中的变量统一使用'$'开头，比如$ajax $event $domEvent $service $actions
+- [x] css module class name 长短问题
 - [ ] 字体图标，团队有条件还是定制的好，全部引入会多出300~400KB。
 - [ ] 修改less时可以hot reload ，修改jsx为什么直接reload？
 - [ ] antd 图标本地部署问题：缓存问题，antd.less需要全部引入，会多550KB的css代码
 - [ ] docker 前端生产环境部署
 - [ ] 菜单匹配时，如果path携带参数，怎么能匹配成功？
-- [ ] css module class name 长短问题
 - [ ] css module=true background: url(); 问题 Module not found: Error: Can't resolve 'login-bg.jpg'
 - [ ] 测试：单元测试，端对端测试
 - [ ] 整理完善demo、文档，使用jsdoc？es6支持情况如何？
