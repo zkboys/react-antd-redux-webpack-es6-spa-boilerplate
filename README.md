@@ -1,6 +1,13 @@
 # react-antd-redux-webpack-es6-spa-boilerplate
 > 管理系统架构，基于 antd + react + redux + webpack + ES6 的单页面应用
 
+[![React](https://img.shields.io/badge/react-^15.4.2-brightgreen.svg?style=flat-square)](https://github.com/facebook/react)
+[![Ant Design](https://img.shields.io/badge/ant--design-^2.13.2-yellowgreen.svg?style=flat-square)](https://github.com/ant-design/ant-design)
+[![dva](https://img.shields.io/badge/dva-^2.0.1-orange.svg?style=flat-square)](https://github.com/dvajs/dva)
+[![GitHub issues](https://img.shields.io/github/issues/zkboys/react-antd-redux-webpack-es6-spa-boilerplate.svg?style=flat-square)](https://github.com/zkboys/react-antd-redux-webpack-es6-spa-boilerplate)
+[![MIT](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)](http://opensource.org/licenses/MIT)
+
+
 管理系统往往是大量的表单表格等页面，存在大量的体力劳动，基于长期的管理系统开发，整理出一套管理系统架构、组件、通用方法来提高开发效率。
 可以以此为基础，快速创建管理系统项目。simple is all，make coding easy!
 感谢[ant design](https://ant.design/index-cn)提供如此出色的UI库及设计思想，让开发变得简单很多！祝[ant design](https://ant.design/index-cn)越做越好！
