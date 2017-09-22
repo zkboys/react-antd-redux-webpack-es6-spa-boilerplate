@@ -255,3 +255,6 @@ module.exports = {
 - [ ] 测试：单元测试，端对端测试
 - [ ] 整理完善demo、文档，使用jsdoc？es6支持情况如何？
 - [ ] TypeScript + immutable 重构，团队人员情况，学习成本，开发成本？
+- [ ] 基于[create-react-app](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-stylesheet)重构项目结构、构建流程
+      - 浏览器与webstorm 结合的调试
+- [ ] react-router v4
