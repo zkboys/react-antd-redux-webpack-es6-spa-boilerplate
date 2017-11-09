@@ -61,7 +61,7 @@ export default class PromiseAjaxExample extends Component {
         this.setState({
             getting: true,
         });
-        this.ajaxGet = this.props.$ajax.get('/mock/ajax/get', data, options);
+        this.ajaxGet = this.props.$ajax.get('/ajax/get', data, options);
 
         this.ajaxGet.then(res => {
             console.log('get success1111', res);
@@ -97,7 +97,7 @@ export default class PromiseAjaxExample extends Component {
         this.setState({
             posting: true,
         });
-        this.ajaxPost = this.props.$ajax.post('/mock/ajax/post', data, options);
+        this.ajaxPost = this.props.$ajax.post('/ajax/post', data, options);
         this.ajaxPost.then(res => {
             console.log('post success', res);
         }).catch(err => {

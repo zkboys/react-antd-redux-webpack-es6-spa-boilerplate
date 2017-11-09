@@ -16,6 +16,8 @@ QQ交流群：667271903
 
 喜欢就给个star，感谢您的鼓励与支持！
 
+注：此库使用后编译（依赖具体项目的编译环境）
+
 ## 架构功能一览：
 > 如果您想找华丽的UI，这个框架会让你失望，它目前只关注了如何简化编码，提高开发效率。
 
@@ -110,6 +112,16 @@ $ yarn clear-cache
 
 ## 系统菜单激活状态
 > 系统菜单的激活状态根据url地址，自动判定
+
+
+菜单匹配分几种情况
+
+1. pathname 与菜单path精确匹配，直接使用此菜单
+1. pathname 的 `/+` 之前部分与菜单path精确匹配，直接使用此菜单
+1. 没有匹配到菜单，使用系统上次菜单；
+   上次菜单不存在，获取LocalStorage中保存的菜单节点；（每次匹配了菜单都要存入LS）
+   LocalStorage中不存在，页面就无菜单状态（这种情况一般不存在）；
+   
 
 如果是二级页面，比如添加页面，需要保持其父级页面菜单状态，菜单path需要写成`parentPath/+childPath`，使用`/+`作为分界，比如：
 ```
@@ -258,3 +270,6 @@ module.exports = {
 - [ ] 基于[create-react-app](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-stylesheet)重构项目结构、构建流程
       - 浏览器与webstorm 结合的调试
 - [ ] react-router v4
+- [ ] 菜单、页面标题、面包屑导航单独拆分成redux
+- [ ] zk-tookit 打包构建
+- [ ] 开发时，使用node做proxy，不使用ajax 的baseURL，后端不用解决跨域问题；

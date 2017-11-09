@@ -53,7 +53,7 @@ module.exports = merge(baseWebpackConfig, {
                         options: {
                             module: true,
                             camelCase: true,
-                            localIdentName: '[hash:base64:5]',
+                            localIdentName: '[local]-[hash:base64:5]',
                         },
                     },
                     'postcss-loader',
