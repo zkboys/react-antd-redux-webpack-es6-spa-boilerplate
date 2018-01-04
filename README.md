@@ -12,8 +12,6 @@
 可以以此为基础，快速创建管理系统项目。simple is all，make coding easy!
 感谢[ant design](https://ant.design/index-cn)提供如此出色的UI库及设计思想，让开发变得简单很多！祝[ant design](https://ant.design/index-cn)越做越好！
 
-QQ交流群：667271903
-
 喜欢就给个star，感谢您的鼓励与支持！
 
 注：此库使用后编译（依赖具体项目的编译环境）
